@@ -1,15 +1,20 @@
-# QIF Rules Extension Prototype for Digital Specifications
+# QIF Rules Extension Prototype for Digital Specifications: ISO 22081:2021
 
 This repository contains the prototype schema extension, rule implementation, and example QIF MBD model used for the [ISO 22081:2021](https://www.iso.org/standard/72514.html) case study in the paper "Specifications-as-code: a system for creation of product characteristics from digital specifications."
 
 The repository includes: 
 
-- Bundled QIF 3.0 and QIF 4 work-in-progress schemas used by the prototype.
-- The Rubypoint extension to the QIF schemas to support digital specifications.
 - An example ISO 22081 implementation as a QIF Rules file.
 - An example QIF MBD model modeled after ISO 22081, Figure 3, to demonstrate default geometrical specification rules.
+- Bundled QIF 3.0 and QIF 4 work-in-progress schemas used by the prototype.
+- The Rubypoint extension to the QIF schemas to support digital specifications.
 
 ## Repository Contents
+
+All QIF instance files live in `qif/`:
+
+- `qif/rules/ISO_22081_2021.qif` – the QIF-Rules-based implementation of ISO 22081, Section 5.
+- `qif/mbd/ISO22081_FIG3.qif` – a QIF MBD implementation of the model seen in ISO 22081, Figure 3. The rule above can be executed on this part to automatically apply the applicable geometrical specifications. 
 
 All schemas live in `xsd/`:
 
@@ -18,11 +23,6 @@ All schemas live in `xsd/`:
 - `xsd/rubypoint.xsd` – custom Rubypoint schema defining the extensions to QIF Rules to support digital specifications
 
 > Note: an in-progress version of QIF 4 is used for the QIF Rules extension to help with future compatibility with this upcoming QIF release.
-
-All QIF instance files live in `qif/`:
-
-- `qif/rules/ISO_22081_2021.qif` – the QIF-Rules-based implementation of ISO 22081, Section 5.
-- `qif/mbd/ISO22081_FIG3.qif` – a QIF MBD implementation of the model seen in ISO 22081, Figure 3. The rule above can be executed on this part to automatically apply the applicable geometrical specifications. 
 
 ## License
 
