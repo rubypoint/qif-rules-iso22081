@@ -1,0 +1,2459 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This document is part of QIF 4.0, an open, industry-wide standard -->
+<!-- established by the Digital Metrology Standards Consortium.        -->
+<!-- This document shall not be used in any manner to claim any        -->
+<!-- proprietary rights to such information, such as rights to a       -->
+<!-- patent, trademark, or copyright.                                  -->
+
+<xs:schema
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://qifstandards.org/xsd/qif4"
+  xmlns:t="http://qifstandards.org/xsd/qif4"
+  targetNamespace="http://qifstandards.org/xsd/qif4"
+  elementFormDefault="qualified"
+  attributeFormDefault="unqualified"
+  version="4devel.0.17">
+
+  <xs:include schemaLocation="../QIFLibrary/Geometry.xsd"/>
+  <xs:include schemaLocation="../QIFLibrary/Topology.xsd"/>
+  <xs:include schemaLocation="../QIFLibrary/Auxiliary.xsd"/>
+  <xs:include schemaLocation="../QIFLibrary/Visualization.xsd"/>
+  <xs:include schemaLocation="../QIFLibrary/Traceability.xsd"/>
+
+  <xs:annotation>
+    <xs:documentation>
+      This QIFProduct.xsd schema file defines definitions and instances of
+      Products, Parts, and Assemblies. The file also defines many aspects
+      of product geometries.
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:element name="Product"
+              type="ProductType">
+    <xs:annotation>
+      <xs:documentation>
+        The global Product element describes parts and assemblies.
+      </xs:documentation>
+    </xs:annotation>
+
+<!-- CONSTRAINTS (the key/keyref pairs) -->
+
+    <xs:key name="ProductBodyIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The ProductBodyIdKey collects all QIF ids of model bodies
+          in the product.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:TopologySet/t:BodySet/t:Body"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:key name="ProductSurfaceIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The ProductSurfaceIdKey collects all QIF ids of model surfaces
+          in the product.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:GeometrySet/t:SurfaceSet/t:*"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="ProductFaceParametricSurfaceKeyref"
+      refer="ProductSurfaceIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The ProductFaceParametricSurfaceKeyref requires that surfaces
+          whose Ids are specified in model faces be present in the
+          ProductSurfaceIdKey.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:TopologySet/t:FaceSet/t:Face/t:Surface/t:Id"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+
+    <xs:key name="ProductCurve12IdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The ProductCurve12IdKey collects all QIF ids of model 2D curves
+          in the product.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:GeometrySet/t:Curve12Set/t:*"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="ProductLoopParametricCurve12Keyref"
+      refer="ProductCurve12IdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The ProductLoopParametricCurve12Keyref requires that 2D curves
+          whose Ids are specified in model loops be present in the
+          ProductCurve12IdKey.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector
+        xpath="t:TopologySet/t:LoopSet/t:Loop/t:CoEdges/t:CoEdge/t:Curve12
+              /t:Id"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+
+    <xs:key name="ProductCurveMeshIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The ProductCurveMeshIdKey collects all QIF ids of model mesh
+          curves in the product.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:GeometrySet/t:CurveMeshSet/t:*"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="ProductLoopMeshCurveMeshKeyref"
+      refer="ProductCurveMeshIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The ProductLoopMeshCurveMeshKeyref requires that mesh curves
+          whose Ids are specified in model loops be present in the
+          ProductCurveMeshIdKey.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector
+        xpath="t:TopologySet/t:LoopSet/t:LoopMesh/t:CoEdgesMesh
+              /t:CoEdgeMesh/t:CurveMesh/t:Id"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+
+    <xs:key name="ProductEdgeIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The ProductEdgeIdKey collects all QIF ids of edges in the EdgeSet
+          of the product.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:TopologySet/t:EdgeSet/t:Edge"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="ProductZoneSectionEdgeKeyref"
+      refer="ProductEdgeIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The ProductZoneSectionEdgeKeyref requires that certain Ids of
+          Edges be present in the ProductEdgeIdKey.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector
+        xpath="t:ViewSet/t:ZoneSectionSet/t:ZoneSection/t:SectionPlanes
+              /t:SectionPlane/t:SectionGroups/t:SectionGroup/t:Areas/t:Area
+              /t:Loops/t:Loop/t:Edges/t:Edge/t:Id
+             | t:ViewSet/t:ZoneSectionSet/t:ZoneSection/t:SectionPlanes
+              /t:SectionPlane/t:SectionGroups/t:SectionGroup/t:Paths/t:Path
+              /t:Edges/t:Edge/t:Id"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+
+    <xs:key name="ProductSurfaceMeshIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The ProductSurfaceMeshIdKey collects all QIF ids of model mesh
+          surfaces.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:GeometrySet/t:SurfaceMeshSet/t:*"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="ProductFaceMeshMeshKeyref"
+      refer="ProductSurfaceMeshIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The ProductFaceMeshMeshKeyref requires that meshes whose Ids
+          are specified in model mesh faces be present in the 
+          ProductSurfaceMeshIdKey.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:TopologySet/t:FaceSet/t:FaceMesh/t:Mesh/t:Id"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+
+    <xs:key name="ProductCurve13IdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The ProductCurve13IdKey collects all QIF ids of model 3D curves.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:GeometrySet/t:Curve13Set/t:*"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="ProductEdgeCurveKeyref"
+      refer="ProductCurve13IdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The ProductEdgeCurveKeyref requires that 3D curves whose Ids
+          are specified in model edges be present in the
+          ProductCurve13IdKey.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:TopologySet/t:EdgeSet/t:Edge/t:Curve/t:Id"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+
+    <xs:key name="ProductVertexIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The ProductVertexIdKey collects all QIF ids of model vertices.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:TopologySet/t:VertexSet/t:Vertex"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="ProductEdgeVertexKeyref"
+      refer="ProductVertexIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The ProductEdgeVertexKeyref requires that vertices whose Ids
+          are specified in model edges be present in the 
+          ProductVertexIdKey.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector
+        xpath="t:TopologySet/t:EdgeSet/t:Edge/t:VertexBeg/t:Id
+             | t:TopologySet/t:EdgeSet/t:Edge/t:VertexEnd/t:Id
+             | t:ViewSet/t:ZoneSectionSet/t:ZoneSection/t:SectionPlanes
+              /t:SectionPlane/t:SectionGroups/t:SectionGroup/t:Vertices
+              /t:Id"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+
+    <xs:key name="ProductPointIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The ProductPointIdKey collects all QIF ids of model 3D points.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:GeometrySet/t:PointSet/t:Point"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="ProductVertexPointKeyref"
+      refer="ProductPointIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The ProductVertexPointKeyref requires that points whose Ids are
+          specified in model vertices be present in the ProductPointIdKey.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:TopologySet/t:VertexSet/t:Vertex/t:Point/t:Id"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+
+    <xs:keyref name="ProductBodiesIdKeyref"
+      refer="ProductBodyIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The ProductBodiesIdKeyref requires that bodies whose Ids are
+          specified in BodyIds be present in the ProductBodyIdKey.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector
+        xpath="t:ViewSet/t:SavedViewSet/t:SavedView/t:BodyIds/t:Id
+             | t:ViewSet/t:SimplifiedRepresentationSet
+              /t:SimplifiedRepresentation/t:SimplifiedRepresentationGroups
+              /t:SimplifiedRepresentationGroup/t:BodyIds/t:Id
+             | t:ViewSet/t:ExplodedViewSet/t:ExplodedView/t:MoveGroups
+              /t:MoveGroup/t:BodyIds/t:Id
+             | t:ViewSet/t:DisplayStyleSet/t:DisplayStyle
+              /t:DisplayStyleGroups/t:DisplayStyleGroup/t:BodyIds/t:Id
+             | t:ViewSet/t:ZoneSectionSet/t:ZoneSection/t:SectionPlanes
+              /t:SectionPlane/t:SectionGroups/t:SectionGroup/t:BodyId
+             | t:PartSet/t:Part/t:BodyIds/t:Id
+             | t:AssemblySet/t:Assembly/t:BodyIds/t:Id"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+
+    <xs:key name="ProductZoneSectionIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The ProductZoneSectionIdKey collects all QIF ids of zone sections.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:ViewSet/t:ZoneSectionSet/t:ZoneSection"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="ProductZoneSectionIdKeyref"
+      refer="ProductZoneSectionIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The ProductZoneSectionIdKeyref requires that Ids of zone
+          sections in model saved views be present in the
+          ProductZoneSectionIdKey.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector
+        xpath="t:ViewSet/t:SavedViewSet/t:SavedView/t:ZoneSectionId"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+
+    <xs:key name="ProductCoordinateSystemIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The ProductCoordinateSystemIdKey collects all QIF ids of model
+          coordinate systems.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:CoordinateSystemSet/t:CoordinateSystem"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="ProductCoordinateSystemsIdKeyref"
+      refer="ProductCoordinateSystemIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The ProductCoordinateSystemsIdKeyref requires that Ids in
+          the CoordinateSystemIds of a part or assembly be present
+          in the ProductCoordinateSystemIdKey.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector
+        xpath="t:PartSet/t:Part/t:CoordinateSystemIds/t:Id
+             | t:AssemblySet/t:Assembly/t:CoordinateSystemIds/t:Id"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+
+    <xs:key name="AuxiliaryIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The AuxiliaryIdKey collects all QIF ids of model auxiliary
+          objects.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:AuxiliarySet/t:*"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="ProductAuxiliaryIdKeyref"
+      refer="AuxiliaryIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The ProductAuxiliaryIdKeyref requires that Ids in the
+          AuxiliaryIds of a part or assembly be present in the
+          AuxiliaryIdKey.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector
+        xpath="t:PartSet/t:Part/t:AuxiliaryIds/t:Id
+             | t:AssemblySet/t:Assembly/t:AuxiliaryIds/t:Id"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+
+    <xs:key name="ViewIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The ViewIdKey collects all QIF ids of model view objects.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:ViewSet/t:*/t:*"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="ProductViewIdKeyref"
+      refer="ViewIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The ProductViewIdKeyref requires that Ids in the ViewIds of
+          a part or assembly be present in the ViewIdKey.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector
+        xpath="t:PartSet/t:Part/t:ViewIds/t:Id
+             | t:AssemblySet/t:Assembly/t:ViewIds/t:Id"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+
+    <xs:key name="PointCloudIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The PointCloudIdKey collects all QIF ids of model point cloud
+          objects.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:TopologySet/t:PointCloudSet/t:PointCloud"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="ProductPointCloudIdKeyref"
+      refer="PointCloudIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The ProductPointCloudIdKeyref requires that Ids in the
+          PointCloudsIds of a part or assembly be present
+          in the PointCloudIdKey.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector
+        xpath="t:PartSet/t:Part/t:PointCloudIds/t:Id
+             | t:AssemblySet/t:Assembly/t:PointCloudIds/t:Id"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+
+    <xs:key name="PartNoteIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The PartNoteIdKey collects the QIF ids of all part notes
+          in the product.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:PartNoteSet/t:PartNote"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="ProductPartNoteKeyref"
+      refer="PartNoteIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The ProductPartNoteKeyref requires that Ids in the PartNoteIds
+          of a part, assembly, or part note be present
+          in the PartNoteIdKey.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector
+        xpath="t:PartSet/t:Part/t:PartNoteIds/t:Id
+             | t:AssemblySet/t:Assembly/t:PartNoteIds/t:Id
+             | t:PartNoteSet/t:PartNote/t:PartNoteIds/t:Id"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+
+    <xs:key name="NoteFlagIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The NoteFlagIdKey collects the QIF ids of all flag notes in
+          the product.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:NoteFlagSet/t:NoteFlag"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="NoteFlagKeyref"
+      refer="NoteFlagIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The NoteFlagKeyref requires that Ids in the FlagNoteIds
+          of a part or assembly be present in the NoteFlagIdKey.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector
+        xpath="t:PartSet/t:Part/t:NoteFlagIds/t:Id
+             | t:AssemblySet/t:Assembly/t:NoteFlagIds/t:Id"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+
+    <xs:key name="NoteIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The NoteIdKey collects the QIF ids of all standard notes
+          in the product.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:NoteSet/t:Note"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="NoteIdKeyref"
+      refer="NoteIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The NoteIdKeyref requires that Ids in the NoteIds
+          of a part or assembly be present in the NoteIdKey.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector
+        xpath="t:PartSet/t:Part/t:NoteIds/t:Id
+             | t:AssemblySet/t:Assembly/t:NoteIds/t:Id"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+  </xs:element>
+
+  <xs:complexType name="ProductType">
+    <xs:annotation>
+      <xs:documentation>
+        The ProductType defines a top-level product, which shall itself
+        be a part or assembly.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Header"
+                  type="ProductHeaderType"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Header element gives information about the
+            provenance of the Product data set.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="GeometrySet"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional GeometrySet element is a collection of all
+            geometric entities present in the product, divided by type
+            in a number of sub-sets.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="TopologySet"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional TopologySet element is a collection of all
+            topological entities present in the product, divided by type
+            in a number of sub-sets.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="NoteSet"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional NoteSet element is a collection of all
+            notes present in the product.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="NoteFlagSet"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional NoteFlagSet element is a collection of all
+            flag notes present in the product.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="PartNoteSet"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional PartNoteSet element is a collection of all
+            part notes and standard notes present in the product.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="ViewSet"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional ViewSet element is a collection of all views
+            present in the product.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="LayerSet"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional LayerSet element is a collection of all model
+            layers.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="CoordinateSystemSet"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional CoordinateSystemSet element is a collection of all
+            coordinate systems present in the product.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="VisualizationSet"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional VisualizationSet element is a collection of
+            display information objects associated with PMI entities.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="AuxiliarySet"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional AuxiliarySet element is a collection of all
+            auxiliary objects present in the product.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="PartSet"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional PartSet element is a collection of all
+            parts present in the product.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="AssemblySet"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional AssemblySet element is a collection of all
+            assemblies present in the product.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="ComponentSet"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional ComponentSet element is a collection of all
+            components present in the product.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:choice minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            This optional compositor provides a choice among a part,
+            an assembly, and a component as the root of the product.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:element name="RootPart"
+                    type="ElementReferenceType">
+          <xs:annotation>
+            <xs:documentation>
+              The RootPart element is the root of the product.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="RootAssembly"
+                    type="ElementReferenceType">
+          <xs:annotation>
+            <xs:documentation>
+              The RootAssembly element is the root of the product.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="RootComponent"
+                    type="ElementReferenceType">
+          <xs:annotation>
+            <xs:documentation>
+              The RootComponent element is the root of the product.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+      <xs:element ref="AsmPaths"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional AsmPaths element is a collection of all parts
+            present in the product.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="AppearanceSet"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional AppearanceSet element is a collection of
+            appearances present in the product.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MaterialLibrary"
+                  type="MaterialsType"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional MaterialLibrary element is a list of the materials
+            from which the actual product is fabricated.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AsmPathType">
+    <xs:annotation>
+      <xs:documentation>
+        The AsmPathType defines information about assembly path, this path
+        is used for identification of an object inside an assembly.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ComponentIds"
+                  type="ArrayReferenceType"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional ComponentIds element is an array of
+            identifiers of the scene components which contain this
+            entity. This array shows the "path" from the root to the
+            parent component. The id of the parent component shall be
+            the last element of this array.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="Attributes"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Attributes element contains user defined
+            attributes (typified, binary array, or XML structured).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="id"
+                  type="QIFIdType"
+                  use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required id attribute is the QIF id of the assembly path,
+          used for referencing.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="AsmPathsType">
+    <xs:annotation>
+      <xs:documentation>
+        The AsmPathsType defines a list of one or more assembly paths.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="AsmPath"
+                  type="AsmPathType"
+                  maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each AsmPath element is an assembly path in the list.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+                  type="NaturalType"
+                  use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of assembly paths in this
+          set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:element name="AsmPaths"
+              type="AsmPathsType">
+    <xs:annotation>
+      <xs:documentation>
+        The global AsmPaths element is a list of assembly paths.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="ValidationPartAssemblyType">
+    <xs:annotation>
+      <xs:documentation>
+        The ValidationPartAssemblyType defines a set of part/assembly
+        validation properties.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Area"
+                  type="xs:double"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Area element is the part/assembly area.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Centroid"
+                  type="PointSimpleType"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Centroid element is the part/assembly center of
+            mass.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Volume"
+                  type="xs:double"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Volume element is the part/assembly volume.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Box"
+                  type="BoundingBoxAxisAlignedType"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Box element is the part/assembly bounding box.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FacePoints"
+                  type="ValidationPointsType"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional FacePoints element is a set of points that lie on
+            the part/assembly faces.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EdgePoints"
+                  type="ValidationPointsType"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional EdgePoints element is a set of points that lie on
+            the part/assembly edges.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Instances"
+                  type="ValidationPartAssemblyInstancesType"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Instances element is an array of instance
+            validation properties.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ValidationPartAssemblyInstancesType">
+    <xs:annotation>
+      <xs:documentation>
+        The ValidationPartAssemblyInstancesType is an array
+        of instance validation properties.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Instance"
+                  type="ValidationPartAssemblyInstanceType"
+                  maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            The Instance is a set of instance validation properties.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+                  type="NaturalType"
+                  use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of Instance in this set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="ValidationPartAssemblyInstanceType">
+    <xs:annotation>
+      <xs:documentation>
+        The ValidationPartAssemblyInstanceType defines a set of
+        part/assembly instance validation properties.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="AsmPathId"
+                  type="QIFReferenceType">
+        <xs:annotation>
+          <xs:documentation>
+            The AsmPathId element is the QIF id of the assembly path
+            of this part/assembly.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Centroid"
+                  type="PointSimpleType"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Centroid element is the instance center of mass.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Box"
+                  type="BoundingBoxAxisAlignedType"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Box element is the instance bounding box.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="PartAssemblyBaseType"
+                  abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The abstract PartAssemblyBaseType is the base type that defines
+        information about a part or assembly definition that was inspected
+        or will be inspected.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="DrawableBaseType">
+        <xs:sequence>
+          <xs:element name="Validation"
+                      type="ValidationPartAssemblyType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional Validation element is a set of part/assembly
+                validation properties.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Header"
+                      type="PartAssemblyHeaderType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional Header element is a description of the
+                provenance of the file for the part or assembly.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="UUID"
+                      type="UUIDChoiceType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional UUID element is a persistent identifier
+                for the part or assembly definition. If a UUIDAssignment
+                is used, it shall be generated using a widely accepted
+                UUID generator.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ModelNumber"
+                      type="xs:string"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ModelNumber element is the identifier of a
+                very specific type of part or assembly definition. There
+                may be many part or assembly instances with the same
+                ModelNumber, but they should all be identical (or nearly
+                so).
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Version"
+                      type="xs:string"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional Version element is the version (release
+                number, sometimes called revision) of the part or assembly
+                definition.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FeatureNominalIds"
+                      type="ArrayReferenceType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional FeatureNominalIds element contains any feature
+                nominals for the part or assembly definition.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FeatureZoneIds"
+                      type="ArrayReferenceType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional FeatureZoneIds element contains feature zones
+                for the part or assembly definition.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CharacteristicNominalIds"
+                      type="ArrayReferenceType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional CharacteristicNominalIds element contains any
+                characteristic nominals for the part or assembly definition.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NoteIds"
+                      type="ArrayReferenceType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional NoteIds element contains the ids of any notes
+                for the part or assembly definition.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NoteFlagIds"
+                      type="ArrayReferenceType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional NoteFlagIds element contains the ids of
+                any flag notes for the part or assembly definition.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PartNoteIds"
+                      type="ArrayReferenceType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional PartNoteIds element contains the ids of
+                any part notes for the part or assembly definition.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DatumDefinitionIds"
+                      type="ArrayReferenceType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional DatumDefinitionIds element contains any datum
+                definitions for the part or assembly definition.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DatumTargetDefinitionIds"
+                      type="ArrayReferenceType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional DatumTargetDefinitionIds element contains any
+                datum target definitions for the part or assembly
+                definition.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DatumReferenceFrameIds"
+                      type="ArrayReferenceType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional DatumReferenceFrameIds element contains any
+                datum reference frames for the part or assembly definition.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="BodyIds"
+                      type="ArrayReferenceType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional BodyIds element is an array of body
+                identifiers present in this part or assembly.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CoordinateSystemIds"
+                      type="ArrayReferenceType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional CoordinateSystemIds element is an array of
+                coordinate system identifiers present in this part or
+                assembly.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AuxiliaryIds"
+                      type="ArrayReferenceType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional AuxiliaryIds element is an array of auxiliary
+                object identifiers present in this part or assembly.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ViewIds"
+                      type="ArrayReferenceType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ViewIds element is an array of view object
+                identifiers present in this part or assembly.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PointCloudIds"
+                      type="ArrayReferenceType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional PointCloudIds element is an array of point
+                cloud identifiers present in this part or assembly.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="originMassProperty"
+                      type="PointSimpleType">
+          <xs:annotation>
+            <xs:documentation>
+              The optional originMassProperty attribute is the origin point
+              for calculating of objects mass properties contained in this
+              part or assembly.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="materialIndex"
+                      type="NaturalType">
+          <xs:annotation>
+            <xs:documentation>
+              The optional materialIndex attribute specifies a material
+              index in the material library.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="PartType">
+    <xs:annotation>
+      <xs:documentation>
+        The PartType is the part type. It contains a set of entities,
+        defining a feature (body), which may be instantiated multiple times
+        in the product. Use of parts simplifies maintenance of identical
+        features and reduces the total amount of scene data.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="PartAssemblyBaseType">
+        <xs:sequence>
+          <xs:element name="DefinitionsExternal"
+                      type="DefinitionsExternalType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional DefinitionsExternal element is a list of
+                the ids of part definitions for this part in non-QIF format.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PartFamily"
+                      type="PartFamilyType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional PartFamily element gives information about
+                the part that is useful for inspection planning.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element ref="FoldersPart"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional FoldersPart element is a folders tree in
+                the part.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="FoldersPartType">
+    <xs:annotation>
+      <xs:documentation>
+        The FoldersPartType defines a folder tree of a part.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="FolderPart"
+                  type="FolderPartType"
+                  maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each FolderPart element is a folder of a part.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+                  type="NaturalType"
+                  use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of the FolderPart
+          elements in this set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="FoldersAssemblyType">
+    <xs:annotation>
+      <xs:documentation>
+        The FoldersAssemblyType defines a folder tree of an assembly.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="FolderAssembly"
+                  type="FolderAssemblyType"
+                  maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each FolderAssembly element is a folder of an assembly.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+                  type="NaturalType"
+                  use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of FolderAssembly
+          elements in this set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="FolderPartAssemblyBaseType"
+                  abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The abstract FolderPartAssemblyBaseType is the base type that
+        defines information about a part/assembly folder.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="DrawableBaseType">
+        <xs:sequence>
+          <xs:element name="FolderIds"
+                      type="ArrayReferenceType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional FolderIds element contains the ids of
+                sub-folders.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FeatureNominalIds"
+                      type="ArrayReferenceFullType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional FeatureNominalIds element contains ids of
+                feature nominals from the part or assembly for the folder.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FeatureZoneIds"
+                      type="ArrayReferenceFullType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional FeatureZoneIds element contains ids of
+                feature zones of the part or assembly for the folder.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CharacteristicNominalIds"
+                      type="ArrayReferenceFullType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional CharacteristicNominalIds element contains
+                ids of characteristic nominals of the part or assembly
+                for the folder.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NoteIds"
+                      type="ArrayReferenceFullType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional NoteIds element contains ids of notes of
+                the part or assembly for the folder.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PartNoteIds"
+                      type="ArrayReferenceFullType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional PartNoteIds element contains part notes
+                for the product definition.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DatumDefinitionIds"
+                      type="ArrayReferenceFullType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional DatumDefinitionIds element contains datum
+                definitions for the product definition.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DatumTargetDefinitionIds"
+                      type="ArrayReferenceFullType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional DatumTargetDefinitionIds element contains
+                datum target definitions for the product definition.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DatumReferenceFrameIds"
+                      type="ArrayReferenceFullType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional DatumReferenceFrameIds element contains
+                datum reference frames for the product definition.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="BodyIds"
+                      type="ArrayReferenceType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional BodyIds element is an array of body
+                identifiers present in this block.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CoordinateSystemIds"
+                      type="ArrayReferenceType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional CoordinateSystemIds element is an array of
+                coordinate system identifiers present in this block.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AuxiliaryIds"
+                      type="ArrayReferenceType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional AuxiliaryIds element is an array of auxiliary
+                object identifiers present in this block.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ViewIds"
+                      type="ArrayReferenceType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ViewIds element is an array of view object
+                identifiers present in this block.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PointCloudIds"
+                      type="ArrayReferenceType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional PointCloudIds element is an array of point
+                cloud identifiers present in this block.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="FolderPartType">
+    <xs:annotation>
+      <xs:documentation>
+        The FolderPartType is the part folder type. It contains a set of
+        entities that define the part.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="FolderPartAssemblyBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="FolderAssemblyType">
+    <xs:annotation>
+      <xs:documentation>
+        The FolderAssemblyType is the assembly folder type. It contains a
+        set of entities that define the assembly.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="FolderPartAssemblyBaseType">
+        <xs:sequence>
+          <xs:element name="ComponentIds"
+                      type="ArrayReferenceType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ComponentIds element is an array of
+                component identifiers present in this product definition.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="AssemblyType">
+    <xs:annotation>
+      <xs:documentation>
+        The AssemblyType is the assembly type. It contains a set of
+        entities, defining a feature (body and sub-components), which may
+        be instantiated multiple times in the product. Use of assemblies
+        simplifies maintenance of identical features and reduces the total
+        amount of scene data.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="PartAssemblyBaseType">
+        <xs:sequence>
+          <xs:element name="ComponentIds"
+                      type="ArrayReferenceType">
+            <xs:annotation>
+              <xs:documentation>
+                The ComponentIds element is an array of component
+                identifiers present in this product definition.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DefinitionsExternal"
+                      type="DefinitionsExternalType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional DefinitionsExternal element is a list of
+                the ids of assembly definitions for this assembly in
+                non-QIF format.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element ref="FoldersAssembly"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional FoldersAssembly element is a folders tree
+                in an assembly.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="PartFamilyType">
+    <xs:annotation>
+      <xs:documentation>
+        The PartFamilyType provides information useful for grouping
+        parts that have similar process flows and requirements. A
+        part's PartFamilyType is described by it's primary
+        shape classification, primary manufacturing method, precision
+        needs, and/or size ranges.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PrimaryShapeClass"
+                  type="ShapeClassType"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional PrimaryShapeClass element provides the
+            primary shape classification of a part.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MinimumTolerance"
+                  type="LinearValueType"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional MinimumTolerance element identifies the
+            smallest linear tolerance that a part possesses that will
+            need to be verified.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MinimumBoundingBox"
+                  type="BoundingBoxType"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional MinimumBoundingBox element provides the smallest
+            bounding box into which the part will fit.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PrimaryManufacturingMethod"
+                  type="ManufacturingMethodType"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional PrimaryManufacturingMethod element identifies
+            the manufacturing method most likely used to produce the
+            primary shape of a part.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="Part"
+              type="PartType">
+    <xs:annotation>
+      <xs:documentation>
+        The global Part element defines a feature (body)
+        which may be instantiated multiple times in the product.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Assembly"
+              type="AssemblyType">
+    <xs:annotation>
+      <xs:documentation>
+        The global Assembly element defines a feature (body or
+        sub-components) which may be instantiated multiple times in the
+        product.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="PartSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The PartSetType represents a container for storing all
+        parts present in the product.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="Part"
+                  maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each Part element is a part which may be used
+            by a number of components (instances of the part).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+                  type="NaturalType"
+                  use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of parts in this set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="AssemblySetType">
+    <xs:annotation>
+      <xs:documentation>
+        The AssemblySetType represents a container for storing all
+        assemblies present in the product.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="Assembly"
+                  maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each Assembly element is an assembly which may be used
+            by a number of components (instances of the assembly).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+                  type="NaturalType"
+                  use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of assemblies in this set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:element name="PartSet"
+              type="PartSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The global PartSet element is a collection of all parts
+        present in the product.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="AssemblySet"
+              type="AssemblySetType">
+    <xs:annotation>
+      <xs:documentation>
+        The global AssemblySet element is a collection of all assemblies
+        present in the product.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="ComponentType">
+    <xs:annotation>
+      <xs:documentation>
+        The ComponentType defines a single instance of a part
+        or an assembly.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="DrawableBaseType">
+        <xs:sequence>
+          <xs:element name="Transform"
+                      type="ElementReferenceType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional Transform element is an identifier of the
+                transformation matrix that maps the component into the
+                product.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="UUID"
+                      type="UUIDChoiceType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional UUID element is a persistent identifier
+                for the component. If a new UUID is assigned, it shall
+                be generated using a widely accepted UUID generator.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Traceability"
+                      type="ProductTraceabilityType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional Traceability element gives traceability
+                information for a component.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:choice>
+            <xs:element name="Part"
+                        type="ElementReferenceType">
+              <xs:annotation>
+                <xs:documentation>
+                  The Part element is an identifier of a part
+                  to be instantiated.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="Assembly"
+                        type="ElementReferenceType">
+              <xs:annotation>
+                <xs:documentation>
+                  The Assembly element is an identifier of an assembly
+                  to be instantiated.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="Component"
+              type="ComponentType">
+    <xs:annotation>
+      <xs:documentation>
+        The global Component element is an instance of a part template.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="ComponentSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The ComponentSetType represents a container for storing all
+        components present in the product.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="Component"
+                  maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each Component element is an instance of a part template.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+                  type="NaturalType"
+                  use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of components in this set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:element name="ComponentSet"
+              type="ComponentSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The global ComponentSet element is a collection of all components
+        present in the product.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="DefinitionsExternalType">
+    <xs:annotation>
+      <xs:documentation>
+        The DefinitionsExternalType defines the geometry of a product
+        (a part or an assembly) in various degrees of detail.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice maxOccurs="unbounded">
+      <xs:annotation>
+        <xs:documentation>
+          This compositor provides a choice among types of drawing and
+          types of model.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:element name="PrintedDrawingId"
+                  type="QIFReferenceType">
+        <xs:annotation>
+          <xs:documentation>
+            The PrintedDrawingId element is the QIF id of a printed drawing
+            described in the PrintedDrawingReferences of this document.
+            This element is in an optional choice.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DigitalDrawingId"
+                  type="QIFReferenceType">
+        <xs:annotation>
+          <xs:documentation>
+            The DigitalDrawingId element is the QIF id of a digital
+            drawing described in the DigitalDrawingReferences of this
+            document. This element is in an optional choice.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DigitalModelId"
+                  type="QIFReferenceType">
+        <xs:annotation>
+          <xs:documentation>
+            The DigitalModelId element is the QIF id of a digital
+            model described in the DigitalModelReferences of this
+            document. This element is in an optional choice.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PhysicalModelId"
+                  type="QIFReferenceType">
+        <xs:annotation>
+          <xs:documentation>
+            The PhysicalModelId element is the QIF id of a physical
+            model described in the PhysicalModelReferences of this
+            document. This element is in an optional choice.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+    <xs:attribute name="n"
+                  type="NaturalType"
+                  use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of external product
+          definitions in this list.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="PartAssemblyHeaderType">
+    <xs:annotation>
+      <xs:documentation>
+        The PartAssemblyHeaderType gives a variety of information about
+        the part or assembly.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Name"
+                  type="xs:string"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Name element is the name of the part or assembly.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ApplicationSourcePartAssemblyName"
+                  type="xs:string"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional ApplicationSourcePartAssemblyName element
+            is the name of the part or assembly as given in the
+            application source file.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Description"
+                  type="xs:string"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Description element is a description of the
+            part or assembly.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ExternalReferenceId"
+                  type="QIFReferenceType"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional ExternalReferenceId element is the QIF id of an
+            external reference (such as a file defining the model) in
+            the ExternalReferences of the QIFDocument used in the model.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ConfigurationName"
+                  type="xs:string"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional ConfigurationName element is the name of a part
+            configuration.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Tolerance"
+                  type="LinearValueType"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Tolerance element is the smallest distance
+            between coordinates in a part or assembly that shall be
+            considered as distinct.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ProductHeaderType">
+    <xs:annotation>
+      <xs:documentation>
+        The ProductHeaderType provides general information about the
+        product. It includes reference to an external model of the
+        product and gives global parameters of the model.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Name"
+                  type="xs:string"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Name element is the name of the product.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Description"
+                  type="xs:string"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Description element is a description of the
+            product.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ExternalReferenceId"
+                  type="QIFReferenceType"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional ExternalReferenceId element is the QIF id of
+            an external reference in the ExternalReferences of the
+            QIFDocument used in defining the product.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ScaleCoefficient"
+                  type="xs:double"
+                  default="1.0"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional ScaleCoefficient element is an amount by
+            which all elements representing distances in the
+            QIFDocument/QIFProduct and QIFDocument/Features portions
+            of an instance file are scaled. The default value is 1.The
+            type of all values to be scaled is either LinearValueType
+            or xs:double. To convert such values in an instance file
+            to actual values, divide by the ScaleCoefficient. To
+            record actual values in an instance file, multiply the
+            actual value by the ScaleCoefficient.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MassPropertyTolerance"
+                  type="xs:double"
+                  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional MassPropertyTolerance element specifies a
+            tolerance used for calculation of the mass properties
+            of model entities.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="LayerType">
+    <xs:annotation>
+      <xs:documentation>
+        The LayerType is the type which represents one of the model
+        "grouping" objects.
+          NOTE1: The user may specify arbitrary number of layers for
+                 one model.
+          NOTE2: Any model entity may be included in an arbitrary number
+                 of layers.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="DrawableBaseType">
+        <xs:sequence>
+          <xs:element name="ElementIds"
+                      type="ArrayReferenceFullType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ElementIds element is an array of entity
+                identifiers present in this layer.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="applyColor"
+                      type="xs:boolean"
+                      default="0">
+          <xs:annotation>
+            <xs:documentation>
+              The optional applyColor attribute shows if the layer color
+              supersedes colors of the model entities associated with this
+              layer. The default value is FALSE.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="index"
+                      type="xs:unsignedInt"
+                      use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The required index attribute defines the layer index.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="LayerSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The LayerSetType represents a container for storing all
+        layers present in the product.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="Layer"
+                  maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            The Layer element defines the model layer with associated model
+            entities stored in the direct references.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+                  type="NaturalType"
+                  use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of layers in this set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:element name="Layer"
+              type="LayerType">
+    <xs:annotation>
+      <xs:documentation>
+        The global Layer element defines the model layer with associated
+        model entities stored in the direct references.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="LayerSet"
+              type="LayerSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The global LayerSet element is a collection of all model layers.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="PartNoteSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The PartNoteSetType represents a container for storing all
+        part notes present in the product.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="PartNote"
+                  maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each PartNote element is a part note.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+                  type="NaturalType"
+                  use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of part notes in this set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="PartNoteType">
+    <xs:annotation>
+      <xs:documentation>
+        The PartNoteType represents a note about a part.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="DrawableBaseType">
+        <xs:sequence>
+          <xs:element name="Text"
+                      type="xs:string"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional Text element is the text of the PartNote.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PartNoteIds"
+                      type="ArrayReferenceType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional PartNoteIds element is an array of identifiers
+                of nested part notes.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Indicator"
+                      type="IndicatorType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional Indicator element is an indicator
+                for the part note.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="NoteType">
+    <xs:annotation>
+      <xs:documentation>
+        The NoteType represents a note, also called a standard note.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="DrawableBaseType">
+        <xs:sequence>
+          <xs:element name="FeatureCounter"
+                      type="xs:unsignedInt"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional FeatureCounter element indicates the number
+                of associated features.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FeatureNominalIds"
+                      type="ArrayReferenceFullType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional FeatureNominalIds element is a list of the QIF
+                ids of features associated with this note.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Text"
+                      type="xs:string">
+            <xs:annotation>
+              <xs:documentation>
+                The Text element is the text of the Note.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Indicator"
+                      type="IndicatorType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional Indicator element is an indicator
+                for the note.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="form"
+                      type="NoteFormEnumType"
+                      default="3D">
+          <xs:annotation>
+            <xs:documentation>
+              The form attribute specifies how the Note is represented.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:simpleType name="NoteFormEnumType">
+    <xs:annotation>
+      <xs:documentation>
+        The NoteFormEnumType enumerates values that describe the form
+        of the Note and may be the following values:
+          `3D` - Note defined on the 3D annotation plane;
+          `SCREEN` - Note defined as flat to screen;
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="3D"/>
+      <xs:enumeration value="SCREEN"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="NoteSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The NoteSetType represents a set of notes.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="Note"
+                  maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each Note element is a note.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+                  type="NaturalType"
+                  use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of notes in this set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="NoteFlagType">
+    <xs:annotation>
+      <xs:documentation>
+        The NoteFlagType represents a flag note.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="DrawableBaseType">
+        <xs:sequence>
+          <xs:element name="FeatureCounter"
+                      type="xs:unsignedInt"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional FeatureCounter element indicates the number
+                of associated features.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FeatureNominalIds"
+                      type="ArrayReferenceFullType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional FeatureNominalIds element is a list of the QIF
+                ids of features associated with this flag note.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Text"
+                      type="xs:string">
+            <xs:annotation>
+              <xs:documentation>
+                The Text element is the text of the flag note.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TextHidden"
+                      type="xs:string"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional TextHidden element is the hidden text of the
+                flag note.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ExternalReferenceWithURIId"
+                      type="QIFReferenceType"
+                      minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ExternalReferenceWithURIId element is the
+                QIF id of an OtherFileOrWebReference that includes a
+                Uniform Resource Identifier for the information.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="form"
+                      type="NoteFormEnumType"
+                      default="3D">
+          <xs:annotation>
+            <xs:documentation>
+              The form attribute specifies how the flag note is represented.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="NoteFlagSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The NoteFlagSetType represents a set of flag notes.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="NoteFlag"
+                  maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each NoteFlag element is a flag note.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+                  type="NaturalType"
+                  use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of flag notes in this set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:element name="PartNoteSet"
+              type="PartNoteSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The global PartNoteSet element is a collection of all part notes
+        and standard notes presented in the product.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="PartNote"
+              type="PartNoteType">
+    <xs:annotation>
+      <xs:documentation>
+        The global PartNote element is a part note or standard note.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="NoteSet"
+              type="NoteSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The global NoteSet element is a collection of all notes
+        presented in the product.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Note"
+              type="NoteType">
+    <xs:annotation>
+      <xs:documentation>
+        The global Note element is a note.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="NoteFlagSet"
+              type="NoteFlagSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The global NoteFlagSet element is a collection of all flag
+        notes presented in the product.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="NoteFlag"
+              type="NoteFlagType">
+    <xs:annotation>
+      <xs:documentation>
+        The global NoteFlag element is a flag note.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="FoldersPart"
+              type="FoldersPartType">
+    <xs:annotation>
+      <xs:documentation>
+        The global FoldersPart element is a folder tree of the part.
+      </xs:documentation>
+    </xs:annotation>
+
+    <xs:key name="FoldersPartFolderIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The FoldersPartFolderIdKey collects all folder ids.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:FolderPart"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="FoldersPartFolderIdKeyref"
+      refer="FoldersPartFolderIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The FoldersPartFolderIdKeyref requires that Ids in the
+          FolderIds of a FolderPart be present in the
+          FoldersPartFolderIdKey.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:FolderPart/t:FolderIds/t:Id"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+  </xs:element>
+
+  <xs:element name="FoldersAssembly"
+              type="FoldersAssemblyType">
+    <xs:annotation>
+      <xs:documentation>
+        The global FoldersAssembly element is a folder tree of the assembly.
+      </xs:documentation>
+    </xs:annotation>
+
+    <xs:key name="FoldersAssemblyFolderIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The FoldersAssemblyFolderIdKey collects the QIF ids of all
+          folders in an assembly.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:FolderAssembly"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="FoldersAssemblyFolderIdKeyref"
+      refer="FoldersAssemblyFolderIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The FoldersAssemblyFolderIdKeyref requires that Ids in
+          the FolderIds of a FolderAssembly be present in the
+          FoldersAssemblyFolderIdKey.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:FolderAssembly/t:FolderIds/t:Id"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+  </xs:element>
+
+</xs:schema>

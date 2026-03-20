@@ -1,0 +1,1154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:q="http://qifstandards.org/xsd/qif4"
+    xmlns:rp="https://ns.rubypoint.io/qif4wip/attr/1/"
+    targetNamespace="https://ns.rubypoint.io/qif4wip/attr/1/"
+    elementFormDefault="qualified"
+    attributeFormDefault="unqualified">
+
+    <xs:import namespace="http://qifstandards.org/xsd/qif4"
+        schemaLocation="qif4-wip/QIFApplications/QIFDocument.xsd" />
+
+    <!-- ======================================================================  
+     Root Rule element
+    ======================================================================= -->
+    <xs:element name="Rule" type="rp:RuleType" />
+
+    <xs:element name="RuleExtension" type="rp:RuleExtensionType" />
+
+    <xs:complexType name="RuleExtensionType">
+        <xs:sequence>
+            <xs:element ref="rp:Rule" minOccurs="1" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="uuid" type="xs:string" use="required" />
+        <xs:attribute name="specification" type="xs:string" use="required" />
+        <xs:attribute name="clause" type="xs:string" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="RuleType">
+        <xs:sequence>
+            <xs:element name="Target" type="rp:RuleTargetType" minOccurs="0" />
+            <xs:element name="Parameters" type="rp:ParametersType" minOccurs="0" />
+            <xs:element name="CharacteristicTemplates" type="rp:CharacteristicTemplatesType"
+                minOccurs="0" />
+            <xs:element name="Actions" type="rp:ActionDefinitionsType" minOccurs="0" />
+            <xs:element name="RuleBlock" type="rp:RuleBlockType" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="RuleBlockType">
+        <xs:sequence>
+            <xs:element name="Variables" type="rp:VariablesType" minOccurs="0" />
+            <xs:choice minOccurs="1" maxOccurs="1">
+                <xs:element name="Conditional" type="rp:ConditionalType" />
+                <xs:element name="InvokeAction" type="rp:InvokeActionType" />
+            </xs:choice>
+            <xs:element name="RuleBlock" type="rp:RuleBlockType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="UUID" type="xs:string" use="required" />
+    </xs:complexType>
+
+    <!-- ======================================================================
+     Parameters
+    ======================================================================= -->
+    <xs:complexType name="ParametersType">
+        <xs:choice minOccurs="1" maxOccurs="unbounded">
+            <xs:element name="ArithmeticParameter" type="rp:ArithmeticParameterType" />
+            <xs:element name="TokenParameter" type="rp:TokenParameterType" />
+            <xs:element name="BooleanParameter" type="rp:BooleanParameterType" />
+        </xs:choice>
+        <xs:attribute name="n" type="xs:positiveInteger" use="required" />
+    </xs:complexType>
+
+    <xs:simpleType name="ParameterScopeEnumType">
+        <xs:annotation>
+            <xs:documentation>
+                The ParameterScopeEnumType defines when a parameter value
+                is resolved and reused during one rule execution.
+                ONCE_GLOBAL means that the parameter is resolved at most
+                once for the whole rule execution and that the same value
+                is then reused for all targets visited by the rule.
+                ONCE_PER_TARGET means that the parameter may be resolved
+                again each time the executor advances to a new rule target.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:token">
+            <xs:enumeration value="ONCE_GLOBAL">
+                <xs:annotation>
+                    <xs:documentation>
+                        The ONCE_GLOBAL enumeration value indicates that
+                        the parameter is resolved at most once for the
+                        entire rule execution and that the resulting value
+                        is reused for all targets visited by the rule. The
+                        executor should cache the first successfully
+                        resolved value after applying the declared source
+                        order for the parameter.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="ONCE_PER_TARGET">
+                <xs:annotation>
+                    <xs:documentation>
+                        The ONCE_PER_TARGET enumeration value indicates
+                        that the parameter may be resolved again each time
+                        the executor advances to a new rule target.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="ParameterDeclarationBaseType" abstract="true">
+        <xs:annotation>
+            <xs:documentation>
+                The abstract ParameterDeclarationBaseType defines the
+                common metadata for parameter declarations. A parameter may
+                declare one or more ordered sources. The executor evaluates
+                those sources in document order and stops at the first
+                source that successfully produces a value of the required
+                type. If no source succeeds, the executor uses a default
+                value if one is defined for the parameter type and
+                otherwise treats parameter resolution as failure. If a
+                parameter declares no Sources and no default value, the
+                executor treats the parameter as unresolved until some host
+                binding supplies a value; using the parameter without such
+                a value is an error.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Description" type="xs:string" minOccurs="0" />
+            <xs:element name="Sources" type="rp:ScalarParameterSourcesType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        The optional Sources element declares the ordered
+                        list of places from which the executor may resolve
+                        the parameter value. Earlier sources take
+                        precedence over later ones.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:ID" use="required" />
+        <xs:attribute name="scope" type="rp:ParameterScopeEnumType" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The required scope attribute specifies whether the
+                    parameter value is resolved once for the whole rule
+                    execution or once per visited target.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="required" type="xs:boolean" use="optional" default="false" />
+    </xs:complexType>
+
+    <xs:complexType name="ScalarParameterSourcesType">
+        <xs:annotation>
+            <xs:documentation>
+                The ScalarParameterSourcesType defines an ordered list of
+                scalar parameter sources. The executor evaluates the listed
+                sources in document order and stops at the first source
+                that successfully produces a value of the required type.
+                If none of the sources succeeds, the executor uses a
+                parameter default if one is available and otherwise treats
+                parameter resolution as failure. Source failure includes
+                missing data, type mismatch, or a prompt source that does
+                not return an acceptable value.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:choice minOccurs="1" maxOccurs="unbounded">
+            <xs:element name="BoundInput" type="rp:BoundInputSourceType">
+                <xs:annotation>
+                    <xs:documentation>
+                        The BoundInput element identifies a value supplied
+                        directly by the caller or host executor.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="PartParameterPath" type="rp:ParameterPathSourceType">
+                <xs:annotation>
+                    <xs:documentation>
+                        The PartParameterPath element identifies a path
+                        from which the executor reads a parameter value
+                        from the part-level input data. The path syntax is
+                        executor-defined but should be interpreted
+                        consistently within one executor.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="TargetParameterPath" type="rp:ParameterPathSourceType">
+                <xs:annotation>
+                    <xs:documentation>
+                        The TargetParameterPath element identifies a path
+                        from which the executor reads a parameter value
+                        from the current rule target. The path syntax is
+                        executor-defined; the path is evaluated relative to
+                        the current target selected by the rule.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="PromptAtRuntime" type="rp:PromptSourceType">
+                <xs:annotation>
+                    <xs:documentation>
+                        The PromptAtRuntime element instructs the executor
+                        to obtain the parameter value by prompting an
+                        interactive user or equivalent host workflow. If
+                        prompting is unavailable, refused, or returns a
+                        value that is not acceptable for the parameter,
+                        this source fails and later sources or the default
+                        value are used if available.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:choice>
+        <xs:attribute name="n" type="xs:positiveInteger" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="BoundInputSourceType">
+        <xs:annotation>
+            <xs:documentation>
+                The BoundInputSourceType identifies an externally supplied
+                parameter value. If bindingKey is omitted, the executor may
+                use the parameter id as the binding key.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="bindingKey" type="xs:token" use="optional" />
+    </xs:complexType>
+
+    <xs:complexType name="ParameterPathSourceType">
+        <xs:annotation>
+            <xs:documentation>
+                The ParameterPathSourceType identifies a path understood by
+                the executor for extracting a parameter value from part or
+                target input data. When used by TargetParameterPath, the
+                path is evaluated relative to the current rule target. The
+                exact path grammar is executor-defined and should be
+                documented by the consuming executor.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="path" type="xs:string" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="PromptSourceType">
+        <xs:annotation>
+            <xs:documentation>
+                The PromptSourceType describes a runtime prompt used to
+                obtain a parameter value. The prompt is reached only if all
+                earlier sources in the containing ordered source list fail
+                to provide a value. If prompting is unavailable, refused,
+                or does not yield an acceptable value, the prompt attempt
+                fails and resolution continues with later sources or the
+                parameter default if present.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="message" type="xs:string" use="optional" />
+        <xs:attribute name="allowEmpty" type="xs:boolean" use="optional" default="false" />
+    </xs:complexType>
+
+    <xs:complexType name="ArithmeticParameterType">
+        <xs:complexContent>
+            <xs:extension base="rp:ParameterDeclarationBaseType">
+                <xs:sequence>
+                    <xs:element name="DefaultValue" type="q:SpecifiedDoubleType" minOccurs="0" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TokenParameterType">
+        <xs:complexContent>
+            <xs:extension base="rp:ParameterDeclarationBaseType">
+                <xs:sequence>
+                    <xs:element name="DefaultValue" type="xs:string" minOccurs="0" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="BooleanParameterType">
+        <xs:complexContent>
+            <xs:extension base="rp:ParameterDeclarationBaseType">
+                <xs:sequence>
+                    <xs:element name="DefaultValue" type="xs:boolean" minOccurs="0" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="StringBindingType">
+        <xs:sequence>
+            <xs:element ref="rp:StringExpression" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ArithmeticBindingType">
+        <xs:sequence>
+            <xs:element ref="q:ArithmeticExpression" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CharacteristicBindingsType">
+        <xs:sequence>
+            <xs:element name="NameBase" type="rp:StringBindingType" minOccurs="0" />
+            <xs:element name="WhatToMeasure" type="rp:StringBindingType" minOccurs="0" />
+            <xs:element name="ToleranceValue" type="rp:ArithmeticBindingType" minOccurs="0" />
+            <xs:element name="PlusTolerance" type="rp:ArithmeticBindingType" minOccurs="0" />
+            <xs:element name="MinusTolerance" type="rp:ArithmeticBindingType" minOccurs="0" />
+            <xs:element name="TargetValue" type="rp:ArithmeticBindingType" minOccurs="0" />
+            <xs:element name="DrfVariableRef" type="xs:IDREF" minOccurs="0" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="InvokeCharacteristicSpecificationType">
+        <xs:annotation>
+            <xs:documentation>
+                The InvokeCharacteristicSpecificationType identifies the
+                base characteristic definition used by one
+                InvokeCreateCharacteristic action and optionally overlays
+                value bindings on top of that base definition. A
+                RuleTemplateRef references a rule-local CharacteristicTemplate
+                declaration. A CharacteristicDefinitionRef references an
+                external QIF characteristic definition object. A
+                CharacteristicDefinitionFromCollection selects an external
+                QIF characteristic definition from a collection. Bindings
+                may override supported value fields regardless of the base
+                source, but they do not change the structural
+                characteristic kind.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:choice minOccurs="1">
+                <xs:element name="RuleTemplateRef" type="xs:IDREF" />
+                <xs:element name="CharacteristicDefinitionRef" type="q:QIFReferenceFullType" />
+                <xs:element name="CharacteristicDefinitionFromCollection"
+                    type="rp:CollectionReferenceType" />
+            </xs:choice>
+            <xs:element name="Bindings" type="rp:CharacteristicBindingsType" minOccurs="0" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ======================================================================
+     Characteristic Templates
+    ======================================================================= -->
+    <xs:complexType name="CharacteristicTemplatesType">
+        <xs:sequence>
+            <xs:element name="CharacteristicTemplate" type="rp:CharacteristicTemplateType"
+                minOccurs="1" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="n" type="xs:positiveInteger" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="CharacteristicTemplatePayloadType">
+        <xs:annotation>
+            <xs:documentation>
+                The CharacteristicTemplatePayloadType defines an anonymous
+                template payload for inline use where no template id is
+                needed.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element ref="q:CharacteristicDefinition" />
+            <xs:element ref="q:CharacteristicNominal" minOccurs="0" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CharacteristicTemplateType">
+        <xs:annotation>
+            <xs:documentation>
+                The CharacteristicTemplateType defines a named reusable
+                template declaration and adds the required template id.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="rp:CharacteristicTemplatePayloadType">
+                <xs:attribute name="id" type="xs:ID" use="required" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <!-- ======================================================================  
+     Variables and collections
+    ======================================================================= -->
+    <xs:complexType name="VariablesType">
+        <xs:sequence>
+            <xs:element name="Variable" type="rp:VariableType" minOccurs="1" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="n" type="xs:positiveInteger" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="VariableType">
+        <xs:choice>
+            <xs:element ref="q:ArithmeticExpression" />
+            <xs:element name="Collection" type="rp:CollectionDefinitionType" />
+            <xs:element ref="rp:StringExpression" />
+        </xs:choice>
+        <xs:attribute name="name" type="xs:ID" use="required" />
+        <xs:attribute name="kind" type="xs:token" use="required">
+            <xs:annotation>
+                <xs:documentation>
+                    The required kind attribute identifies the kind of
+                    value held by the variable. Supported collection kinds
+                    include PART, FEATURE, CHARACTERISTIC,
+                    DEFAULT_CHARACTERISTIC_DEFINITION, DATUM, DRF,
+                    PARTNOTE, NOTE, NOTEFLAG,
+                    LINEAR_TOLERANCE_DEFINITION, and
+                    ANGULAR_TOLERANCE_DEFINITION. CHARACTERISTIC refers
+                    only to ordinary characteristic objects; it does not
+                    include DefaultCharacteristicDefinitions. Use
+                    DEFAULT_CHARACTERISTIC_DEFINITION when seeding or
+                    collecting those document-level default
+                    characteristic definitions. This remains an open
+                    token rather than an enumeration so new kinds can be
+                    prototyped without changing the schema contract.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <!-- ======================================================================
+     String Expressions
+    ======================================================================= -->
+    <xs:complexType name="StringExpressionBaseType" abstract="true" />
+
+    <xs:element name="StringExpression" type="rp:StringExpressionBaseType" abstract="true" />
+
+    <xs:complexType name="StringConstantType">
+        <xs:complexContent>
+            <xs:extension base="rp:StringExpressionBaseType">
+                <xs:attribute name="val" type="xs:string" use="required" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="StringConstant" type="rp:StringConstantType"
+        substitutionGroup="rp:StringExpression" />
+
+    <xs:complexType name="StringConcatType">
+        <xs:complexContent>
+            <xs:extension base="rp:StringExpressionBaseType">
+                <xs:sequence>
+                    <xs:element ref="rp:StringExpression" minOccurs="2" maxOccurs="unbounded" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="StringConcat" type="rp:StringConcatType"
+        substitutionGroup="rp:StringExpression" />
+
+    <xs:complexType name="StringFromTokenType">
+        <xs:complexContent>
+            <xs:extension base="rp:StringExpressionBaseType">
+                <xs:sequence>
+                    <xs:element ref="q:TokenExpression" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="StringFromToken" type="rp:StringFromTokenType"
+        substitutionGroup="rp:StringExpression" />
+
+    <xs:complexType name="StringFromArithmeticType">
+        <xs:complexContent>
+            <xs:extension base="rp:StringExpressionBaseType">
+                <xs:sequence>
+                    <xs:element ref="q:ArithmeticExpression" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="StringFromArithmetic" type="rp:StringFromArithmeticType"
+        substitutionGroup="rp:StringExpression" />
+
+    <xs:complexType name="StringFromBooleanType">
+        <xs:complexContent>
+            <xs:extension base="rp:StringExpressionBaseType">
+                <xs:sequence>
+                    <xs:element ref="q:BooleanExpression" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="StringFromBoolean" type="rp:StringFromBooleanType"
+        substitutionGroup="rp:StringExpression" />
+
+    <xs:complexType name="StringVariableRefType">
+        <xs:complexContent>
+            <xs:extension base="rp:StringExpressionBaseType">
+                <xs:attribute name="variableName" type="xs:IDREF" use="required" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="StringVariableRef" type="rp:StringVariableRefType"
+        substitutionGroup="rp:StringExpression" />
+
+    <xs:complexType name="StringParameterRefType">
+        <xs:complexContent>
+            <xs:extension base="rp:StringExpressionBaseType">
+                <xs:attribute name="parameterRef" type="xs:IDREF" use="required" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="StringParameterRef" type="rp:StringParameterRefType"
+        substitutionGroup="rp:StringExpression" />
+
+    <xs:complexType name="StringIfType">
+        <xs:complexContent>
+            <xs:extension base="rp:StringExpressionBaseType">
+                <xs:sequence>
+                    <xs:element ref="q:BooleanExpression" />
+                    <xs:element ref="rp:StringExpression" />
+                    <xs:element ref="rp:StringExpression" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="StringIf" type="rp:StringIfType"
+        substitutionGroup="rp:StringExpression" />
+
+    <xs:complexType name="StringTrimType">
+        <xs:complexContent>
+            <xs:extension base="rp:StringExpressionBaseType">
+                <xs:sequence>
+                    <xs:element ref="rp:StringExpression" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="StringTrim" type="rp:StringTrimType"
+        substitutionGroup="rp:StringExpression" />
+
+    <xs:complexType name="StringUpperType">
+        <xs:complexContent>
+            <xs:extension base="rp:StringExpressionBaseType">
+                <xs:sequence>
+                    <xs:element ref="rp:StringExpression" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="StringUpper" type="rp:StringUpperType"
+        substitutionGroup="rp:StringExpression" />
+
+    <xs:complexType name="StringLowerType">
+        <xs:complexContent>
+            <xs:extension base="rp:StringExpressionBaseType">
+                <xs:sequence>
+                    <xs:element ref="rp:StringExpression" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="StringLower" type="rp:StringLowerType"
+        substitutionGroup="rp:StringExpression" />
+
+    <xs:complexType name="StringReplaceType">
+        <xs:complexContent>
+            <xs:extension base="rp:StringExpressionBaseType">
+                <xs:sequence>
+                    <xs:element ref="rp:StringExpression" />
+                    <xs:element ref="rp:StringExpression" />
+                    <xs:element ref="rp:StringExpression" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="StringReplace" type="rp:StringReplaceType"
+        substitutionGroup="rp:StringExpression" />
+
+    <xs:complexType name="StringSubstringType">
+        <xs:complexContent>
+            <xs:extension base="rp:StringExpressionBaseType">
+                <xs:sequence>
+                    <xs:element ref="rp:StringExpression" />
+                    <xs:element ref="q:ArithmeticExpression" />
+                    <xs:element ref="q:ArithmeticExpression" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="StringSubstring" type="rp:StringSubstringType"
+        substitutionGroup="rp:StringExpression" />
+
+    <!-- String-based boolean expressions -->
+    <xs:complexType name="StringPredicateBinaryType">
+        <xs:sequence>
+            <xs:element ref="rp:StringExpression" minOccurs="2" maxOccurs="2" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="StringPredicateUnaryType">
+        <xs:sequence>
+            <xs:element ref="rp:StringExpression" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="StringIsEmptyType">
+        <xs:complexContent>
+            <xs:extension base="q:BooleanExpressionBaseType">
+                <xs:sequence>
+                    <xs:element ref="rp:StringExpression" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="StringIsEmpty" type="rp:StringIsEmptyType"
+        substitutionGroup="q:BooleanExpression" />
+
+    <xs:complexType name="StringEqualsIgnoreCaseType">
+        <xs:complexContent>
+            <xs:extension base="q:BooleanExpressionBaseType">
+                <xs:sequence>
+                    <xs:element ref="rp:StringExpression" minOccurs="2" maxOccurs="2" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="StringEqualsIgnoreCase" type="rp:StringEqualsIgnoreCaseType"
+        substitutionGroup="q:BooleanExpression" />
+
+    <xs:complexType name="StringContainsType">
+        <xs:complexContent>
+            <xs:extension base="q:BooleanExpressionBaseType">
+                <xs:sequence>
+                    <xs:element ref="rp:StringExpression" minOccurs="2" maxOccurs="2" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="StringContains" type="rp:StringContainsType"
+        substitutionGroup="q:BooleanExpression" />
+
+    <xs:complexType name="StringStartsWithType">
+        <xs:complexContent>
+            <xs:extension base="q:BooleanExpressionBaseType">
+                <xs:sequence>
+                    <xs:element ref="rp:StringExpression" minOccurs="2" maxOccurs="2" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="StringStartsWith" type="rp:StringStartsWithType"
+        substitutionGroup="q:BooleanExpression" />
+
+    <xs:complexType name="StringEndsWithType">
+        <xs:complexContent>
+            <xs:extension base="q:BooleanExpressionBaseType">
+                <xs:sequence>
+                    <xs:element ref="rp:StringExpression" minOccurs="2" maxOccurs="2" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="StringEndsWith" type="rp:StringEndsWithType"
+        substitutionGroup="q:BooleanExpression" />
+
+    <xs:complexType name="StringMatchRegexType">
+        <xs:complexContent>
+            <xs:extension base="q:BooleanExpressionBaseType">
+                <xs:sequence>
+                    <xs:element ref="rp:StringExpression" minOccurs="2" maxOccurs="2" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="StringMatchRegex" type="rp:StringMatchRegexType"
+        substitutionGroup="q:BooleanExpression" />
+
+    <!-- String-based arithmetic expressions -->
+    <xs:complexType name="StringLengthType">
+        <xs:complexContent>
+            <xs:extension base="q:ArithmeticExpressionBaseType">
+                <xs:sequence>
+                    <xs:element ref="rp:StringExpression" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="StringLength" type="rp:StringLengthType"
+        substitutionGroup="q:ArithmeticExpression" />
+
+    <xs:complexType name="StringToNumberType">
+        <xs:complexContent>
+            <xs:extension base="q:ArithmeticExpressionBaseType">
+                <xs:sequence>
+                    <xs:element ref="rp:StringExpression" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="StringToNumber" type="rp:StringToNumberType"
+        substitutionGroup="q:ArithmeticExpression" />
+
+    <!-- ======================================================================
+     Custom object-parameter expressions
+
+     These types conceptually extend the QIF parameter-expression families
+     defined in Expressions.xsd. They are implemented here in rubypoint.xsd
+     because custom schema extensions belong in the Rubypoint namespace.
+     Each expression reads a path from either the current object or an
+     explicitly selected object. If neither ObjectId nor
+     ObjectFromCollection is supplied, the path is evaluated relative to
+     the current object under consideration.
+    ======================================================================= -->
+
+    <xs:complexType name="StringObjectParameterType">
+        <xs:annotation>
+            <xs:documentation>
+                The StringObjectParameterType defines a string expression
+                that reads a string-valued parameter path from either the
+                current object or an explicitly selected object. If
+                ObjectId/ObjectFromCollection is omitted, the path is
+                evaluated relative to the current object.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="rp:StringExpressionBaseType">
+                <xs:sequence>
+                    <xs:element name="Parameter" type="xs:token" />
+                    <xs:choice minOccurs="0">
+                        <xs:element name="ObjectId" type="q:QIFReferenceFullType" />
+                        <xs:element name="ObjectFromCollection" type="rp:CollectionReferenceType" />
+                    </xs:choice>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="StringObjectParameter" type="rp:StringObjectParameterType"
+        substitutionGroup="rp:StringExpression" />
+
+    <xs:complexType name="BooleanObjectParameterType">
+        <xs:annotation>
+            <xs:documentation>
+                The BooleanObjectParameterType defines a boolean
+                expression that reads a boolean-valued parameter path
+                from either the current object or an explicitly selected
+                object. If ObjectId/ObjectFromCollection is omitted, the
+                path is evaluated relative to the current object.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="q:BooleanExpressionBaseType">
+                <xs:sequence>
+                    <xs:element name="Parameter" type="xs:token" />
+                    <xs:choice minOccurs="0">
+                        <xs:element name="ObjectId" type="q:QIFReferenceFullType" />
+                        <xs:element name="ObjectFromCollection" type="rp:CollectionReferenceType" />
+                    </xs:choice>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="BooleanObjectParameter" type="rp:BooleanObjectParameterType"
+        substitutionGroup="q:BooleanExpression" />
+
+    <xs:complexType name="ArithmeticObjectParameterType">
+        <xs:annotation>
+            <xs:documentation>
+                The ArithmeticObjectParameterType defines an arithmetic
+                expression that reads an arithmetic-valued parameter path
+                from either the current object or an explicitly selected
+                object. If the parameter value is in other units, the
+                evaluating system should convert it to the active units
+                before use. If ObjectId/ObjectFromCollection is omitted,
+                the path is evaluated relative to the current object.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="q:ArithmeticExpressionBaseType">
+                <xs:sequence>
+                    <xs:element name="Parameter" type="xs:token" />
+                    <xs:choice minOccurs="0">
+                        <xs:element name="ObjectId" type="q:QIFReferenceFullType" />
+                        <xs:element name="ObjectFromCollection" type="rp:CollectionReferenceType" />
+                    </xs:choice>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="ArithmeticObjectParameter" type="rp:ArithmeticObjectParameterType"
+        substitutionGroup="q:ArithmeticExpression" />
+
+    <xs:complexType name="TokenObjectParameterType">
+        <xs:annotation>
+            <xs:documentation>
+                The TokenObjectParameterType defines a token expression
+                that reads a token-valued parameter path from either the
+                current object or an explicitly selected object. If
+                ObjectId/ObjectFromCollection is omitted, the path is
+                evaluated relative to the current object.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="q:TokenExpressionBaseType">
+                <xs:sequence>
+                    <xs:element name="Parameter" type="xs:token" />
+                    <xs:choice minOccurs="0">
+                        <xs:element name="ObjectId" type="q:QIFReferenceFullType" />
+                        <xs:element name="ObjectFromCollection" type="rp:CollectionReferenceType" />
+                    </xs:choice>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="TokenObjectParameter" type="rp:TokenObjectParameterType"
+        substitutionGroup="q:TokenExpression" />
+
+    <xs:complexType name="ArithmeticParameterRefType">
+        <xs:complexContent>
+            <xs:extension base="q:ArithmeticExpressionBaseType">
+                <xs:attribute name="parameterRef" type="xs:IDREF" use="required" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="ArithmeticParameterRef" type="rp:ArithmeticParameterRefType"
+        substitutionGroup="q:ArithmeticExpression" />
+
+    <xs:complexType name="BooleanParameterRefType">
+        <xs:complexContent>
+            <xs:extension base="q:BooleanExpressionBaseType">
+                <xs:attribute name="parameterRef" type="xs:IDREF" use="required" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="BooleanParameterRef" type="rp:BooleanParameterRefType"
+        substitutionGroup="q:BooleanExpression" />
+
+    <xs:complexType name="CollectionDefinitionType">
+        <xs:sequence>
+            <!-- Seed -->
+            <xs:element name="Seed" type="rp:CollectionSeedType" minOccurs="1" maxOccurs="unbounded" />
+            <!-- Expand -->
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="ExpandCoaxial" type="rp:ExpandCoaxialType" />
+                <xs:element name="ExpandDatumRelationships" type="rp:ExpandDatumRelationshipsType" />
+                <xs:element name="ExpandDrfRelationships" type="rp:ExpandDrfRelationshipsType" />
+                <xs:element name="ExpandCharacteristicRelationships"
+                    type="rp:ExpandCharacteristicRelationshipsType" />
+            </xs:choice>
+            <!-- Filter -->
+            <xs:element name="Filter" type="rp:CollectionFilterType" minOccurs="0" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CollectionSeedType">
+        <xs:annotation>
+            <xs:documentation>
+                The CollectionSeedType defines the starting points for a
+                collection. CurrentTarget seeds the collection with the
+                current rule target. Ref seeds the collection with one
+                explicitly identified QIF object. VariableRef seeds the
+                collection with the contents of an existing variable.
+                All seeds the collection with all objects of the
+                collection variable's declared kind. For example, a
+                collection variable of kind FEATURE combined with All
+                means all features in the document; PARTNOTE with All
+                means all part notes; DEFAULT_CHARACTERISTIC_DEFINITION
+                with All means all default characteristic definitions.
+                CHARACTERISTIC with All includes only ordinary
+                characteristic objects and does not include default
+                characteristic definitions.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:choice>
+            <xs:element name="CurrentTarget" />
+            <xs:element name="Ref" type="q:QIFReferenceType" />
+            <xs:element name="All" />
+            <xs:element name="VariableRef" type="rp:VariableRefSeed" />
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:complexType name="VariableRefSeed">
+        <xs:attribute name="name" type="xs:IDREF" use="required" />
+    </xs:complexType>
+
+    <!-- Expand the collection with all features that are coaxial with the seed feature(s).
+    Collection type must be feature -->
+    <xs:complexType name="ExpandCoaxialType">
+        <xs:attribute name="includeSelf" type="xs:boolean" use="required" />
+    </xs:complexType>
+
+    <!-- Expand the collection with datum relationships appropriate to the collection kind (e.g.,
+    features -> datums they realize) -->
+    <xs:complexType name="ExpandDatumRelationshipsType">
+        <xs:attribute name="includeSelf" type="xs:boolean" use="required" />
+    </xs:complexType>
+
+    <!-- Expand the collection with characteristic relationships appropriate to the collection kind
+    (e.g., datums -> characteristics referencing them) -->
+    <xs:complexType name="ExpandCharacteristicRelationshipsType">
+        <xs:attribute name="includeSelf" type="xs:boolean" use="required" />
+    </xs:complexType>
+
+    <!-- Expand the collection with DRF relationships appropriate to the collection kind
+    (e.g., datums -> DRFs referencing them) -->
+    <xs:complexType name="ExpandDrfRelationshipsType">
+        <xs:attribute name="includeSelf" type="xs:boolean" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="CollectionFilterType">
+        <xs:sequence>
+            <xs:element ref="q:BooleanExpression" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CollectionCountType">
+        <xs:complexContent>
+            <xs:extension base="q:ArithmeticExpressionBaseType">
+                <xs:attribute name="variableRef" type="xs:IDREF" use="required" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="CollectionCount" type="rp:CollectionCountType"
+        substitutionGroup="q:ArithmeticExpression" />
+
+
+    <!-- ======================================================================  
+     Conditionals: If and When/Otherwise
+    ======================================================================= -->
+    <xs:complexType name="ConditionalType">
+        <xs:choice>
+            <xs:element name="If" type="rp:IfType" />
+            <xs:element name="Choose" type="rp:ChooseType" />
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:complexType name="IfType">
+        <xs:sequence>
+            <xs:element ref="q:BooleanExpression" />
+            <xs:element name="Then" type="rp:RuleBlockType" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ChooseType">
+        <xs:sequence>
+            <xs:element name="When" type="rp:IfType" minOccurs="1" maxOccurs="unbounded" />
+            <xs:element name="Otherwise" type="rp:RuleBlockType" minOccurs="0" maxOccurs="1" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ======================================================================
+     Actions - Strongly-typed action system
+     Actions are declared statically with configuration (ActionDefinitionsType),
+     then invoked with runtime values (InvokeActionType).
+    ======================================================================= -->
+
+    <!-- ActionDefinitionsType: Contains static action declarations -->
+    <xs:complexType name="ActionDefinitionsType">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="CreateCharacteristic"
+                type="rp:CreateCharacteristicActionDefinitionType" />
+            <xs:element name="CreateDatum" type="rp:CreateDatumActionDefinitionType" />
+            <xs:element name="CreateDatumReferenceFrame"
+                type="rp:CreateDatumReferenceFrameActionType" />
+            <xs:element name="EmitMessage" type="rp:EmitMessageActionDefinitionType" />
+        </xs:choice>
+    </xs:complexType>
+
+    <!-- CreateCharacteristicActionDefinitionType: Static declaration for characteristic creation -->
+    <xs:complexType name="CreateCharacteristicActionDefinitionType">
+        <xs:annotation>
+            <xs:documentation>
+                The CreateCharacteristicActionDefinitionType statically
+                declares a characteristic-creation action. Template
+                selection is supplied at invocation time through the
+                CharacteristicSpecification payload.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="id" type="xs:ID" use="required" />
+    </xs:complexType>
+
+    <!-- CreateDatumActionDefinitionType: Static declaration for datum creation -->
+    <xs:complexType name="CreateDatumActionDefinitionType">
+        <xs:attribute name="id" type="xs:ID" use="required" />
+    </xs:complexType>
+
+    <!-- CreateDatumReferenceFrameActionType: Static declaration for drf creation -->
+    <xs:complexType name="CreateDatumReferenceFrameActionType">
+        <xs:attribute name="id" type="xs:ID" use="required" />
+    </xs:complexType>
+
+    <!-- EmitMessageActionDefinitionType: Static declaration for emit message action -->
+    <xs:complexType name="EmitMessageActionDefinitionType">
+        <xs:attribute name="id" type="xs:ID" use="required" />
+    </xs:complexType>
+
+    <!-- InvokeActionType: Invokes a declared action with runtime values -->
+    <xs:complexType name="InvokeActionType">
+        <xs:choice>
+            <xs:element name="InvokeCreateCharacteristic" type="rp:InvokeCreateCharacteristicType" />
+            <xs:element name="InvokeCreateDatum" type="rp:InvokeCreateDatumType" />
+            <!-- Other invoke types not yet implemented -->
+            <xs:element name="InvokeCreateDatumReferenceFrame"
+                type="rp:InvokeCreateDatumReferenceFrameType" />
+            <xs:element name="InvokeEmitMessage" type="rp:InvokeEmitMessageType" />
+        </xs:choice>
+    </xs:complexType>
+
+    <!-- InvokeCreateCharacteristicType: Invokes a CreateCharacteristic action -->
+    <xs:complexType name="InvokeCreateCharacteristicType">
+        <xs:annotation>
+            <xs:documentation>
+                The InvokeCreateCharacteristicType invokes a declared
+                CreateCharacteristic action. The characteristic payload is
+                supplied only through the CharacteristicSpecification
+                element. FeatureAssignments remains as invocation context
+                because it identifies the feature collection to which the
+                created characteristic applies.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <!-- A reference to a collection of type FEATURE with the features this characteristic should reference -->
+            <xs:element name="FeatureAssignments" type="xs:IDREF" minOccurs="0" />
+            <xs:element name="CharacteristicSpecification"
+                type="rp:InvokeCharacteristicSpecificationType" minOccurs="1" />
+        </xs:sequence>
+        <xs:attribute name="actionRef" type="xs:IDREF" use="required" />
+    </xs:complexType>
+
+    <!-- InvokeCreateDatumType: Invokes a CreateDatum action -->
+    <xs:complexType name="InvokeCreateDatumType">
+        <xs:sequence>
+            <xs:element name="FeatureVariableRef" type="xs:IDREF" minOccurs="1" />
+            <xs:element name="DatumLabel" type="xs:token" minOccurs="0" />
+        </xs:sequence>
+        <xs:attribute name="actionRef" type="xs:IDREF" use="required" />
+    </xs:complexType>
+
+    <!-- InvokeCreateDatumReferenceFrameType: Invokes a CreateDatumReferenceFrame action -->
+    <xs:complexType name="InvokeCreateDatumReferenceFrameType">
+        <xs:sequence>
+            <xs:sequence> <!-- Primary datum -->
+                <xs:choice>
+                    <xs:element name="PrimaryDatumId" type="q:QIFReferenceType" />
+                    <xs:element name="PrimaryDatumFromCollection" type="rp:CollectionReferenceType" />
+                </xs:choice>
+                <xs:choice minOccurs="0">
+                    <xs:element name="PrimaryMaterialModifier" type="q:MaterialModifierEnumType" />
+                    <xs:element ref="q:TokenExpression" />
+                </xs:choice>
+                <xs:sequence minOccurs="0"> <!-- Secondary datum -->
+                    <xs:choice>
+                        <xs:element name="SecondaryDatumId" type="q:QIFReferenceType" />
+                        <xs:element name="SecondaryDatumFromCollection" type="rp:CollectionReferenceType" />
+                    </xs:choice>
+                    <xs:choice minOccurs="0">
+                        <xs:element name="SecondaryMaterialModifier" type="q:MaterialModifierEnumType" />
+                        <xs:element ref="q:TokenExpression" />
+                    </xs:choice>
+                    <xs:sequence minOccurs="0"> <!-- Tertiary datum -->
+                        <xs:choice>
+                            <xs:element name="TertiaryDatumId" type="q:QIFReferenceType" />
+                            <xs:element name="TertiaryDatumFromCollection" type="rp:CollectionReferenceType" />
+                        </xs:choice>
+                        <xs:choice minOccurs="0">
+                            <xs:element name="TertiaryMaterialModifier" type="q:MaterialModifierEnumType" />
+                            <xs:element ref="q:TokenExpression" />
+                        </xs:choice>
+                        <xs:sequence minOccurs="0"> <!-- Quaternary datum -->
+                            <xs:choice>
+                                <xs:element name="QuaternaryDatumId" type="q:QIFReferenceType" />
+                                <xs:element name="QuaternaryDatumFromCollection"
+                                    type="rp:CollectionReferenceType" />
+                            </xs:choice>
+                            <xs:choice minOccurs="0">
+                                <xs:element name="QuaternaryMaterialModifier"
+                                    type="q:MaterialModifierEnumType" />
+                                <xs:element ref="q:TokenExpression" />
+                            </xs:choice>
+                        </xs:sequence>
+                    </xs:sequence>
+                </xs:sequence>
+            </xs:sequence>
+        </xs:sequence>
+        <xs:attribute name="actionRef" type="xs:IDREF" use="required" />
+    </xs:complexType>
+
+    <!-- InvokeEmitMessageType: Invokes a EmitMessage action -->
+    <xs:complexType name="InvokeEmitMessageType">
+        <xs:sequence>
+            <xs:element name="Message" type="xs:string" minOccurs="0" />
+        </xs:sequence>
+        <xs:attribute name="actionRef" type="xs:IDREF" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="CollectionReferenceType">
+        <xs:annotation>
+            <xs:documentation>
+                The CollectionReferenceType identifies one object from a
+                previously defined collection. The required selection
+                attribute makes the caller state whether the first item,
+                last item, or a specific indexed item should be used.
+                Referencing an empty collection is an error. If
+                selection=INDEX, the index attribute is required and an
+                out-of-range index is an error.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="OrderBy" type="rp:OrderExpressionType" minOccurs="0" />
+        </xs:sequence>
+        <xs:attribute name="variableRef" type="xs:IDREF" use="required" />
+        <xs:attribute name="selection" type="rp:CollectionSelectionEnumType" use="required" />
+        <xs:attribute name="index" type="xs:integer" use="optional" />
+    </xs:complexType>
+
+    <xs:complexType name="OrderExpressionType">
+        <xs:sequence>
+            <xs:element ref="q:ArithmeticExpression" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="CollectionSelectionEnumType">
+        <xs:restriction base="xs:token">
+            <xs:enumeration value="FIRST" />
+            <xs:enumeration value="LAST" />
+            <xs:enumeration value="INDEX" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- ======================================================================
+     Rule Target Types
+    ======================================================================= -->
+    <xs:simpleType name="RuleTargetEnumType">
+        <xs:restriction base="xs:token">
+            <xs:enumeration value="FEATURE" />
+            <xs:enumeration value="PART" />
+            <xs:enumeration value="CHARACTERISTIC" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="RuleTargetType">
+        <xs:choice>
+            <xs:element name="TargetEnum" type="rp:RuleTargetEnumType" />
+            <xs:element name="OtherTarget" type="xs:string" />
+        </xs:choice>
+    </xs:complexType>
+
+</xs:schema>
+
+<!-- RULESTODO: When wrapping up, implement key/keyref checks -->

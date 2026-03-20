@@ -1,0 +1,5408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<QIFDocument xmlns="http://qifstandards.org/xsd/qif3" versionQIF="3.0.0" idMax="372">
+  <QPId>c712cff2-4fbf-4213-851e-deb29dbc9957</QPId>
+  <Attributes n="10">
+    <AttributeBool name="_3dv.QIFDocument.Healed" value="1" />
+    <AttributeBool name="_3dv.QIFDocument.NormalsRepaired" value="1" />
+    <AttributeBool name="_3dv.QIFDocument.FaceHas2D" value="1" />
+    <AttributeI1 name="_3dv.InternalVersion" value="15" />
+    <AttributeI1 name="_3dv.ShowUnits" value="0" />
+    <AttributeD1 name="_3dv.QIFDocumentFormErr" value="0.025" />
+    <AttributeI1 name="_3dv.QIFDocument.FreeBalloon" value="18" />
+    <AttributeUser name="_3dv.AttributeBalloonTypePrefix" nameUserAttribute="AttributeBalloonTypePrefix">
+      <UserDataXML>
+        <BalloonPrefixDictionary xmlns="##other">
+          <Dimension>D</Dimension>
+          <GTol>D</GTol>
+          <SurfaceTexture>T</SurfaceTexture>
+          <WeldBevel>W</WeldBevel>
+          <PrefixMode>2</PrefixMode>
+        </BalloonPrefixDictionary>
+      </UserDataXML>
+    </AttributeUser>
+    <AttributeStr name="_3dv.HexagonSymbolDisplaingMode" value="Auto" />
+    <AttributeI1 name="_3dv.FunctionalPreset" value="0" />
+  </Attributes>
+  <VersionHistory n="2">
+    <EarlierVersion>
+      <TimeCreated>2026-03-12T09:47:02</TimeCreated>
+    </EarlierVersion>
+    <EarlierVersion>
+      <TimeCreated>2026-03-12T09:47:02</TimeCreated>
+    </EarlierVersion>
+  </VersionHistory>
+  <Version>
+    <TimeCreated>2026-03-12T10:51:12</TimeCreated>
+  </Version>
+  <Header>
+    <Application>
+      <Name>MBDConnect for Creo 2025.3.2602.18</Name>
+    </Application>
+    <Author>
+      <Name></Name>
+      <Organization>John Deere - Application</Organization>
+    </Author>
+    <ApplicationSource>
+      <Name>PTC Creo Parametric 10</Name>
+    </ApplicationSource>
+  </Header>
+  <StandardsDefinitions n="1">
+    <Standard id="367">
+      <Organization>
+        <StandardsOrganizationEnum>ASME</StandardsOrganizationEnum>
+      </Organization>
+      <Designator>Y14.5 2018</Designator>
+    </Standard>
+  </StandardsDefinitions>
+  <FileUnits>
+    <PrimaryUnits>
+      <PMIAngularUnit>
+        <SIUnitName>radian</SIUnitName>
+        <UnitName>degree</UnitName>
+        <UnitConversion>
+          <Factor>0.017453292519943</Factor>
+        </UnitConversion>
+      </PMIAngularUnit>
+      <LinearUnit>
+        <SIUnitName>meter</SIUnitName>
+        <UnitName>mm</UnitName>
+        <UnitConversion>
+          <Factor>0.001</Factor>
+        </UnitConversion>
+      </LinearUnit>
+      <MassUnit>
+        <SIUnitName>kilogram</SIUnitName>
+        <UnitName>kg</UnitName>
+      </MassUnit>
+      <PressureUnit>
+        <SIUnitName>pascal</SIUnitName>
+        <UnitName>Pa</UnitName>
+      </PressureUnit>
+    </PrimaryUnits>
+    <OtherUnits n="19">
+      <AngularUnit>
+        <SIUnitName>radian</SIUnitName>
+        <UnitName>radian</UnitName>
+      </AngularUnit>
+      <AngularUnit>
+        <SIUnitName>radian</SIUnitName>
+        <UnitName>revolution</UnitName>
+        <UnitConversion>
+          <Factor>6.283185307179586</Factor>
+        </UnitConversion>
+      </AngularUnit>
+      <LinearUnit>
+        <SIUnitName>meter</SIUnitName>
+        <UnitName>inch</UnitName>
+        <UnitConversion>
+          <Factor>0.0254</Factor>
+        </UnitConversion>
+      </LinearUnit>
+      <LinearUnit>
+        <SIUnitName>meter</SIUnitName>
+        <UnitName>ft</UnitName>
+        <UnitConversion>
+          <Factor>0.3048</Factor>
+        </UnitConversion>
+      </LinearUnit>
+      <LinearUnit>
+        <SIUnitName>meter</SIUnitName>
+        <UnitName>mi</UnitName>
+        <UnitConversion>
+          <Factor>1609.343999999999824</Factor>
+        </UnitConversion>
+      </LinearUnit>
+      <LinearUnit>
+        <SIUnitName>meter</SIUnitName>
+        <UnitName>m</UnitName>
+      </LinearUnit>
+      <LinearUnit>
+        <SIUnitName>meter</SIUnitName>
+        <UnitName>km</UnitName>
+        <UnitConversion>
+          <Factor>1000.000000000000114</Factor>
+        </UnitConversion>
+      </LinearUnit>
+      <LinearUnit>
+        <SIUnitName>meter</SIUnitName>
+        <UnitName>mil</UnitName>
+        <UnitConversion>
+          <Factor>0.0000254</Factor>
+        </UnitConversion>
+      </LinearUnit>
+      <LinearUnit>
+        <SIUnitName>meter</SIUnitName>
+        <UnitName>um</UnitName>
+        <UnitConversion>
+          <Factor>0.000001</Factor>
+        </UnitConversion>
+      </LinearUnit>
+      <LinearUnit>
+        <SIUnitName>meter</SIUnitName>
+        <UnitName>cm</UnitName>
+        <UnitConversion>
+          <Factor>0.01</Factor>
+        </UnitConversion>
+      </LinearUnit>
+      <LinearUnit>
+        <SIUnitName>meter</SIUnitName>
+        <UnitName>uin</UnitName>
+        <UnitConversion>
+          <Factor>0.0000000254</Factor>
+        </UnitConversion>
+      </LinearUnit>
+      <MassUnit>
+        <SIUnitName>kilogram</SIUnitName>
+        <UnitName>mg</UnitName>
+        <UnitConversion>
+          <Factor>1000000</Factor>
+        </UnitConversion>
+      </MassUnit>
+      <MassUnit>
+        <SIUnitName>kilogram</SIUnitName>
+        <UnitName>g</UnitName>
+        <UnitConversion>
+          <Factor>1000</Factor>
+        </UnitConversion>
+      </MassUnit>
+      <MassUnit>
+        <SIUnitName>kilogram</SIUnitName>
+        <UnitName>t</UnitName>
+        <UnitConversion>
+          <Factor>0.001</Factor>
+        </UnitConversion>
+      </MassUnit>
+      <MassUnit>
+        <SIUnitName>kilogram</SIUnitName>
+        <UnitName>lbm</UnitName>
+        <UnitConversion>
+          <Factor>2.204624420183777</Factor>
+        </UnitConversion>
+      </MassUnit>
+      <MassUnit>
+        <SIUnitName>kilogram</SIUnitName>
+        <UnitName>oz</UnitName>
+        <UnitConversion>
+          <Factor>35.273965837869568</Factor>
+        </UnitConversion>
+      </MassUnit>
+      <MassUnit>
+        <SIUnitName>kilogram</SIUnitName>
+        <UnitName>Slug</UnitName>
+        <UnitConversion>
+          <Factor>0.068521765561961</Factor>
+        </UnitConversion>
+      </MassUnit>
+      <PressureUnit>
+        <SIUnitName>pascal</SIUnitName>
+        <UnitName>kPa</UnitName>
+        <UnitConversion>
+          <Factor>0.001</Factor>
+        </UnitConversion>
+      </PressureUnit>
+      <PressureUnit>
+        <SIUnitName>pascal</SIUnitName>
+        <UnitName>psi</UnitName>
+        <UnitConversion>
+          <Factor>0.000145037680789</Factor>
+        </UnitConversion>
+      </PressureUnit>
+    </OtherUnits>
+  </FileUnits>
+  <DatumDefinitions n="3">
+    <DatumDefinition id="199">
+      <Attributes n="6">
+        <AttributeStr name="_3dv.PersistentId" value="220.0.ISO22081_FIG3" />
+        <AttributeI1 name="_3dv.PmiUpdater" value="4" />
+        <AttributeStr name="Id_name" value="Datum_Tag_A" />
+        <AttributeUser name="_3dv.PmiReportableAdvanced" nameUserAttribute="AttributePmiReportable">
+          <UserDataXML>
+            <ReportableStates xmlns="##other" n="1">
+              <Reportable reportType="1" val="0" />
+            </ReportableStates>
+          </UserDataXML>
+        </AttributeUser>
+        <AttributeStr name="_3dv.KeyDesignator" value="11" />
+        <AttributeStr name="_3dv.QPID" value="456fd408-f45f-4703-9f7c-7ea6c0487131" />
+      </Attributes>
+      <DatumLabel>A</DatumLabel>
+      <FeatureNominalIds n="1">
+        <Id>332</Id>
+      </FeatureNominalIds>
+    </DatumDefinition>
+    <DatumDefinition id="209">
+      <Attributes n="6">
+        <AttributeStr name="_3dv.PersistentId" value="220.1.ISO22081_FIG3" />
+        <AttributeI1 name="_3dv.PmiUpdater" value="4" />
+        <AttributeStr name="Id_name" value="Datum_Tag_B" />
+        <AttributeUser name="_3dv.PmiReportableAdvanced" nameUserAttribute="AttributePmiReportable">
+          <UserDataXML>
+            <ReportableStates xmlns="##other" n="1">
+              <Reportable reportType="1" val="0" />
+            </ReportableStates>
+          </UserDataXML>
+        </AttributeUser>
+        <AttributeStr name="_3dv.KeyDesignator" value="10" />
+        <AttributeStr name="_3dv.QPID" value="c13a07d0-b99f-471a-8ba7-a62a5d33cba9" />
+      </Attributes>
+      <DatumLabel>B</DatumLabel>
+      <FeatureNominalIds n="1">
+        <Id>333</Id>
+      </FeatureNominalIds>
+    </DatumDefinition>
+    <DatumDefinition id="228">
+      <Attributes n="6">
+        <AttributeStr name="_3dv.PersistentId" value="220.2.ISO22081_FIG3" />
+        <AttributeI1 name="_3dv.PmiUpdater" value="4" />
+        <AttributeStr name="Id_name" value="Datum_Tag_C" />
+        <AttributeUser name="_3dv.PmiReportableAdvanced" nameUserAttribute="AttributePmiReportable">
+          <UserDataXML>
+            <ReportableStates xmlns="##other" n="1">
+              <Reportable reportType="1" val="0" />
+            </ReportableStates>
+          </UserDataXML>
+        </AttributeUser>
+        <AttributeStr name="_3dv.KeyDesignator" value="16" />
+        <AttributeStr name="_3dv.QPID" value="ce21f484-0e7a-4353-8f0a-cd1d07b36615" />
+      </Attributes>
+      <DatumLabel>C</DatumLabel>
+      <FeatureNominalIds n="1">
+        <Id>339</Id>
+      </FeatureNominalIds>
+    </DatumDefinition>
+  </DatumDefinitions>
+  <DatumReferenceFrames n="3">
+    <DatumReferenceFrame id="202">
+      <Datums n="1">
+        <Datum>
+          <SimpleDatum>
+            <DatumDefinitionId>199</DatumDefinitionId>
+            <MaterialModifier>NONE</MaterialModifier>
+            <ReferencedComponent>NOMINAL</ReferencedComponent>
+          </SimpleDatum>
+          <Precedence>
+            <PrecedenceEnum>PRIMARY</PrecedenceEnum>
+          </Precedence>
+        </Datum>
+      </Datums>
+    </DatumReferenceFrame>
+    <DatumReferenceFrame id="212">
+      <Datums n="2">
+        <Datum>
+          <SimpleDatum>
+            <DatumDefinitionId>199</DatumDefinitionId>
+            <MaterialModifier>NONE</MaterialModifier>
+            <ReferencedComponent>NOMINAL</ReferencedComponent>
+          </SimpleDatum>
+          <Precedence>
+            <PrecedenceEnum>PRIMARY</PrecedenceEnum>
+          </Precedence>
+        </Datum>
+        <Datum>
+          <SimpleDatum>
+            <DatumDefinitionId>209</DatumDefinitionId>
+            <MaterialModifier>NONE</MaterialModifier>
+            <ReferencedComponent>NOMINAL</ReferencedComponent>
+          </SimpleDatum>
+          <Precedence>
+            <PrecedenceEnum>SECONDARY</PrecedenceEnum>
+          </Precedence>
+        </Datum>
+      </Datums>
+    </DatumReferenceFrame>
+    <DatumReferenceFrame id="234">
+      <Datums n="3">
+        <Datum>
+          <SimpleDatum>
+            <DatumDefinitionId>199</DatumDefinitionId>
+            <MaterialModifier>NONE</MaterialModifier>
+            <ReferencedComponent>NOMINAL</ReferencedComponent>
+          </SimpleDatum>
+          <Precedence>
+            <PrecedenceEnum>PRIMARY</PrecedenceEnum>
+          </Precedence>
+        </Datum>
+        <Datum>
+          <SimpleDatum>
+            <DatumDefinitionId>209</DatumDefinitionId>
+            <MaterialModifier>NONE</MaterialModifier>
+            <ReferencedComponent>NOMINAL</ReferencedComponent>
+          </SimpleDatum>
+          <Precedence>
+            <PrecedenceEnum>SECONDARY</PrecedenceEnum>
+          </Precedence>
+        </Datum>
+        <Datum>
+          <SimpleDatum>
+            <DatumDefinitionId>228</DatumDefinitionId>
+            <MaterialModifier>NONE</MaterialModifier>
+            <ReferencedComponent>NOMINAL</ReferencedComponent>
+          </SimpleDatum>
+          <Precedence>
+            <PrecedenceEnum>TERTIARY</PrecedenceEnum>
+          </Precedence>
+        </Datum>
+      </Datums>
+    </DatumReferenceFrame>
+  </DatumReferenceFrames>
+  <Product>
+    <Header>
+      <Name>iso22081_fig3.prt</Name>
+      <File>
+        <Name>ISO22081_FIG3.PRT</Name>
+      </File>
+      <Application>
+        <Name>PTC Creo Parametric 10</Name>
+        <Organization>PTC Creo</Organization>
+        <AddonName>MBDConnect for PTC Creo 2025.3.2602.18</AddonName>
+        <AddonOrganization>Capvidia</AddonOrganization>
+      </Application>
+      <ApplicationSource>
+        <Name>PTC Creo Parametric 10</Name>
+      </ApplicationSource>
+      <ScaleCoefficient>1</ScaleCoefficient>
+      <ModelTolerance>0.01</ModelTolerance>
+      <MassPropertyTolerance>0.003125</MassPropertyTolerance>
+    </Header>
+    <GeometrySet>
+      <PointSet n="26">
+        <Point id="8">
+          <XYZ>8.00000000000001 0 -25</XYZ>
+        </Point>
+        <Point id="10">
+          <XYZ>14 0 -21.5358983848622</XYZ>
+        </Point>
+        <Point id="14">
+          <XYZ>0 0 -25</XYZ>
+        </Point>
+        <Point id="18">
+          <XYZ>0 0 0</XYZ>
+        </Point>
+        <Point id="22">
+          <XYZ>50 0 0</XYZ>
+        </Point>
+        <Point id="26">
+          <XYZ>50 0 -25</XYZ>
+        </Point>
+        <Point id="30">
+          <XYZ>20 0 -25</XYZ>
+        </Point>
+        <Point id="37">
+          <XYZ>12 0 -7.5</XYZ>
+        </Point>
+        <Point id="39">
+          <XYZ>2 0 -7.5</XYZ>
+        </Point>
+        <Point id="48">
+          <XYZ>30 20 -25</XYZ>
+        </Point>
+        <Point id="50">
+          <XYZ>20 20 -25</XYZ>
+        </Point>
+        <Point id="54">
+          <XYZ>14 20 -21.5358983848622</XYZ>
+        </Point>
+        <Point id="58">
+          <XYZ>8.00000000000001 20 -25</XYZ>
+        </Point>
+        <Point id="62">
+          <XYZ>0 20 -25</XYZ>
+        </Point>
+        <Point id="66">
+          <XYZ>0 20 0</XYZ>
+        </Point>
+        <Point id="70">
+          <XYZ>30 20 0</XYZ>
+        </Point>
+        <Point id="77">
+          <XYZ>40 20 0</XYZ>
+        </Point>
+        <Point id="79">
+          <XYZ>50 20 0</XYZ>
+        </Point>
+        <Point id="83">
+          <XYZ>50 20 -25</XYZ>
+        </Point>
+        <Point id="87">
+          <XYZ>40 20 -25</XYZ>
+        </Point>
+        <Point id="94">
+          <XYZ>2 20 -7.5</XYZ>
+        </Point>
+        <Point id="96">
+          <XYZ>12 20 -7.5</XYZ>
+        </Point>
+        <Point id="110">
+          <XYZ>40 16.5 0</XYZ>
+        </Point>
+        <Point id="114">
+          <XYZ>30 16.5 0</XYZ>
+        </Point>
+        <Point id="133">
+          <XYZ>30 16.5 -25</XYZ>
+        </Point>
+        <Point id="135">
+          <XYZ>40 16.5 -25</XYZ>
+        </Point>
+      </PointSet>
+      <Curve12Set n="78">
+        <Segment12 id="241">
+          <Segment12Core domain="0 1">
+            <StartPoint>14 21.5358983848622</StartPoint>
+            <EndPoint>8.00000000000001 25</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="242">
+          <Segment12Core domain="0 1">
+            <StartPoint>8.00000000000001 25</StartPoint>
+            <EndPoint>0 25</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="243">
+          <Segment12Core domain="0 1">
+            <StartPoint>0 25</StartPoint>
+            <EndPoint>0 0</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="244">
+          <Segment12Core domain="0 1">
+            <StartPoint>0 0</StartPoint>
+            <EndPoint>50 0</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="245">
+          <Segment12Core domain="0 1">
+            <StartPoint>50 0</StartPoint>
+            <EndPoint>50 25</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="246">
+          <Segment12Core domain="0 1">
+            <StartPoint>50 25</StartPoint>
+            <EndPoint>20 25</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="247">
+          <Segment12Core domain="0 1">
+            <StartPoint>20 25</StartPoint>
+            <EndPoint>14 21.5358983848622</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Nurbs12 id="248">
+          <Nurbs12Core domain="0 3.14159265358979">
+            <Order>3</Order>
+            <Knots count="8">
+              0 0 0 1.5707963267949 1.5707963267949 3.14159265358979 3.14159265358979 3.14159265358979
+            </Knots>
+            <CPs count="5">
+              2 7.5
+              2 12.5
+              7 12.5
+              12 12.5
+              12 7.5
+            </CPs>
+            <Weights count="5">
+              1 0.707106781186548 1 0.707106781186548 1
+            </Weights>
+          </Nurbs12Core>
+        </Nurbs12>
+        <Nurbs12 id="249">
+          <Nurbs12Core domain="0 3.14159265358979">
+            <Order>3</Order>
+            <Knots count="8">
+              0 0 0 1.5707963267949 1.5707963267949 3.14159265358979 3.14159265358979 3.14159265358979
+            </Knots>
+            <CPs count="5">
+              12 7.5
+              12 2.5
+              7 2.5
+              2 2.5
+              2 7.5
+            </CPs>
+            <Weights count="5">
+              1 0.707106781186548 1 0.707106781186548 1
+            </Weights>
+          </Nurbs12Core>
+        </Nurbs12>
+        <Segment12 id="250">
+          <Segment12Core domain="0 1">
+            <StartPoint>30 25</StartPoint>
+            <EndPoint>20 25</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="251">
+          <Segment12Core domain="0 1">
+            <StartPoint>20 25</StartPoint>
+            <EndPoint>14 21.5358983848622</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="252">
+          <Segment12Core domain="0 1">
+            <StartPoint>14 21.5358983848622</StartPoint>
+            <EndPoint>8.00000000000001 25</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="253">
+          <Segment12Core domain="0 1">
+            <StartPoint>8.00000000000001 25</StartPoint>
+            <EndPoint>0 25</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="254">
+          <Segment12Core domain="0 1">
+            <StartPoint>0 25</StartPoint>
+            <EndPoint>0 0</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="255">
+          <Segment12Core domain="0 1">
+            <StartPoint>0 0</StartPoint>
+            <EndPoint>30 0</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="256">
+          <Segment12Core domain="0 1">
+            <StartPoint>30 0</StartPoint>
+            <EndPoint>30 25</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Nurbs12 id="257">
+          <Nurbs12Core domain="0 3.14159265358979">
+            <Order>3</Order>
+            <Knots count="8">
+              0 0 0 1.5707963267949 1.5707963267949 3.14159265358979 3.14159265358979 3.14159265358979
+            </Knots>
+            <CPs count="5">
+              12 7.5
+              12 2.5
+              7 2.5
+              2 2.5
+              2 7.5
+            </CPs>
+            <Weights count="5">
+              1 0.707106781186548 1 0.707106781186548 1
+            </Weights>
+          </Nurbs12Core>
+        </Nurbs12>
+        <Nurbs12 id="258">
+          <Nurbs12Core domain="0 3.14159265358979">
+            <Order>3</Order>
+            <Knots count="8">
+              0 0 0 1.5707963267949 1.5707963267949 3.14159265358979 3.14159265358979 3.14159265358979
+            </Knots>
+            <CPs count="5">
+              2 7.5
+              2 12.5
+              7 12.5
+              12 12.5
+              12 7.5
+            </CPs>
+            <Weights count="5">
+              1 0.707106781186548 1 0.707106781186548 1
+            </Weights>
+          </Nurbs12Core>
+        </Nurbs12>
+        <Segment12 id="259">
+          <Segment12Core domain="0 1">
+            <StartPoint>40 0</StartPoint>
+            <EndPoint>50 0</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="260">
+          <Segment12Core domain="0 1">
+            <StartPoint>50 0</StartPoint>
+            <EndPoint>50 25</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="261">
+          <Segment12Core domain="0 1">
+            <StartPoint>50 25</StartPoint>
+            <EndPoint>40 25</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="262">
+          <Segment12Core domain="0 1">
+            <StartPoint>40 25</StartPoint>
+            <EndPoint>40 0</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="263">
+          <Segment12Core domain="0 1">
+            <StartPoint>30 20</StartPoint>
+            <EndPoint>0 20</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="264">
+          <Segment12Core domain="0 1">
+            <StartPoint>0 20</StartPoint>
+            <EndPoint>0 0</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="265">
+          <Segment12Core domain="0 1">
+            <StartPoint>0 0</StartPoint>
+            <EndPoint>50 0</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="266">
+          <Segment12Core domain="0 1">
+            <StartPoint>50 0</StartPoint>
+            <EndPoint>50 20</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="267">
+          <Segment12Core domain="0 1">
+            <StartPoint>50 20</StartPoint>
+            <EndPoint>40 20</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="268">
+          <Segment12Core domain="0 1">
+            <StartPoint>40 20</StartPoint>
+            <EndPoint>40 16.5</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="269">
+          <Segment12Core domain="0 1">
+            <StartPoint>40 16.5</StartPoint>
+            <EndPoint>30 16.5</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="270">
+          <Segment12Core domain="0 1">
+            <StartPoint>30 16.5</StartPoint>
+            <EndPoint>30 20</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="271">
+          <Segment12Core domain="0 1">
+            <StartPoint>25 0</StartPoint>
+            <EndPoint>25 20</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="272">
+          <Segment12Core domain="0 1">
+            <StartPoint>25 20</StartPoint>
+            <EndPoint>0 20</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="273">
+          <Segment12Core domain="0 1">
+            <StartPoint>0 20</StartPoint>
+            <EndPoint>0 0</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="274">
+          <Segment12Core domain="0 1">
+            <StartPoint>0 0</StartPoint>
+            <EndPoint>25 0</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="275">
+          <Segment12Core domain="0 1">
+            <StartPoint>42 0</StartPoint>
+            <EndPoint>50 0</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="276">
+          <Segment12Core domain="0 1">
+            <StartPoint>50 0</StartPoint>
+            <EndPoint>50 20</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="277">
+          <Segment12Core domain="0 1">
+            <StartPoint>50 20</StartPoint>
+            <EndPoint>42 20</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="278">
+          <Segment12Core domain="0 1">
+            <StartPoint>42 20</StartPoint>
+            <EndPoint>42 0</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="279">
+          <Segment12Core domain="0 1">
+            <StartPoint>20 16.5</StartPoint>
+            <EndPoint>10 16.5</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="280">
+          <Segment12Core domain="0 1">
+            <StartPoint>10 16.5</StartPoint>
+            <EndPoint>10 20</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="281">
+          <Segment12Core domain="0 1">
+            <StartPoint>10 20</StartPoint>
+            <EndPoint>0 20</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="282">
+          <Segment12Core domain="0 1">
+            <StartPoint>0 20</StartPoint>
+            <EndPoint>0 0</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="283">
+          <Segment12Core domain="0 1">
+            <StartPoint>0 0</StartPoint>
+            <EndPoint>30 0</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="284">
+          <Segment12Core domain="0 1">
+            <StartPoint>30 0</StartPoint>
+            <EndPoint>30 20</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="285">
+          <Segment12Core domain="0 1">
+            <StartPoint>30 20</StartPoint>
+            <EndPoint>20 20</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="286">
+          <Segment12Core domain="0 1">
+            <StartPoint>20 20</StartPoint>
+            <EndPoint>20 16.5</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="287">
+          <Segment12Core domain="0 1">
+            <StartPoint>25 0</StartPoint>
+            <EndPoint>25 20</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="288">
+          <Segment12Core domain="0 1">
+            <StartPoint>25 20</StartPoint>
+            <EndPoint>0 20</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="289">
+          <Segment12Core domain="0 1">
+            <StartPoint>0 20</StartPoint>
+            <EndPoint>0 0</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="290">
+          <Segment12Core domain="0 1">
+            <StartPoint>0 0</StartPoint>
+            <EndPoint>25 0</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="291">
+          <Segment12Core domain="0 1">
+            <StartPoint>6.15348059642741e-15 -20</StartPoint>
+            <EndPoint>6.92820323027551 -20</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="292">
+          <Segment12Core domain="0 1">
+            <StartPoint>6.92820323027551 -20</StartPoint>
+            <EndPoint>6.92820323027551 0</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="293">
+          <Segment12Core domain="0 1">
+            <StartPoint>6.92820323027551 0</StartPoint>
+            <EndPoint>6.15348059642741e-15 0</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="294">
+          <Segment12Core domain="0 1">
+            <StartPoint>6.15348059642741e-15 0</StartPoint>
+            <EndPoint>6.15348059642741e-15 -20</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="295">
+          <Segment12Core domain="0 1">
+            <StartPoint>-1.53837014910685e-15 -20</StartPoint>
+            <EndPoint>6.92820323027551 -20</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="296">
+          <Segment12Core domain="0 1">
+            <StartPoint>6.92820323027551 -20</StartPoint>
+            <EndPoint>6.92820323027551 0</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="297">
+          <Segment12Core domain="0 1">
+            <StartPoint>6.92820323027551 0</StartPoint>
+            <EndPoint>-1.53837014910685e-15 0</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="298">
+          <Segment12Core domain="0 1">
+            <StartPoint>0 0</StartPoint>
+            <EndPoint>0 -20</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="299">
+          <Segment12Core domain="0 1">
+            <StartPoint>0 0</StartPoint>
+            <EndPoint>0 -25</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="300">
+          <Segment12Core domain="0 1">
+            <StartPoint>0 -25</StartPoint>
+            <EndPoint>3.5 -25</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="301">
+          <Segment12Core domain="0 1">
+            <StartPoint>3.5 -25</StartPoint>
+            <EndPoint>3.5 0</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="302">
+          <Segment12Core domain="0 1">
+            <StartPoint>3.5 0</StartPoint>
+            <EndPoint>0 0</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="303">
+          <Segment12Core domain="0 1">
+            <StartPoint>10 0</StartPoint>
+            <EndPoint>0 0</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="304">
+          <Segment12Core domain="0 1">
+            <StartPoint>0 0</StartPoint>
+            <EndPoint>0 -25</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="305">
+          <Segment12Core domain="0 1">
+            <StartPoint>0 -25</StartPoint>
+            <EndPoint>10 -25</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="306">
+          <Segment12Core domain="0 1">
+            <StartPoint>10 -25</StartPoint>
+            <EndPoint>10 0</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="307">
+          <Segment12Core domain="0 1">
+            <StartPoint>3.5 -25</StartPoint>
+            <EndPoint>3.5 0</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="308">
+          <Segment12Core domain="0 1">
+            <StartPoint>3.5 0</StartPoint>
+            <EndPoint>0 0</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="309">
+          <Segment12Core domain="0 1">
+            <StartPoint>0 0</StartPoint>
+            <EndPoint>0 -25</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="310">
+          <Segment12Core domain="0 1">
+            <StartPoint>0 -25</StartPoint>
+            <EndPoint>3.5 -25</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="311">
+          <Segment12Core domain="0 1">
+            <StartPoint>0 0</StartPoint>
+            <EndPoint>3.14159265358979 0</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="312">
+          <Segment12Core domain="0 1">
+            <StartPoint>3.14159265358979 0</StartPoint>
+            <EndPoint>3.14159265358979 20</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="313">
+          <Segment12Core domain="0 1">
+            <StartPoint>3.14159265358979 20</StartPoint>
+            <EndPoint>0 20</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="314">
+          <Segment12Core domain="0 1">
+            <StartPoint>0 20</StartPoint>
+            <EndPoint>0 0</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="315">
+          <Segment12Core domain="0 1">
+            <StartPoint>3.14159265358979 0</StartPoint>
+            <EndPoint>6.28318530717959 0</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="316">
+          <Segment12Core domain="0 1">
+            <StartPoint>6.28318530717959 0</StartPoint>
+            <EndPoint>6.28318530717959 20</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="317">
+          <Segment12Core domain="0 1">
+            <StartPoint>6.28318530717959 20</StartPoint>
+            <EndPoint>3.14159265358979 20</EndPoint>
+          </Segment12Core>
+        </Segment12>
+        <Segment12 id="318">
+          <Segment12Core domain="0 1">
+            <StartPoint>3.14159265358979 20</StartPoint>
+            <EndPoint>3.14159265358979 0</EndPoint>
+          </Segment12Core>
+        </Segment12>
+      </Curve12Set>
+      <Curve13Set n="39">
+        <Segment13 id="7">
+          <Segment13Core domain="0 1">
+            <StartPoint>8.00000000000001 0 -25</StartPoint>
+            <EndPoint>14 0 -21.5358983848622</EndPoint>
+          </Segment13Core>
+        </Segment13>
+        <Segment13 id="13">
+          <Segment13Core domain="0 1">
+            <StartPoint>8.00000000000001 0 -25</StartPoint>
+            <EndPoint>0 0 -25</EndPoint>
+          </Segment13Core>
+        </Segment13>
+        <Segment13 id="17">
+          <Segment13Core domain="0 1">
+            <StartPoint>0 0 -25</StartPoint>
+            <EndPoint>0 0 0</EndPoint>
+          </Segment13Core>
+        </Segment13>
+        <Segment13 id="21">
+          <Segment13Core domain="0 1">
+            <StartPoint>0 0 0</StartPoint>
+            <EndPoint>50 0 0</EndPoint>
+          </Segment13Core>
+        </Segment13>
+        <Segment13 id="25">
+          <Segment13Core domain="0 1">
+            <StartPoint>50 0 0</StartPoint>
+            <EndPoint>50 0 -25</EndPoint>
+          </Segment13Core>
+        </Segment13>
+        <Segment13 id="29">
+          <Segment13Core domain="0 1">
+            <StartPoint>50 0 -25</StartPoint>
+            <EndPoint>20 0 -25</EndPoint>
+          </Segment13Core>
+        </Segment13>
+        <Segment13 id="33">
+          <Segment13Core domain="0 1">
+            <StartPoint>14 0 -21.5358983848622</StartPoint>
+            <EndPoint>20 0 -25</EndPoint>
+          </Segment13Core>
+        </Segment13>
+        <ArcCircular13 id="36">
+          <ArcCircular13Core domain="0 3.14159265358979">
+            <Radius>5</Radius>
+            <Center>7 0 -7.5</Center>
+            <DirBeg>1 0 -3.5527136788005e-16</DirBeg>
+            <Normal>0 1 0</Normal>
+          </ArcCircular13Core>
+        </ArcCircular13>
+        <ArcCircular13 id="42">
+          <ArcCircular13Core domain="0 3.14159265358979">
+            <Radius>5</Radius>
+            <Center>7 0 -7.5</Center>
+            <DirBeg>-1 0 3.5527136788005e-16</DirBeg>
+            <Normal>0 1 0</Normal>
+          </ArcCircular13Core>
+        </ArcCircular13>
+        <Segment13 id="47">
+          <Segment13Core domain="0 1">
+            <StartPoint>30 20 -25</StartPoint>
+            <EndPoint>20 20 -25</EndPoint>
+          </Segment13Core>
+        </Segment13>
+        <Segment13 id="53">
+          <Segment13Core domain="0 1">
+            <StartPoint>14 20 -21.5358983848622</StartPoint>
+            <EndPoint>20 20 -25</EndPoint>
+          </Segment13Core>
+        </Segment13>
+        <Segment13 id="57">
+          <Segment13Core domain="0 1">
+            <StartPoint>8.00000000000001 20 -25</StartPoint>
+            <EndPoint>14 20 -21.5358983848622</EndPoint>
+          </Segment13Core>
+        </Segment13>
+        <Segment13 id="61">
+          <Segment13Core domain="0 1">
+            <StartPoint>8.00000000000001 20 -25</StartPoint>
+            <EndPoint>0 20 -25</EndPoint>
+          </Segment13Core>
+        </Segment13>
+        <Segment13 id="65">
+          <Segment13Core domain="0 1">
+            <StartPoint>0 20 -25</StartPoint>
+            <EndPoint>0 20 0</EndPoint>
+          </Segment13Core>
+        </Segment13>
+        <Segment13 id="69">
+          <Segment13Core domain="0 1">
+            <StartPoint>0 20 0</StartPoint>
+            <EndPoint>30 20 0</EndPoint>
+          </Segment13Core>
+        </Segment13>
+        <Segment13 id="73">
+          <Segment13Core domain="0 1">
+            <StartPoint>30 20 0</StartPoint>
+            <EndPoint>30 20 -25</EndPoint>
+          </Segment13Core>
+        </Segment13>
+        <Segment13 id="76">
+          <Segment13Core domain="0 1">
+            <StartPoint>40 20 0</StartPoint>
+            <EndPoint>50 20 0</EndPoint>
+          </Segment13Core>
+        </Segment13>
+        <Segment13 id="82">
+          <Segment13Core domain="0 1">
+            <StartPoint>50 20 0</StartPoint>
+            <EndPoint>50 20 -25</EndPoint>
+          </Segment13Core>
+        </Segment13>
+        <Segment13 id="86">
+          <Segment13Core domain="0 1">
+            <StartPoint>50 20 -25</StartPoint>
+            <EndPoint>40 20 -25</EndPoint>
+          </Segment13Core>
+        </Segment13>
+        <Segment13 id="90">
+          <Segment13Core domain="0 1">
+            <StartPoint>40 20 0</StartPoint>
+            <EndPoint>40 20 -25</EndPoint>
+          </Segment13Core>
+        </Segment13>
+        <ArcCircular13 id="93">
+          <ArcCircular13Core domain="0 3.14159265358979">
+            <Radius>5</Radius>
+            <Center>7 20 -7.5</Center>
+            <DirBeg>-1 0 -1.77635683940025e-16</DirBeg>
+            <Normal>0 1 0</Normal>
+          </ArcCircular13Core>
+        </ArcCircular13>
+        <ArcCircular13 id="99">
+          <ArcCircular13Core domain="0 3.14159265358979">
+            <Radius>5</Radius>
+            <Center>7 20 -7.5</Center>
+            <DirBeg>1 0 1.77635683940025e-16</DirBeg>
+            <Normal>-0 1 0</Normal>
+          </ArcCircular13Core>
+        </ArcCircular13>
+        <Segment13 id="105">
+          <Segment13Core domain="0 1">
+            <StartPoint>0 0 0</StartPoint>
+            <EndPoint>0 20 0</EndPoint>
+          </Segment13Core>
+        </Segment13>
+        <Segment13 id="107">
+          <Segment13Core domain="0 1">
+            <StartPoint>50 0 0</StartPoint>
+            <EndPoint>50 20 0</EndPoint>
+          </Segment13Core>
+        </Segment13>
+        <Segment13 id="109">
+          <Segment13Core domain="0 1">
+            <StartPoint>40 20 0</StartPoint>
+            <EndPoint>40 16.5 0</EndPoint>
+          </Segment13Core>
+        </Segment13>
+        <Segment13 id="113">
+          <Segment13Core domain="0 1">
+            <StartPoint>30 16.5 0</StartPoint>
+            <EndPoint>40 16.5 0</EndPoint>
+          </Segment13Core>
+        </Segment13>
+        <Segment13 id="117">
+          <Segment13Core domain="0 1">
+            <StartPoint>30 20 0</StartPoint>
+            <EndPoint>30 16.5 0</EndPoint>
+          </Segment13Core>
+        </Segment13>
+        <Segment13 id="122">
+          <Segment13Core domain="0 1">
+            <StartPoint>50 0 -25</StartPoint>
+            <EndPoint>50 20 -25</EndPoint>
+          </Segment13Core>
+        </Segment13>
+        <Segment13 id="127">
+          <Segment13Core domain="0 1">
+            <StartPoint>0 0 -25</StartPoint>
+            <EndPoint>0 20 -25</EndPoint>
+          </Segment13Core>
+        </Segment13>
+        <Segment13 id="129">
+          <Segment13Core domain="0 1">
+            <StartPoint>8.00000000000001 0 -25</StartPoint>
+            <EndPoint>8.00000000000001 20 -25</EndPoint>
+          </Segment13Core>
+        </Segment13>
+        <Segment13 id="132">
+          <Segment13Core domain="0 1">
+            <StartPoint>30 16.5 -25</StartPoint>
+            <EndPoint>40 16.5 -25</EndPoint>
+          </Segment13Core>
+        </Segment13>
+        <Segment13 id="138">
+          <Segment13Core domain="0 1">
+            <StartPoint>40 20 -25</StartPoint>
+            <EndPoint>40 16.5 -25</EndPoint>
+          </Segment13Core>
+        </Segment13>
+        <Segment13 id="140">
+          <Segment13Core domain="0 1">
+            <StartPoint>20 0 -25</StartPoint>
+            <EndPoint>20 20 -25</EndPoint>
+          </Segment13Core>
+        </Segment13>
+        <Segment13 id="142">
+          <Segment13Core domain="0 1">
+            <StartPoint>30 20 -25</StartPoint>
+            <EndPoint>30 16.5 -25</EndPoint>
+          </Segment13Core>
+        </Segment13>
+        <Segment13 id="151">
+          <Segment13Core domain="0 1">
+            <StartPoint>14 20 -21.5358983848622</StartPoint>
+            <EndPoint>14 0 -21.5358983848622</EndPoint>
+          </Segment13Core>
+        </Segment13>
+        <Segment13 id="159">
+          <Segment13Core domain="0 1">
+            <StartPoint>30 16.5 0</StartPoint>
+            <EndPoint>30 16.5 -25</EndPoint>
+          </Segment13Core>
+        </Segment13>
+        <Segment13 id="164">
+          <Segment13Core domain="0 1">
+            <StartPoint>40 16.5 0</StartPoint>
+            <EndPoint>40 16.5 -25</EndPoint>
+          </Segment13Core>
+        </Segment13>
+        <Segment13 id="172">
+          <Segment13Core domain="0 1">
+            <StartPoint>2 20 -7.5</StartPoint>
+            <EndPoint>2 0 -7.5</EndPoint>
+          </Segment13Core>
+        </Segment13>
+        <Segment13 id="174">
+          <Segment13Core domain="0 1">
+            <StartPoint>12 20 -7.5</StartPoint>
+            <EndPoint>12 0 -7.5</EndPoint>
+          </Segment13Core>
+        </Segment13>
+      </Curve13Set>
+      <SurfaceSet n="15">
+        <Plane23 id="6">
+          <Plane23Core domainU="-7.5 57.5" domainV="-3.75 28.75">
+            <Origin>0 0 0</Origin>
+            <DirU>1 0 0</DirU>
+            <DirV>0 0 -1</DirV>
+          </Plane23Core>
+        </Plane23>
+        <Plane23 id="46">
+          <Plane23Core domainU="-3 33" domainV="-2.5 27.5">
+            <Origin>0 20 0</Origin>
+            <DirU>1 0 0</DirU>
+            <DirV>0 0 -1</DirV>
+          </Plane23Core>
+        </Plane23>
+        <Plane23 id="104">
+          <Plane23Core domainU="-7.5 57.5" domainV="-3 23">
+            <Origin>0 0 0</Origin>
+            <DirU>1 0 0</DirU>
+            <DirV>0 1 0</DirV>
+          </Plane23Core>
+        </Plane23>
+        <Plane23 id="121">
+          <Plane23Core domainU="-3.75 28.75" domainV="-3 23">
+            <Origin>50 0 0</Origin>
+            <DirU>0 0 -1</DirU>
+            <DirV>-0 1 0</DirV>
+          </Plane23Core>
+        </Plane23>
+        <Plane23 id="126">
+          <Plane23Core domainU="-7.5 57.5" domainV="-3 23">
+            <Origin>50 0 -25</Origin>
+            <DirU>-1 0 0</DirU>
+            <DirV>0 1 0</DirV>
+          </Plane23Core>
+        </Plane23>
+        <Plane23 id="147">
+          <Plane23Core domainU="-3.75 28.75" domainV="-3 23">
+            <Origin>0 0 -25</Origin>
+            <DirU>0 0 1</DirU>
+            <DirV>0 1 -0</DirV>
+          </Plane23Core>
+        </Plane23>
+        <Plane23 id="150">
+          <Plane23Core domainU="-1.03923048454132 7.96743371481684" domainV="-23 3">
+            <Origin>8 20 -25</Origin>
+            <DirU>0.866025403784439 0 0.5</DirU>
+            <DirV>0 1 -0</DirV>
+          </Plane23Core>
+        </Plane23>
+        <Plane23 id="155">
+          <Plane23Core domainU="-1.03923048454133 7.96743371481683" domainV="-23 3">
+            <Origin>14 20 -21.5358983848622</Origin>
+            <DirU>0.866025403784439 0 -0.5</DirU>
+            <DirV>-0 1 0</DirV>
+          </Plane23Core>
+        </Plane23>
+        <Plane23 id="158">
+          <Plane23Core domainU="-0.525 4.025" domainV="-28.75 3.75">
+            <Origin>30 20 0</Origin>
+            <DirU>0 -1 0</DirU>
+            <DirV>0 0 1</DirV>
+          </Plane23Core>
+        </Plane23>
+        <Plane23 id="163">
+          <Plane23Core domainU="-1.5 11.5" domainV="-28.75 3.75">
+            <Origin>30 16.5 0</Origin>
+            <DirU>1 0 0</DirU>
+            <DirV>-0 0 1</DirV>
+          </Plane23Core>
+        </Plane23>
+        <Plane23 id="168">
+          <Plane23Core domainU="-0.525 4.025" domainV="-28.75 3.75">
+            <Origin>40 16.5 0</Origin>
+            <DirU>0 1 0</DirU>
+            <DirV>0 0 1</DirV>
+          </Plane23Core>
+        </Plane23>
+        <Cylinder23 id="171">
+          <Cylinder23Core>
+            <Diameter>10</Diameter>
+            <Length>20</Length>
+            <Axis>
+              <AxisPoint>7 0 -7.5</AxisPoint>
+              <Direction>0 1 0</Direction>
+            </Axis>
+            <Sweep>
+              <DirBeg>1 0 0</DirBeg>
+              <DomainAngle>-0.15 3.29159265358979</DomainAngle>
+            </Sweep>
+          </Cylinder23Core>
+        </Cylinder23>
+        <Cylinder23 id="178">
+          <Cylinder23Core>
+            <Diameter>10</Diameter>
+            <Length>20</Length>
+            <Axis>
+              <AxisPoint>7 0 -7.5</AxisPoint>
+              <Direction>0 1 0</Direction>
+            </Axis>
+            <Sweep>
+              <DirBeg>1 0 0</DirBeg>
+              <DomainAngle>2.99159265358979 6.43318530717959</DomainAngle>
+            </Sweep>
+          </Cylinder23Core>
+        </Cylinder23>
+        <Plane23 id="239">
+          <Plane23Core domainU="-7.5 57.5" domainV="-3.75 28.75">
+            <Origin>0 20 0</Origin>
+            <DirU>1 0 0</DirU>
+            <DirV>0 0 -1</DirV>
+          </Plane23Core>
+        </Plane23>
+        <Plane23 id="240">
+          <Plane23Core domainU="-3 33" domainV="-2 22">
+            <Origin>50 0 -25</Origin>
+            <DirU>-1 0 0</DirU>
+            <DirV>0 1 0</DirV>
+          </Plane23Core>
+        </Plane23>
+      </SurfaceSet>
+    </GeometrySet>
+    <TopologySet>
+      <VertexSet n="26">
+        <Vertex id="9" color="0 0 0">
+          <Point>
+            <Id>8</Id>
+          </Point>
+        </Vertex>
+        <Vertex id="11" color="0 0 0">
+          <Point>
+            <Id>10</Id>
+          </Point>
+        </Vertex>
+        <Vertex id="15" color="0 0 0">
+          <Point>
+            <Id>14</Id>
+          </Point>
+        </Vertex>
+        <Vertex id="19" color="0 0 0">
+          <Point>
+            <Id>18</Id>
+          </Point>
+        </Vertex>
+        <Vertex id="23" color="0 0 0">
+          <Point>
+            <Id>22</Id>
+          </Point>
+        </Vertex>
+        <Vertex id="27" color="0 0 0">
+          <Point>
+            <Id>26</Id>
+          </Point>
+        </Vertex>
+        <Vertex id="31" color="0 0 0">
+          <Point>
+            <Id>30</Id>
+          </Point>
+        </Vertex>
+        <Vertex id="38" color="0 0 0">
+          <Point>
+            <Id>37</Id>
+          </Point>
+        </Vertex>
+        <Vertex id="40" color="0 0 0">
+          <Point>
+            <Id>39</Id>
+          </Point>
+        </Vertex>
+        <Vertex id="49" color="0 0 0">
+          <Point>
+            <Id>48</Id>
+          </Point>
+        </Vertex>
+        <Vertex id="51" color="0 0 0">
+          <Point>
+            <Id>50</Id>
+          </Point>
+        </Vertex>
+        <Vertex id="55" color="0 0 0">
+          <Point>
+            <Id>54</Id>
+          </Point>
+        </Vertex>
+        <Vertex id="59" color="0 0 0">
+          <Point>
+            <Id>58</Id>
+          </Point>
+        </Vertex>
+        <Vertex id="63" color="0 0 0">
+          <Point>
+            <Id>62</Id>
+          </Point>
+        </Vertex>
+        <Vertex id="67" color="0 0 0">
+          <Point>
+            <Id>66</Id>
+          </Point>
+        </Vertex>
+        <Vertex id="71" color="0 0 0">
+          <Point>
+            <Id>70</Id>
+          </Point>
+        </Vertex>
+        <Vertex id="78" color="0 0 0">
+          <Point>
+            <Id>77</Id>
+          </Point>
+        </Vertex>
+        <Vertex id="80" color="0 0 0">
+          <Point>
+            <Id>79</Id>
+          </Point>
+        </Vertex>
+        <Vertex id="84" color="0 0 0">
+          <Point>
+            <Id>83</Id>
+          </Point>
+        </Vertex>
+        <Vertex id="88" color="0 0 0">
+          <Point>
+            <Id>87</Id>
+          </Point>
+        </Vertex>
+        <Vertex id="95" color="0 0 0">
+          <Point>
+            <Id>94</Id>
+          </Point>
+        </Vertex>
+        <Vertex id="97" color="0 0 0">
+          <Point>
+            <Id>96</Id>
+          </Point>
+        </Vertex>
+        <Vertex id="111" color="0 0 0">
+          <Point>
+            <Id>110</Id>
+          </Point>
+        </Vertex>
+        <Vertex id="115" color="0 0 0">
+          <Point>
+            <Id>114</Id>
+          </Point>
+        </Vertex>
+        <Vertex id="134" color="0 0 0">
+          <Point>
+            <Id>133</Id>
+          </Point>
+        </Vertex>
+        <Vertex id="136" color="0 0 0">
+          <Point>
+            <Id>135</Id>
+          </Point>
+        </Vertex>
+      </VertexSet>
+      <EdgeSet n="39">
+        <Edge id="12" label="Edge 12 id116" color="15 15 20">
+          <Attributes n="1">
+            <AttributeStr name="_3dv.PersistentId" value="6.116.ISO22081_FIG3" />
+          </Attributes>
+          <Curve>
+            <Id>7</Id>
+          </Curve>
+          <VertexBeg>
+            <Id>9</Id>
+          </VertexBeg>
+          <VertexEnd>
+            <Id>11</Id>
+          </VertexEnd>
+        </Edge>
+        <Edge id="16" label="Edge 16 id123" color="15 15 20">
+          <Attributes n="1">
+            <AttributeStr name="_3dv.PersistentId" value="6.123.ISO22081_FIG3" />
+          </Attributes>
+          <Curve>
+            <Id>13</Id>
+          </Curve>
+          <VertexBeg>
+            <Id>9</Id>
+          </VertexBeg>
+          <VertexEnd>
+            <Id>15</Id>
+          </VertexEnd>
+        </Edge>
+        <Edge id="20" label="Edge 20 id78" color="15 15 20">
+          <Attributes n="1">
+            <AttributeStr name="_3dv.PersistentId" value="6.78.ISO22081_FIG3" />
+          </Attributes>
+          <Curve>
+            <Id>17</Id>
+          </Curve>
+          <VertexBeg>
+            <Id>15</Id>
+          </VertexBeg>
+          <VertexEnd>
+            <Id>19</Id>
+          </VertexEnd>
+        </Edge>
+        <Edge id="24" label="Edge 24 id75" color="15 15 20">
+          <Attributes n="1">
+            <AttributeStr name="_3dv.PersistentId" value="6.75.ISO22081_FIG3" />
+          </Attributes>
+          <Curve>
+            <Id>21</Id>
+          </Curve>
+          <VertexBeg>
+            <Id>19</Id>
+          </VertexBeg>
+          <VertexEnd>
+            <Id>23</Id>
+          </VertexEnd>
+        </Edge>
+        <Edge id="28" label="Edge 28 id76" color="15 15 20">
+          <Attributes n="1">
+            <AttributeStr name="_3dv.PersistentId" value="6.76.ISO22081_FIG3" />
+          </Attributes>
+          <Curve>
+            <Id>25</Id>
+          </Curve>
+          <VertexBeg>
+            <Id>23</Id>
+          </VertexBeg>
+          <VertexEnd>
+            <Id>27</Id>
+          </VertexEnd>
+        </Edge>
+        <Edge id="32" label="Edge 32 id122" color="15 15 20">
+          <Attributes n="1">
+            <AttributeStr name="_3dv.PersistentId" value="6.122.ISO22081_FIG3" />
+          </Attributes>
+          <Curve>
+            <Id>29</Id>
+          </Curve>
+          <VertexBeg>
+            <Id>27</Id>
+          </VertexBeg>
+          <VertexEnd>
+            <Id>31</Id>
+          </VertexEnd>
+        </Edge>
+        <Edge id="34" label="Edge 34 id117" color="15 15 20">
+          <Attributes n="1">
+            <AttributeStr name="_3dv.PersistentId" value="6.117.ISO22081_FIG3" />
+          </Attributes>
+          <Curve>
+            <Id>33</Id>
+          </Curve>
+          <VertexBeg>
+            <Id>11</Id>
+          </VertexBeg>
+          <VertexEnd>
+            <Id>31</Id>
+          </VertexEnd>
+        </Edge>
+        <Edge id="41" label="Edge 41 id197" color="15 15 20">
+          <Attributes n="1">
+            <AttributeStr name="_3dv.PersistentId" value="6.197.ISO22081_FIG3" />
+          </Attributes>
+          <Curve>
+            <Id>36</Id>
+          </Curve>
+          <VertexBeg>
+            <Id>38</Id>
+          </VertexBeg>
+          <VertexEnd>
+            <Id>40</Id>
+          </VertexEnd>
+        </Edge>
+        <Edge id="43" label="Edge 43 id198" color="15 15 20">
+          <Attributes n="1">
+            <AttributeStr name="_3dv.PersistentId" value="6.198.ISO22081_FIG3" />
+          </Attributes>
+          <Curve>
+            <Id>42</Id>
+          </Curve>
+          <VertexBeg>
+            <Id>40</Id>
+          </VertexBeg>
+          <VertexEnd>
+            <Id>38</Id>
+          </VertexEnd>
+        </Edge>
+        <Edge id="52" label="Edge 52 id170" color="15 15 20">
+          <Attributes n="1">
+            <AttributeStr name="_3dv.PersistentId" value="6.170.ISO22081_FIG3" />
+          </Attributes>
+          <Curve>
+            <Id>47</Id>
+          </Curve>
+          <VertexBeg>
+            <Id>49</Id>
+          </VertexBeg>
+          <VertexEnd>
+            <Id>51</Id>
+          </VertexEnd>
+        </Edge>
+        <Edge id="56" label="Edge 56 id119" color="15 15 20">
+          <Attributes n="1">
+            <AttributeStr name="_3dv.PersistentId" value="6.119.ISO22081_FIG3" />
+          </Attributes>
+          <Curve>
+            <Id>53</Id>
+          </Curve>
+          <VertexBeg>
+            <Id>55</Id>
+          </VertexBeg>
+          <VertexEnd>
+            <Id>51</Id>
+          </VertexEnd>
+        </Edge>
+        <Edge id="60" label="Edge 60 id118" color="15 15 20">
+          <Attributes n="1">
+            <AttributeStr name="_3dv.PersistentId" value="6.118.ISO22081_FIG3" />
+          </Attributes>
+          <Curve>
+            <Id>57</Id>
+          </Curve>
+          <VertexBeg>
+            <Id>59</Id>
+          </VertexBeg>
+          <VertexEnd>
+            <Id>55</Id>
+          </VertexEnd>
+        </Edge>
+        <Edge id="64" label="Edge 64 id125" color="15 15 20">
+          <Attributes n="1">
+            <AttributeStr name="_3dv.PersistentId" value="6.125.ISO22081_FIG3" />
+          </Attributes>
+          <Curve>
+            <Id>61</Id>
+          </Curve>
+          <VertexBeg>
+            <Id>59</Id>
+          </VertexBeg>
+          <VertexEnd>
+            <Id>63</Id>
+          </VertexEnd>
+        </Edge>
+        <Edge id="68" label="Edge 68 id83" color="15 15 20">
+          <Attributes n="1">
+            <AttributeStr name="_3dv.PersistentId" value="6.83.ISO22081_FIG3" />
+          </Attributes>
+          <Curve>
+            <Id>65</Id>
+          </Curve>
+          <VertexBeg>
+            <Id>63</Id>
+          </VertexBeg>
+          <VertexEnd>
+            <Id>67</Id>
+          </VertexEnd>
+        </Edge>
+        <Edge id="72" label="Edge 72 id167" color="15 15 20">
+          <Attributes n="1">
+            <AttributeStr name="_3dv.PersistentId" value="6.167.ISO22081_FIG3" />
+          </Attributes>
+          <Curve>
+            <Id>69</Id>
+          </Curve>
+          <VertexBeg>
+            <Id>67</Id>
+          </VertexBeg>
+          <VertexEnd>
+            <Id>71</Id>
+          </VertexEnd>
+        </Edge>
+        <Edge id="74" label="Edge 74 id159" color="15 15 20">
+          <Attributes n="1">
+            <AttributeStr name="_3dv.PersistentId" value="6.159.ISO22081_FIG3" />
+          </Attributes>
+          <Curve>
+            <Id>73</Id>
+          </Curve>
+          <VertexBeg>
+            <Id>71</Id>
+          </VertexBeg>
+          <VertexEnd>
+            <Id>49</Id>
+          </VertexEnd>
+        </Edge>
+        <Edge id="81" label="Edge 81 id168" color="15 15 20">
+          <Attributes n="1">
+            <AttributeStr name="_3dv.PersistentId" value="6.168.ISO22081_FIG3" />
+          </Attributes>
+          <Curve>
+            <Id>76</Id>
+          </Curve>
+          <VertexBeg>
+            <Id>78</Id>
+          </VertexBeg>
+          <VertexEnd>
+            <Id>80</Id>
+          </VertexEnd>
+        </Edge>
+        <Edge id="85" label="Edge 85 id81" color="15 15 20">
+          <Attributes n="1">
+            <AttributeStr name="_3dv.PersistentId" value="6.81.ISO22081_FIG3" />
+          </Attributes>
+          <Curve>
+            <Id>82</Id>
+          </Curve>
+          <VertexBeg>
+            <Id>80</Id>
+          </VertexBeg>
+          <VertexEnd>
+            <Id>84</Id>
+          </VertexEnd>
+        </Edge>
+        <Edge id="89" label="Edge 89 id169" color="15 15 20">
+          <Attributes n="1">
+            <AttributeStr name="_3dv.PersistentId" value="6.169.ISO22081_FIG3" />
+          </Attributes>
+          <Curve>
+            <Id>86</Id>
+          </Curve>
+          <VertexBeg>
+            <Id>84</Id>
+          </VertexBeg>
+          <VertexEnd>
+            <Id>88</Id>
+          </VertexEnd>
+        </Edge>
+        <Edge id="91" label="Edge 91 id160" color="15 15 20">
+          <Attributes n="1">
+            <AttributeStr name="_3dv.PersistentId" value="6.160.ISO22081_FIG3" />
+          </Attributes>
+          <Curve>
+            <Id>90</Id>
+          </Curve>
+          <VertexBeg>
+            <Id>78</Id>
+          </VertexBeg>
+          <VertexEnd>
+            <Id>88</Id>
+          </VertexEnd>
+        </Edge>
+        <Edge id="98" label="Edge 98 id200" color="15 15 20">
+          <Attributes n="1">
+            <AttributeStr name="_3dv.PersistentId" value="6.200.ISO22081_FIG3" />
+          </Attributes>
+          <Curve>
+            <Id>93</Id>
+          </Curve>
+          <VertexBeg>
+            <Id>95</Id>
+          </VertexBeg>
+          <VertexEnd>
+            <Id>97</Id>
+          </VertexEnd>
+        </Edge>
+        <Edge id="100" label="Edge 100 id199" color="15 15 20">
+          <Attributes n="1">
+            <AttributeStr name="_3dv.PersistentId" value="6.199.ISO22081_FIG3" />
+          </Attributes>
+          <Curve>
+            <Id>99</Id>
+          </Curve>
+          <VertexBeg>
+            <Id>97</Id>
+          </VertexBeg>
+          <VertexEnd>
+            <Id>95</Id>
+          </VertexEnd>
+        </Edge>
+        <Edge id="106" label="Edge 106 id85" color="15 15 20">
+          <Attributes n="1">
+            <AttributeStr name="_3dv.PersistentId" value="6.85.ISO22081_FIG3" />
+          </Attributes>
+          <Curve>
+            <Id>105</Id>
+          </Curve>
+          <VertexBeg>
+            <Id>19</Id>
+          </VertexBeg>
+          <VertexEnd>
+            <Id>67</Id>
+          </VertexEnd>
+        </Edge>
+        <Edge id="108" label="Edge 108 id87" color="15 15 20">
+          <Attributes n="1">
+            <AttributeStr name="_3dv.PersistentId" value="6.87.ISO22081_FIG3" />
+          </Attributes>
+          <Curve>
+            <Id>107</Id>
+          </Curve>
+          <VertexBeg>
+            <Id>23</Id>
+          </VertexBeg>
+          <VertexEnd>
+            <Id>80</Id>
+          </VertexEnd>
+        </Edge>
+        <Edge id="112" label="Edge 112 id163" color="15 15 20">
+          <Attributes n="1">
+            <AttributeStr name="_3dv.PersistentId" value="6.163.ISO22081_FIG3" />
+          </Attributes>
+          <Curve>
+            <Id>109</Id>
+          </Curve>
+          <VertexBeg>
+            <Id>78</Id>
+          </VertexBeg>
+          <VertexEnd>
+            <Id>111</Id>
+          </VertexEnd>
+        </Edge>
+        <Edge id="116" label="Edge 116 id162" color="15 15 20">
+          <Attributes n="1">
+            <AttributeStr name="_3dv.PersistentId" value="6.162.ISO22081_FIG3" />
+          </Attributes>
+          <Curve>
+            <Id>113</Id>
+          </Curve>
+          <VertexBeg>
+            <Id>115</Id>
+          </VertexBeg>
+          <VertexEnd>
+            <Id>111</Id>
+          </VertexEnd>
+        </Edge>
+        <Edge id="118" label="Edge 118 id161" color="15 15 20">
+          <Attributes n="1">
+            <AttributeStr name="_3dv.PersistentId" value="6.161.ISO22081_FIG3" />
+          </Attributes>
+          <Curve>
+            <Id>117</Id>
+          </Curve>
+          <VertexBeg>
+            <Id>71</Id>
+          </VertexBeg>
+          <VertexEnd>
+            <Id>115</Id>
+          </VertexEnd>
+        </Edge>
+        <Edge id="123" label="Edge 123 id89" color="15 15 20">
+          <Attributes n="1">
+            <AttributeStr name="_3dv.PersistentId" value="6.89.ISO22081_FIG3" />
+          </Attributes>
+          <Curve>
+            <Id>122</Id>
+          </Curve>
+          <VertexBeg>
+            <Id>27</Id>
+          </VertexBeg>
+          <VertexEnd>
+            <Id>84</Id>
+          </VertexEnd>
+        </Edge>
+        <Edge id="128" label="Edge 128 id91" color="15 15 20">
+          <Attributes n="1">
+            <AttributeStr name="_3dv.PersistentId" value="6.91.ISO22081_FIG3" />
+          </Attributes>
+          <Curve>
+            <Id>127</Id>
+          </Curve>
+          <VertexBeg>
+            <Id>15</Id>
+          </VertexBeg>
+          <VertexEnd>
+            <Id>63</Id>
+          </VertexEnd>
+        </Edge>
+        <Edge id="130" label="Edge 130 id120" color="15 15 20">
+          <Attributes n="1">
+            <AttributeStr name="_3dv.PersistentId" value="6.120.ISO22081_FIG3" />
+          </Attributes>
+          <Curve>
+            <Id>129</Id>
+          </Curve>
+          <VertexBeg>
+            <Id>9</Id>
+          </VertexBeg>
+          <VertexEnd>
+            <Id>59</Id>
+          </VertexEnd>
+        </Edge>
+        <Edge id="137" label="Edge 137 id165" color="15 15 20">
+          <Attributes n="1">
+            <AttributeStr name="_3dv.PersistentId" value="6.165.ISO22081_FIG3" />
+          </Attributes>
+          <Curve>
+            <Id>132</Id>
+          </Curve>
+          <VertexBeg>
+            <Id>134</Id>
+          </VertexBeg>
+          <VertexEnd>
+            <Id>136</Id>
+          </VertexEnd>
+        </Edge>
+        <Edge id="139" label="Edge 139 id166" color="15 15 20">
+          <Attributes n="1">
+            <AttributeStr name="_3dv.PersistentId" value="6.166.ISO22081_FIG3" />
+          </Attributes>
+          <Curve>
+            <Id>138</Id>
+          </Curve>
+          <VertexBeg>
+            <Id>88</Id>
+          </VertexBeg>
+          <VertexEnd>
+            <Id>136</Id>
+          </VertexEnd>
+        </Edge>
+        <Edge id="141" label="Edge 141 id121" color="15 15 20">
+          <Attributes n="1">
+            <AttributeStr name="_3dv.PersistentId" value="6.121.ISO22081_FIG3" />
+          </Attributes>
+          <Curve>
+            <Id>140</Id>
+          </Curve>
+          <VertexBeg>
+            <Id>31</Id>
+          </VertexBeg>
+          <VertexEnd>
+            <Id>51</Id>
+          </VertexEnd>
+        </Edge>
+        <Edge id="143" label="Edge 143 id164" color="15 15 20">
+          <Attributes n="1">
+            <AttributeStr name="_3dv.PersistentId" value="6.164.ISO22081_FIG3" />
+          </Attributes>
+          <Curve>
+            <Id>142</Id>
+          </Curve>
+          <VertexBeg>
+            <Id>49</Id>
+          </VertexBeg>
+          <VertexEnd>
+            <Id>134</Id>
+          </VertexEnd>
+        </Edge>
+        <Edge id="152" label="Edge 152 id126" color="15 15 20">
+          <Attributes n="1">
+            <AttributeStr name="_3dv.PersistentId" value="6.126.ISO22081_FIG3" />
+          </Attributes>
+          <Curve>
+            <Id>151</Id>
+          </Curve>
+          <VertexBeg>
+            <Id>55</Id>
+          </VertexBeg>
+          <VertexEnd>
+            <Id>11</Id>
+          </VertexEnd>
+        </Edge>
+        <Edge id="160" label="Edge 160 id171" color="15 15 20">
+          <Attributes n="1">
+            <AttributeStr name="_3dv.PersistentId" value="6.171.ISO22081_FIG3" />
+          </Attributes>
+          <Curve>
+            <Id>159</Id>
+          </Curve>
+          <VertexBeg>
+            <Id>115</Id>
+          </VertexBeg>
+          <VertexEnd>
+            <Id>134</Id>
+          </VertexEnd>
+        </Edge>
+        <Edge id="165" label="Edge 165 id172" color="15 15 20">
+          <Attributes n="1">
+            <AttributeStr name="_3dv.PersistentId" value="6.172.ISO22081_FIG3" />
+          </Attributes>
+          <Curve>
+            <Id>164</Id>
+          </Curve>
+          <VertexBeg>
+            <Id>111</Id>
+          </VertexBeg>
+          <VertexEnd>
+            <Id>136</Id>
+          </VertexEnd>
+        </Edge>
+        <Edge id="173" label="Edge 173 id202" color="15 15 20">
+          <Attributes n="1">
+            <AttributeStr name="_3dv.PersistentId" value="6.202.ISO22081_FIG3" />
+          </Attributes>
+          <Curve>
+            <Id>172</Id>
+          </Curve>
+          <VertexBeg>
+            <Id>95</Id>
+          </VertexBeg>
+          <VertexEnd>
+            <Id>40</Id>
+          </VertexEnd>
+        </Edge>
+        <Edge id="175" label="Edge 175 id201" color="15 15 20">
+          <Attributes n="1">
+            <AttributeStr name="_3dv.PersistentId" value="6.201.ISO22081_FIG3" />
+          </Attributes>
+          <Curve>
+            <Id>174</Id>
+          </Curve>
+          <VertexBeg>
+            <Id>97</Id>
+          </VertexBeg>
+          <VertexEnd>
+            <Id>38</Id>
+          </VertexEnd>
+        </Edge>
+      </EdgeSet>
+      <LoopSet n="17">
+        <Loop id="35" color="255 255 255" form="OUTER">
+          <CoEdges n="7">
+            <CoEdge>
+              <EdgeOriented turned="1">
+                <Id>12</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>241</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented>
+                <Id>16</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>242</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented>
+                <Id>20</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>243</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented>
+                <Id>24</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>244</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented>
+                <Id>28</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>245</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented>
+                <Id>32</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>246</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented turned="1">
+                <Id>34</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>247</Id>
+              </Curve12>
+            </CoEdge>
+          </CoEdges>
+        </Loop>
+        <Loop id="44" color="255 255 255" form="INNER">
+          <CoEdges n="2">
+            <CoEdge>
+              <EdgeOriented turned="1">
+                <Id>41</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>248</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented turned="1">
+                <Id>43</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>249</Id>
+              </Curve12>
+            </CoEdge>
+          </CoEdges>
+        </Loop>
+        <Loop id="75" color="255 255 255" form="OUTER">
+          <CoEdges n="7">
+            <CoEdge>
+              <EdgeOriented>
+                <Id>52</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>250</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented turned="1">
+                <Id>56</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>251</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented turned="1">
+                <Id>60</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>252</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented>
+                <Id>64</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>253</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented>
+                <Id>68</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>254</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented>
+                <Id>72</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>255</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented>
+                <Id>74</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>256</Id>
+              </Curve12>
+            </CoEdge>
+          </CoEdges>
+        </Loop>
+        <Loop id="92" color="255 255 255" form="OUTER">
+          <CoEdges n="4">
+            <CoEdge>
+              <EdgeOriented>
+                <Id>81</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>259</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented>
+                <Id>85</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>260</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented>
+                <Id>89</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>261</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented turned="1">
+                <Id>91</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>262</Id>
+              </Curve12>
+            </CoEdge>
+          </CoEdges>
+        </Loop>
+        <Loop id="101" color="255 255 255" form="INNER">
+          <CoEdges n="2">
+            <CoEdge>
+              <EdgeOriented turned="1">
+                <Id>98</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>257</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented turned="1">
+                <Id>100</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>258</Id>
+              </Curve12>
+            </CoEdge>
+          </CoEdges>
+        </Loop>
+        <Loop id="119" color="255 255 255" form="OUTER">
+          <CoEdges n="8">
+            <CoEdge>
+              <EdgeOriented turned="1">
+                <Id>72</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>263</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented turned="1">
+                <Id>106</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>264</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented>
+                <Id>24</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>265</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented>
+                <Id>108</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>266</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented turned="1">
+                <Id>81</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>267</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented>
+                <Id>112</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>268</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented turned="1">
+                <Id>116</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>269</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented turned="1">
+                <Id>118</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>270</Id>
+              </Curve12>
+            </CoEdge>
+          </CoEdges>
+        </Loop>
+        <Loop id="124" color="255 255 255" form="OUTER">
+          <CoEdges n="4">
+            <CoEdge>
+              <EdgeOriented>
+                <Id>123</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>271</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented turned="1">
+                <Id>85</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>272</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented turned="1">
+                <Id>108</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>273</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented>
+                <Id>28</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>274</Id>
+              </Curve12>
+            </CoEdge>
+          </CoEdges>
+        </Loop>
+        <Loop id="131" color="255 255 255" form="OUTER">
+          <CoEdges n="4">
+            <CoEdge>
+              <EdgeOriented>
+                <Id>16</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>275</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented>
+                <Id>128</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>276</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented turned="1">
+                <Id>64</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>277</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented turned="1">
+                <Id>130</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>278</Id>
+              </Curve12>
+            </CoEdge>
+          </CoEdges>
+        </Loop>
+        <Loop id="144" color="255 255 255" form="OUTER">
+          <CoEdges n="8">
+            <CoEdge>
+              <EdgeOriented>
+                <Id>137</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>279</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented turned="1">
+                <Id>139</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>280</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented turned="1">
+                <Id>89</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>281</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented turned="1">
+                <Id>123</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>282</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented>
+                <Id>32</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>283</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented>
+                <Id>141</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>284</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented turned="1">
+                <Id>52</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>285</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented>
+                <Id>143</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>286</Id>
+              </Curve12>
+            </CoEdge>
+          </CoEdges>
+        </Loop>
+        <Loop id="148" color="255 255 255" form="OUTER">
+          <CoEdges n="4">
+            <CoEdge>
+              <EdgeOriented>
+                <Id>106</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>287</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented turned="1">
+                <Id>68</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>288</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented turned="1">
+                <Id>128</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>289</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented>
+                <Id>20</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>290</Id>
+              </Curve12>
+            </CoEdge>
+          </CoEdges>
+        </Loop>
+        <Loop id="153" color="255 255 255" form="OUTER">
+          <CoEdges n="4">
+            <CoEdge>
+              <EdgeOriented>
+                <Id>12</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>291</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented turned="1">
+                <Id>152</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>292</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented turned="1">
+                <Id>60</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>293</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented turned="1">
+                <Id>130</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>294</Id>
+              </Curve12>
+            </CoEdge>
+          </CoEdges>
+        </Loop>
+        <Loop id="156" color="255 255 255" form="OUTER">
+          <CoEdges n="4">
+            <CoEdge>
+              <EdgeOriented>
+                <Id>34</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>295</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented>
+                <Id>141</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>296</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented turned="1">
+                <Id>56</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>297</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented>
+                <Id>152</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>298</Id>
+              </Curve12>
+            </CoEdge>
+          </CoEdges>
+        </Loop>
+        <Loop id="161" color="255 255 255" form="OUTER">
+          <CoEdges n="4">
+            <CoEdge>
+              <EdgeOriented>
+                <Id>74</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>299</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented>
+                <Id>143</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>300</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented turned="1">
+                <Id>160</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>301</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented turned="1">
+                <Id>118</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>302</Id>
+              </Curve12>
+            </CoEdge>
+          </CoEdges>
+        </Loop>
+        <Loop id="166" color="255 255 255" form="OUTER">
+          <CoEdges n="4">
+            <CoEdge>
+              <EdgeOriented turned="1">
+                <Id>116</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>303</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented>
+                <Id>160</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>304</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented>
+                <Id>137</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>305</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented turned="1">
+                <Id>165</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>306</Id>
+              </Curve12>
+            </CoEdge>
+          </CoEdges>
+        </Loop>
+        <Loop id="169" color="255 255 255" form="OUTER">
+          <CoEdges n="4">
+            <CoEdge>
+              <EdgeOriented turned="1">
+                <Id>91</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>307</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented>
+                <Id>112</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>308</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented>
+                <Id>165</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>309</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented turned="1">
+                <Id>139</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>310</Id>
+              </Curve12>
+            </CoEdge>
+          </CoEdges>
+        </Loop>
+        <Loop id="176" color="255 255 255" form="OUTER">
+          <CoEdges n="4">
+            <CoEdge>
+              <EdgeOriented>
+                <Id>41</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>311</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented turned="1">
+                <Id>173</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>312</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented turned="1">
+                <Id>100</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>313</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented>
+                <Id>175</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>314</Id>
+              </Curve12>
+            </CoEdge>
+          </CoEdges>
+        </Loop>
+        <Loop id="179" color="255 255 255" form="OUTER">
+          <CoEdges n="4">
+            <CoEdge>
+              <EdgeOriented>
+                <Id>43</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>315</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented turned="1">
+                <Id>175</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>316</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented turned="1">
+                <Id>98</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>317</Id>
+              </Curve12>
+            </CoEdge>
+            <CoEdge>
+              <EdgeOriented>
+                <Id>173</Id>
+              </EdgeOriented>
+              <Curve12>
+                <Id>318</Id>
+              </Curve12>
+            </CoEdge>
+          </CoEdges>
+        </Loop>
+      </LoopSet>
+      <FaceSet n="15">
+        <Face id="45" label="Face 45 id74" color="130 119 93" turned="1">
+          <Attributes n="4">
+            <AttributeUser name="_3dv.Appearance" nameUserAttribute="AttributeAppearance">
+              <UserDataXML>
+                <Appearance xmlns="##other">
+                  <Ambient>0.55</Ambient>
+                  <Shininess>0.03</Shininess>
+                  <Reflection>0.02</Reflection>
+                  <Diffuse>1</Diffuse>
+                </Appearance>
+              </UserDataXML>
+            </AttributeUser>
+            <AttributeStr name="_3dv.CADFeatureId" value="3.71.ISO22081_FIG3" />
+            <AttributeStr name="_3dv.PersistentId" value="5.74.ISO22081_FIG3" />
+            <AttributeStr name="_3dv.SourceFeatureId" value="F5(EXTRUDE_1)" />
+          </Attributes>
+          <Surface>
+            <Id>6</Id>
+          </Surface>
+          <LoopIds n="2">
+            <Id>35</Id>
+            <Id>44</Id>
+          </LoopIds>
+        </Face>
+        <Face id="102" label="Face 102 id79" color="130 119 93">
+          <Attributes n="4">
+            <AttributeUser name="_3dv.Appearance" nameUserAttribute="AttributeAppearance">
+              <UserDataXML>
+                <Appearance xmlns="##other">
+                  <Ambient>0.55</Ambient>
+                  <Shininess>0.03</Shininess>
+                  <Reflection>0.02</Reflection>
+                  <Diffuse>1</Diffuse>
+                </Appearance>
+              </UserDataXML>
+            </AttributeUser>
+            <AttributeStr name="_3dv.CADFeatureId" value="3.71.ISO22081_FIG3" />
+            <AttributeStr name="_3dv.PersistentId" value="5.79.ISO22081_FIG3" />
+            <AttributeStr name="_3dv.SourceFeatureId" value="F5(EXTRUDE_1)" />
+          </Attributes>
+          <Surface>
+            <Id>46</Id>
+          </Surface>
+          <LoopIds n="2">
+            <Id>75</Id>
+            <Id>101</Id>
+          </LoopIds>
+        </Face>
+        <Face id="103" label="Face 103 id79" color="130 119 93">
+          <Attributes n="4">
+            <AttributeUser name="_3dv.Appearance" nameUserAttribute="AttributeAppearance">
+              <UserDataXML>
+                <Appearance xmlns="##other">
+                  <Ambient>0.55</Ambient>
+                  <Shininess>0.03</Shininess>
+                  <Reflection>0.02</Reflection>
+                  <Diffuse>1</Diffuse>
+                </Appearance>
+              </UserDataXML>
+            </AttributeUser>
+            <AttributeStr name="_3dv.CADFeatureId" value="3.71.ISO22081_FIG3" />
+            <AttributeStr name="_3dv.PersistentId" value="5.79.ISO22081_FIG3" />
+            <AttributeStr name="_3dv.SourceFeatureId" value="F5(EXTRUDE_1)" />
+          </Attributes>
+          <Surface>
+            <Id>239</Id>
+          </Surface>
+          <LoopIds n="1">
+            <Id>92</Id>
+          </LoopIds>
+        </Face>
+        <Face id="120" label="Face 120 id84" color="130 119 93">
+          <Attributes n="4">
+            <AttributeUser name="_3dv.Appearance" nameUserAttribute="AttributeAppearance">
+              <UserDataXML>
+                <Appearance xmlns="##other">
+                  <Ambient>0.55</Ambient>
+                  <Shininess>0.03</Shininess>
+                  <Reflection>0.02</Reflection>
+                  <Diffuse>1</Diffuse>
+                </Appearance>
+              </UserDataXML>
+            </AttributeUser>
+            <AttributeStr name="_3dv.CADFeatureId" value="3.71.ISO22081_FIG3" />
+            <AttributeStr name="_3dv.PersistentId" value="5.84.ISO22081_FIG3" />
+            <AttributeStr name="_3dv.SourceFeatureId" value="F5(EXTRUDE_1)" />
+          </Attributes>
+          <Surface>
+            <Id>104</Id>
+          </Surface>
+          <LoopIds n="1">
+            <Id>119</Id>
+          </LoopIds>
+        </Face>
+        <Face id="125" label="Face 125 id86" color="130 119 93">
+          <Attributes n="4">
+            <AttributeUser name="_3dv.Appearance" nameUserAttribute="AttributeAppearance">
+              <UserDataXML>
+                <Appearance xmlns="##other">
+                  <Ambient>0.55</Ambient>
+                  <Shininess>0.03</Shininess>
+                  <Reflection>0.02</Reflection>
+                  <Diffuse>1</Diffuse>
+                </Appearance>
+              </UserDataXML>
+            </AttributeUser>
+            <AttributeStr name="_3dv.CADFeatureId" value="3.71.ISO22081_FIG3" />
+            <AttributeStr name="_3dv.PersistentId" value="5.86.ISO22081_FIG3" />
+            <AttributeStr name="_3dv.SourceFeatureId" value="F5(EXTRUDE_1)" />
+          </Attributes>
+          <Surface>
+            <Id>121</Id>
+          </Surface>
+          <LoopIds n="1">
+            <Id>124</Id>
+          </LoopIds>
+        </Face>
+        <Face id="145" label="Face 145 id88" color="130 119 93">
+          <Attributes n="4">
+            <AttributeUser name="_3dv.Appearance" nameUserAttribute="AttributeAppearance">
+              <UserDataXML>
+                <Appearance xmlns="##other">
+                  <Ambient>0.55</Ambient>
+                  <Shininess>0.03</Shininess>
+                  <Reflection>0.02</Reflection>
+                  <Diffuse>1</Diffuse>
+                </Appearance>
+              </UserDataXML>
+            </AttributeUser>
+            <AttributeStr name="_3dv.CADFeatureId" value="3.71.ISO22081_FIG3" />
+            <AttributeStr name="_3dv.PersistentId" value="5.88.ISO22081_FIG3" />
+            <AttributeStr name="_3dv.SourceFeatureId" value="F5(EXTRUDE_1)" />
+          </Attributes>
+          <Surface>
+            <Id>126</Id>
+          </Surface>
+          <LoopIds n="1">
+            <Id>131</Id>
+          </LoopIds>
+        </Face>
+        <Face id="146" label="Face 146 id88" color="130 119 93">
+          <Attributes n="4">
+            <AttributeUser name="_3dv.Appearance" nameUserAttribute="AttributeAppearance">
+              <UserDataXML>
+                <Appearance xmlns="##other">
+                  <Ambient>0.55</Ambient>
+                  <Shininess>0.03</Shininess>
+                  <Reflection>0.02</Reflection>
+                  <Diffuse>1</Diffuse>
+                </Appearance>
+              </UserDataXML>
+            </AttributeUser>
+            <AttributeStr name="_3dv.CADFeatureId" value="3.71.ISO22081_FIG3" />
+            <AttributeStr name="_3dv.PersistentId" value="5.88.ISO22081_FIG3" />
+            <AttributeStr name="_3dv.SourceFeatureId" value="F5(EXTRUDE_1)" />
+          </Attributes>
+          <Surface>
+            <Id>240</Id>
+          </Surface>
+          <LoopIds n="1">
+            <Id>144</Id>
+          </LoopIds>
+        </Face>
+        <Face id="149" label="Face 149 id90" color="130 119 93">
+          <Attributes n="4">
+            <AttributeUser name="_3dv.Appearance" nameUserAttribute="AttributeAppearance">
+              <UserDataXML>
+                <Appearance xmlns="##other">
+                  <Ambient>0.55</Ambient>
+                  <Shininess>0.03</Shininess>
+                  <Reflection>0.02</Reflection>
+                  <Diffuse>1</Diffuse>
+                </Appearance>
+              </UserDataXML>
+            </AttributeUser>
+            <AttributeStr name="_3dv.CADFeatureId" value="3.71.ISO22081_FIG3" />
+            <AttributeStr name="_3dv.PersistentId" value="5.90.ISO22081_FIG3" />
+            <AttributeStr name="_3dv.SourceFeatureId" value="F5(EXTRUDE_1)" />
+          </Attributes>
+          <Surface>
+            <Id>147</Id>
+          </Surface>
+          <LoopIds n="1">
+            <Id>148</Id>
+          </LoopIds>
+        </Face>
+        <Face id="154" label="Face 154 id109" color="130 119 93" turned="1">
+          <Attributes n="4">
+            <AttributeUser name="_3dv.Appearance" nameUserAttribute="AttributeAppearance">
+              <UserDataXML>
+                <Appearance xmlns="##other">
+                  <Ambient>0.55</Ambient>
+                  <Shininess>0.03</Shininess>
+                  <Reflection>0.02</Reflection>
+                  <Diffuse>1</Diffuse>
+                </Appearance>
+              </UserDataXML>
+            </AttributeUser>
+            <AttributeStr name="_3dv.CADFeatureId" value="3.98.ISO22081_FIG3" />
+            <AttributeStr name="_3dv.PersistentId" value="5.109.ISO22081_FIG3" />
+            <AttributeStr name="_3dv.SourceFeatureId" value="F6(EXTRUDE_2)" />
+          </Attributes>
+          <Surface>
+            <Id>150</Id>
+          </Surface>
+          <LoopIds n="1">
+            <Id>153</Id>
+          </LoopIds>
+        </Face>
+        <Face id="157" label="Face 157 id111" color="130 119 93" turned="1">
+          <Attributes n="4">
+            <AttributeUser name="_3dv.Appearance" nameUserAttribute="AttributeAppearance">
+              <UserDataXML>
+                <Appearance xmlns="##other">
+                  <Ambient>0.55</Ambient>
+                  <Shininess>0.03</Shininess>
+                  <Reflection>0.02</Reflection>
+                  <Diffuse>1</Diffuse>
+                </Appearance>
+              </UserDataXML>
+            </AttributeUser>
+            <AttributeStr name="_3dv.CADFeatureId" value="3.98.ISO22081_FIG3" />
+            <AttributeStr name="_3dv.PersistentId" value="5.111.ISO22081_FIG3" />
+            <AttributeStr name="_3dv.SourceFeatureId" value="F6(EXTRUDE_2)" />
+          </Attributes>
+          <Surface>
+            <Id>155</Id>
+          </Surface>
+          <LoopIds n="1">
+            <Id>156</Id>
+          </LoopIds>
+        </Face>
+        <Face id="162" label="Face 162 id150" color="130 119 93" turned="1">
+          <Attributes n="4">
+            <AttributeUser name="_3dv.Appearance" nameUserAttribute="AttributeAppearance">
+              <UserDataXML>
+                <Appearance xmlns="##other">
+                  <Ambient>0.55</Ambient>
+                  <Shininess>0.03</Shininess>
+                  <Reflection>0.02</Reflection>
+                  <Diffuse>1</Diffuse>
+                </Appearance>
+              </UserDataXML>
+            </AttributeUser>
+            <AttributeStr name="_3dv.CADFeatureId" value="3.137.ISO22081_FIG3" />
+            <AttributeStr name="_3dv.PersistentId" value="5.150.ISO22081_FIG3" />
+            <AttributeStr name="_3dv.SourceFeatureId" value="F7(EXTRUDE_3)" />
+          </Attributes>
+          <Surface>
+            <Id>158</Id>
+          </Surface>
+          <LoopIds n="1">
+            <Id>161</Id>
+          </LoopIds>
+        </Face>
+        <Face id="167" label="Face 167 id152" color="130 119 93" turned="1">
+          <Attributes n="4">
+            <AttributeUser name="_3dv.Appearance" nameUserAttribute="AttributeAppearance">
+              <UserDataXML>
+                <Appearance xmlns="##other">
+                  <Ambient>0.55</Ambient>
+                  <Shininess>0.03</Shininess>
+                  <Reflection>0.02</Reflection>
+                  <Diffuse>1</Diffuse>
+                </Appearance>
+              </UserDataXML>
+            </AttributeUser>
+            <AttributeStr name="_3dv.CADFeatureId" value="3.137.ISO22081_FIG3" />
+            <AttributeStr name="_3dv.PersistentId" value="5.152.ISO22081_FIG3" />
+            <AttributeStr name="_3dv.SourceFeatureId" value="F7(EXTRUDE_3)" />
+          </Attributes>
+          <Surface>
+            <Id>163</Id>
+          </Surface>
+          <LoopIds n="1">
+            <Id>166</Id>
+          </LoopIds>
+        </Face>
+        <Face id="170" label="Face 170 id154" color="130 119 93" turned="1">
+          <Attributes n="4">
+            <AttributeUser name="_3dv.Appearance" nameUserAttribute="AttributeAppearance">
+              <UserDataXML>
+                <Appearance xmlns="##other">
+                  <Ambient>0.55</Ambient>
+                  <Shininess>0.03</Shininess>
+                  <Reflection>0.02</Reflection>
+                  <Diffuse>1</Diffuse>
+                </Appearance>
+              </UserDataXML>
+            </AttributeUser>
+            <AttributeStr name="_3dv.CADFeatureId" value="3.137.ISO22081_FIG3" />
+            <AttributeStr name="_3dv.PersistentId" value="5.154.ISO22081_FIG3" />
+            <AttributeStr name="_3dv.SourceFeatureId" value="F7(EXTRUDE_3)" />
+          </Attributes>
+          <Surface>
+            <Id>168</Id>
+          </Surface>
+          <LoopIds n="1">
+            <Id>169</Id>
+          </LoopIds>
+        </Face>
+        <Face id="177" label="Face 177 id191" color="130 119 93" turned="1">
+          <Attributes n="4">
+            <AttributeUser name="_3dv.Appearance" nameUserAttribute="AttributeAppearance">
+              <UserDataXML>
+                <Appearance xmlns="##other">
+                  <Ambient>0.55</Ambient>
+                  <Shininess>0.03</Shininess>
+                  <Reflection>0.02</Reflection>
+                  <Diffuse>1</Diffuse>
+                </Appearance>
+              </UserDataXML>
+            </AttributeUser>
+            <AttributeStr name="_3dv.CADFeatureId" value="3.182.ISO22081_FIG3" />
+            <AttributeStr name="_3dv.PersistentId" value="5.191.ISO22081_FIG3" />
+            <AttributeStr name="_3dv.SourceFeatureId" value="F8(EXTRUDE_4)" />
+          </Attributes>
+          <Surface>
+            <Id>171</Id>
+          </Surface>
+          <LoopIds n="1">
+            <Id>176</Id>
+          </LoopIds>
+        </Face>
+        <Face id="180" label="Face 180 id193" color="130 119 93" turned="1">
+          <Attributes n="4">
+            <AttributeUser name="_3dv.Appearance" nameUserAttribute="AttributeAppearance">
+              <UserDataXML>
+                <Appearance xmlns="##other">
+                  <Ambient>0.55</Ambient>
+                  <Shininess>0.03</Shininess>
+                  <Reflection>0.02</Reflection>
+                  <Diffuse>1</Diffuse>
+                </Appearance>
+              </UserDataXML>
+            </AttributeUser>
+            <AttributeStr name="_3dv.CADFeatureId" value="3.182.ISO22081_FIG3" />
+            <AttributeStr name="_3dv.PersistentId" value="5.193.ISO22081_FIG3" />
+            <AttributeStr name="_3dv.SourceFeatureId" value="F8(EXTRUDE_4)" />
+          </Attributes>
+          <Surface>
+            <Id>178</Id>
+          </Surface>
+          <LoopIds n="1">
+            <Id>179</Id>
+          </LoopIds>
+        </Face>
+      </FaceSet>
+      <ShellSet n="1">
+        <Shell id="181" color="255 255 255" closed="1" form="OUTER">
+          <FaceIds n="15">
+            <Id>45</Id>
+            <Id>102</Id>
+            <Id>103</Id>
+            <Id>120</Id>
+            <Id>125</Id>
+            <Id>145</Id>
+            <Id>146</Id>
+            <Id>149</Id>
+            <Id>154</Id>
+            <Id>157</Id>
+            <Id>162</Id>
+            <Id>167</Id>
+            <Id>170</Id>
+            <Id>177</Id>
+            <Id>180</Id>
+          </FaceIds>
+        </Shell>
+      </ShellSet>
+      <BodySet n="1">
+        <Body id="5" color="255 255 255" form="SOLID" materialIndex="2">
+          <Attributes n="1">
+            <AttributeStr name="_3dv.PersistentId" value="98.-5778.ISO22081_FIG3" />
+          </Attributes>
+          <ShellIds n="1">
+            <Id>181</Id>
+          </ShellIds>
+          <FaceIds n="15">
+            <Id>45</Id>
+            <Id>102</Id>
+            <Id>103</Id>
+            <Id>120</Id>
+            <Id>125</Id>
+            <Id>145</Id>
+            <Id>146</Id>
+            <Id>149</Id>
+            <Id>154</Id>
+            <Id>157</Id>
+            <Id>162</Id>
+            <Id>167</Id>
+            <Id>170</Id>
+            <Id>177</Id>
+            <Id>180</Id>
+          </FaceIds>
+          <LoopIds n="17">
+            <Id>35</Id>
+            <Id>44</Id>
+            <Id>75</Id>
+            <Id>92</Id>
+            <Id>101</Id>
+            <Id>119</Id>
+            <Id>124</Id>
+            <Id>131</Id>
+            <Id>144</Id>
+            <Id>148</Id>
+            <Id>153</Id>
+            <Id>156</Id>
+            <Id>161</Id>
+            <Id>166</Id>
+            <Id>169</Id>
+            <Id>176</Id>
+            <Id>179</Id>
+          </LoopIds>
+          <EdgeIds n="39">
+            <Id>12</Id>
+            <Id>16</Id>
+            <Id>20</Id>
+            <Id>24</Id>
+            <Id>28</Id>
+            <Id>32</Id>
+            <Id>34</Id>
+            <Id>41</Id>
+            <Id>43</Id>
+            <Id>52</Id>
+            <Id>56</Id>
+            <Id>60</Id>
+            <Id>64</Id>
+            <Id>68</Id>
+            <Id>72</Id>
+            <Id>74</Id>
+            <Id>81</Id>
+            <Id>85</Id>
+            <Id>89</Id>
+            <Id>91</Id>
+            <Id>98</Id>
+            <Id>100</Id>
+            <Id>106</Id>
+            <Id>108</Id>
+            <Id>112</Id>
+            <Id>116</Id>
+            <Id>118</Id>
+            <Id>123</Id>
+            <Id>128</Id>
+            <Id>130</Id>
+            <Id>137</Id>
+            <Id>139</Id>
+            <Id>141</Id>
+            <Id>143</Id>
+            <Id>152</Id>
+            <Id>160</Id>
+            <Id>165</Id>
+            <Id>173</Id>
+            <Id>175</Id>
+          </EdgeIds>
+          <VertexIds n="26">
+            <Id>9</Id>
+            <Id>11</Id>
+            <Id>15</Id>
+            <Id>19</Id>
+            <Id>23</Id>
+            <Id>27</Id>
+            <Id>31</Id>
+            <Id>38</Id>
+            <Id>40</Id>
+            <Id>49</Id>
+            <Id>51</Id>
+            <Id>55</Id>
+            <Id>59</Id>
+            <Id>63</Id>
+            <Id>67</Id>
+            <Id>71</Id>
+            <Id>78</Id>
+            <Id>80</Id>
+            <Id>84</Id>
+            <Id>88</Id>
+            <Id>95</Id>
+            <Id>97</Id>
+            <Id>111</Id>
+            <Id>115</Id>
+            <Id>134</Id>
+            <Id>136</Id>
+          </VertexIds>
+        </Body>
+      </BodySet>
+    </TopologySet>
+    <NoteSet n="1">
+      <Note id="217" label="Note_10" color="55 0 95" form="SCREEN">
+        <Attributes n="9">
+          <AttributeI1 name="_3dv.PmiUpdater" value="22" />
+          <AttributeStr name="Id_name" value="Note_10" />
+          <AttributeStr name="_3dv.PersistentId" value="68.10.ISO22081_FIG3" />
+          <AttributeUser name="_3dv.PmiReportableAdvanced" nameUserAttribute="AttributePmiReportable">
+            <UserDataXML>
+              <ReportableStates xmlns="##other" n="1">
+                <Reportable reportType="1" val="0" />
+              </ReportableStates>
+            </UserDataXML>
+          </AttributeUser>
+          <AttributeUser name="_3dv.TextMainFormatting" nameUserAttribute="AttributeTextFormatting">
+            <UserDataXML>
+              <TextFormatting xmlns="##other">
+                <Frames n="5">
+                  <Frame>
+                    <Range>32 48</Range>
+                    <Type>RECTANGULAR</Type>
+                  </Frame>
+                  <Frame>
+                    <Range>49 51</Range>
+                    <Type>RECTANGULAR</Type>
+                  </Frame>
+                  <Frame>
+                    <Range>52 52</Range>
+                    <Type>RECTANGULAR</Type>
+                  </Frame>
+                  <Frame>
+                    <Range>53 53</Range>
+                    <Type>RECTANGULAR</Type>
+                  </Frame>
+                  <Frame>
+                    <Range>54 54</Range>
+                    <Type>RECTANGULAR</Type>
+                  </Frame>
+                </Frames>
+              </TextFormatting>
+            </UserDataXML>
+          </AttributeUser>
+          <AttributeUser name="_3dv.PMIPassValues" nameUserAttribute="AttributeArrayStr">
+            <UserDataXML>
+              <Strings n="1" xmlns="##other">
+                <String>PASS</String>
+              </Strings>
+            </UserDataXML>
+          </AttributeUser>
+          <AttributeUser name="_3dv.PMIFailValues" nameUserAttribute="AttributeArrayStr">
+            <UserDataXML>
+              <Strings n="1" xmlns="##other">
+                <String>FAIL</String>
+              </Strings>
+            </UserDataXML>
+          </AttributeUser>
+          <AttributeStr name="_3dv.KeyDesignator" value="7" />
+          <AttributeStr name="_3dv.QPID" value="553d7856-fbad-4ec7-97c8-a541a30f3085" />
+        </Attributes>
+        <Text>General Tolerances ISO 22081{BR}{PROFILE_SURFACE}.75ABC{BR}Angular sizes: {PLUS_MINUS}0.5{DEGREE}{BR}All unspecificatd dimensions are basic</Text>
+      </Note>
+    </NoteSet>
+    <!-- Minimal ISO 22081 activation note for the current rule convention -->
+    <PartNoteSet n="1">
+      <PartNote id="369">
+        <Text>General tolerances ISO 22081</Text>
+      </PartNote>
+    </PartNoteSet>
+    <ViewSet>
+      <CameraSet n="3">
+        <Camera id="183">
+          <ViewPlaneOrigin>49.5137046417858 0 -13.396239669871</ViewPlaneOrigin>
+          <Orientation>
+            <Value>0.707106781186548 0.707106781186548 0 0</Value>
+          </Orientation>
+          <Ratio>1.15740740740741</Ratio>
+          <Near>51.2133289337993</Near>
+          <Far>949.389884786205</Far>
+          <Height>31.9017000282909</Height>
+        </Camera>
+        <Camera id="218">
+          <ViewPlaneOrigin>25 10.7476960944131 0</ViewPlaneOrigin>
+          <Orientation>
+            <Value>1 0 0 0</Value>
+          </Orientation>
+          <Ratio>1.15740740740741</Ratio>
+          <Near>-37.4412111524065</Near>
+          <Far>37.4412111524065</Far>
+          <Height>31.9017000282909</Height>
+        </Camera>
+        <Camera id="237">
+          <ViewPlaneOrigin>21.1861853235483 3.3987593074406 -18.6929356086706</ViewPlaneOrigin>
+          <Orientation>
+            <Value>0.88249811012985 0.426295182495281 -0.178891223240758 0.0864143115807945</Value>
+          </Orientation>
+          <Ratio>1.15740740740741</Ratio>
+          <Near>36.5046706786416</Near>
+          <Far>47.2133435592041</Far>
+          <Height>31.9017000282909</Height>
+        </Camera>
+      </CameraSet>
+      <SavedViewSet n="3">
+        <SavedView id="184" label="-Y">
+          <Attributes n="5">
+            <AttributeI1 name="_3dv.SavedViewBalloonRange" value="0" />
+            <AttributeI1 name="_3dv.SavedViewBalloonOffset" value="1" />
+            <AttributeI1 name="_3dv.SavedViewRenderStyle" value="0" />
+            <AttributeI1 name="_3dv.SavedViewBalloonSchemaMode" value="0" />
+            <AttributeI3 name="_3dv.SavedViewBalloonColor" value="222 222 222" />
+          </Attributes>
+          <ActiveView>true</ActiveView>
+          <AnnotationVisibleIds n="11">
+            <Id>197</Id>
+            <Id>199</Id>
+            <Id>204</Id>
+            <Id>207</Id>
+            <Id>209</Id>
+            <Id>214</Id>
+            <Id>216</Id>
+            <Id>217</Id>
+            <Id>323</Id>
+            <Id>327</Id>
+            <Id>331</Id>
+          </AnnotationVisibleIds>
+          <BodyIds n="1">
+            <Id>5</Id>
+          </BodyIds>
+          <CameraIds n="1">
+            <Id>183</Id>
+          </CameraIds>
+        </SavedView>
+        <SavedView id="219" label="-Z">
+          <Attributes n="4">
+            <AttributeI1 name="_3dv.SavedViewBalloonRange" value="1" />
+            <AttributeI1 name="_3dv.SavedViewRenderStyle" value="0" />
+            <AttributeI1 name="_3dv.SavedViewBalloonSchemaMode" value="0" />
+            <AttributeI3 name="_3dv.SavedViewBalloonColor" value="222 222 222" />
+          </Attributes>
+          <AnnotationVisibleIds n="5">
+            <Id>224</Id>
+            <Id>228</Id>
+            <Id>231</Id>
+            <Id>236</Id>
+            <Id>338</Id>
+          </AnnotationVisibleIds>
+          <BodyIds n="1">
+            <Id>5</Id>
+          </BodyIds>
+          <CameraIds n="1">
+            <Id>218</Id>
+          </CameraIds>
+        </SavedView>
+        <SavedView id="238" label="DEFAULT ALL">
+          <Attributes n="4">
+            <AttributeI1 name="_3dv.SavedViewBalloonRange" value="2" />
+            <AttributeI1 name="_3dv.SavedViewRenderStyle" value="0" />
+            <AttributeI1 name="_3dv.SavedViewBalloonSchemaMode" value="0" />
+            <AttributeI3 name="_3dv.SavedViewBalloonColor" value="222 222 222" />
+          </Attributes>
+          <BodyIds n="1">
+            <Id>5</Id>
+          </BodyIds>
+          <CameraIds n="1">
+            <Id>237</Id>
+          </CameraIds>
+        </SavedView>
+      </SavedViewSet>
+      <AnnotationViewSet n="2">
+        <AnnotationView id="344">
+          <Normal>0 0 1</Normal>
+          <Direction>1 0 0</Direction>
+        </AnnotationView>
+        <AnnotationView id="346">
+          <Normal>0 1 0</Normal>
+          <Direction>1 0 0</Direction>
+        </AnnotationView>
+      </AnnotationViewSet>
+    </ViewSet>
+    <CoordinateSystemSet n="1">
+      <CoordinateSystem id="182" label="XYZ" hidden="1" color="255 255 255" size="1">
+        <CoordinateSystemCore>
+          <Rotation>
+            <XDirection>1 0 0</XDirection>
+            <YDirection>0 1 0</YDirection>
+            <ZDirection>0 0 1</ZDirection>
+          </Rotation>
+          <Origin>0 0 0</Origin>
+        </CoordinateSystemCore>
+      </CoordinateSystem>
+    </CoordinateSystemSet>
+    <VisualizationSet>
+      <Fonts n="6">
+        <Font index="0">
+          <Name>Y14.5-2018</Name>
+          <Size>8</Size>
+        </Font>
+        <Font index="1">
+          <Name>Arial Unicode MS</Name>
+          <Size>8</Size>
+        </Font>
+        <Font index="2">
+          <Name>MS Gothic UI</Name>
+          <Size>8</Size>
+        </Font>
+        <Font index="3">
+          <Name>Microsoft YaHei UI</Name>
+          <Size>8</Size>
+        </Font>
+        <Font index="4">
+          <Name>Arial Unicode MS</Name>
+          <Size>12</Size>
+        </Font>
+        <Font index="5">
+          <Name>Arial</Name>
+          <Size>13</Size>
+        </Font>
+      </Fonts>
+      <TrailingZeroDisplay>
+        <TrailingZeroDimensionalCharacteristicDisplayGroups n="1">
+          <TrailingZeroDimensionalCharacteristicDisplayGroup>
+            <DimensionalCharacteristicValueTarget>0</DimensionalCharacteristicValueTarget>
+            <DimensionalCharacteristicValueLimits>0</DimensionalCharacteristicValueLimits>
+            <DimensionalCharacteristicIds n="4">
+              <Id>323</Id>
+              <Id>327</Id>
+              <Id>331</Id>
+              <Id>338</Id>
+            </DimensionalCharacteristicIds>
+          </TrailingZeroDimensionalCharacteristicDisplayGroup>
+        </TrailingZeroDimensionalCharacteristicDisplayGroups>
+        <TrailingZeroGeometricCharacteristicDisplayGroups n="1">
+          <TrailingZeroGeometricCharacteristicDisplayGroup>
+            <GeometricCharacteristicValue>0</GeometricCharacteristicValue>
+            <GeometricCharacteristicIds n="8">
+              <Id>197</Id>
+              <Id>204</Id>
+              <Id>207</Id>
+              <Id>214</Id>
+              <Id>216</Id>
+              <Id>224</Id>
+              <Id>231</Id>
+              <Id>236</Id>
+            </GeometricCharacteristicIds>
+          </TrailingZeroGeometricCharacteristicDisplayGroup>
+        </TrailingZeroGeometricCharacteristicDisplayGroups>
+      </TrailingZeroDisplay>
+      <PMIDisplaySet n="17">
+        <PMIDisplay>
+          <Attributes n="8">
+            <AttributeI1 name="DimensionDisplayMode" value="1" />
+            <AttributeBool name="_3dv.PMIVisible" value="0" />
+            <AttributeI2 name="_3dv.PmiGroupId" value="14 -1" />
+            <AttributeI1 name="_3dv.ArrowheadSide" value="2" />
+            <AttributeBool name="_3dv.DisplayInfoCorrectPositions" value="1" />
+            <AttributeBool name="_3dv.TextAboveLeader" value="0" />
+            <AttributeBool name="_3dv.TextBelowLeader" value="0" />
+            <AttributeBool name="_3dv.TextMainBBConnect" value="0" />
+          </Attributes>
+          <Plane>
+            <AnnotationViewId>
+              <Id>344</Id>
+            </AnnotationViewId>
+            <Origin>0 0 0</Origin>
+          </Plane>
+          <Texts lineHeight="3.5" fontIndex="1" n="1">
+            <Text>
+              <Data></Data>
+              <XY>0 0</XY>
+            </Text>
+          </Texts>
+          <Reference>
+            <Id>4</Id>
+          </Reference>
+        </PMIDisplay>
+        <PMIDisplay>
+          <Attributes n="8">
+            <AttributeI1 name="DimensionDisplayMode" value="1" />
+            <AttributeI2 name="_3dv.PmiGroupId" value="4 0" />
+            <AttributeI1 name="_3dv.ArrowheadSide" value="2" />
+            <AttributeBool name="_3dv.DisplayInfoCorrectPositions" value="1" />
+            <AttributeD1 name="_3dv.LeaderShelfLength" value="1.33586348479176" />
+            <AttributeBool name="_3dv.TextAboveLeader" value="0" />
+            <AttributeBool name="_3dv.TextBelowLeader" value="0" />
+            <AttributeBool name="_3dv.TextMainBBConnect" value="1" />
+          </Attributes>
+          <Color>55 0 95</Color>
+          <Plane>
+            <AnnotationViewId>
+              <Id>346</Id>
+            </AnnotationViewId>
+            <Origin>16.8577107276186 10.9325999287218 4.47459117003352</Origin>
+          </Plane>
+          <Texts lineHeight="0.758770459361723" fontIndex="4" n="2">
+            <Text>
+              <Data>{FLATNESS}</Data>
+              <XY>0.27315736537022 0.27315736537022</XY>
+            </Text>
+            <Text>
+              <Data>0.05</Data>
+              <XY>2.52191579056665 0.27315736537022</XY>
+            </Text>
+          </Texts>
+          <LeaderExtend>
+            <StartPoint>-2.51684547020575 4.47459117003352</StartPoint>
+            <EndPoint>-1.33586348479176 0.682893413425551</EndPoint>
+            <HeadForm>ARROW_FILLED</HeadForm>
+            <HeadHeight>0.455262275617034</HeadHeight>
+            <PointExtension>0 0.682893413425551</PointExtension>
+          </LeaderExtend>
+          <Frames n="2">
+            <FrameRectangular>
+              <XY>0 0</XY>
+              <Width>2.24875842519643</Width>
+              <Height>1.3657868268511</Height>
+            </FrameRectangular>
+            <FrameRectangular>
+              <XY>2.24875842519643 0</XY>
+              <Width>2.92599057572793</Width>
+              <Height>1.3657868268511</Height>
+            </FrameRectangular>
+          </Frames>
+          <Reference>
+            <Id>197</Id>
+          </Reference>
+        </PMIDisplay>
+        <PMIDisplay>
+          <Attributes n="8">
+            <AttributeI1 name="DimensionDisplayMode" value="1" />
+            <AttributeI2 name="_3dv.PmiGroupId" value="5 0" />
+            <AttributeI1 name="_3dv.ArrowheadSide" value="2" />
+            <AttributeBool name="_3dv.DisplayInfoCorrectPositions" value="1" />
+            <AttributeD1 name="_3dv.LeaderShelfLength" value="1.33586348479177" />
+            <AttributeBool name="_3dv.TextAboveLeader" value="0" />
+            <AttributeBool name="_3dv.TextBelowLeader" value="0" />
+            <AttributeBool name="_3dv.TextMainBBConnect" value="1" />
+          </Attributes>
+          <Color>55 0 95</Color>
+          <Plane>
+            <AnnotationViewId>
+              <Id>346</Id>
+            </AnnotationViewId>
+            <Origin>-11.9665698159248 12.5448558211033 -18.4477499443333</Origin>
+          </Plane>
+          <Texts lineHeight="0.758770459361723" fontIndex="4" n="3">
+            <Text>
+              <Data>{PERPENDICULARITY}</Data>
+              <XY>0.27315736537022 0.27315736537022</XY>
+            </Text>
+            <Text>
+              <Data>0.1</Data>
+              <XY>2.52191579056665 0.27315736537022</XY>
+            </Text>
+            <Text>
+              <Data>A</Data>
+              <XY>4.76792338376174 0.27315736537022</XY>
+            </Text>
+          </Texts>
+          <LeaderExtend>
+            <StartPoint>11.9665698159248 -3.08854278904686</StartPoint>
+            <EndPoint>7.19239460078609 0.68289341342555</EndPoint>
+            <HeadForm>ARROW_FILLED</HeadForm>
+            <HeadHeight>0.455262275617034</HeadHeight>
+            <PointExtension>5.85653111599433 0.68289341342555</PointExtension>
+          </LeaderExtend>
+          <Frames n="3">
+            <FrameRectangular>
+              <XY>0 0</XY>
+              <Width>2.24875842519643</Width>
+              <Height>1.3657868268511</Height>
+            </FrameRectangular>
+            <FrameRectangular>
+              <XY>2.24875842519643 0</XY>
+              <Width>2.24600759319509</Width>
+              <Height>1.3657868268511</Height>
+            </FrameRectangular>
+            <FrameRectangular>
+              <XY>4.49476601839152 0</XY>
+              <Width>1.3617650976028</Width>
+              <Height>1.3657868268511</Height>
+            </FrameRectangular>
+          </Frames>
+          <Reference>
+            <Id>204</Id>
+          </Reference>
+        </PMIDisplay>
+        <PMIDisplay>
+          <Attributes n="8">
+            <AttributeI1 name="DimensionDisplayMode" value="1" />
+            <AttributeI2 name="_3dv.PmiGroupId" value="6 -1" />
+            <AttributeI1 name="_3dv.ArrowheadSide" value="2" />
+            <AttributeBool name="_3dv.DisplayInfoCorrectPositions" value="1" />
+            <AttributeD1 name="_3dv.LeaderShelfLength" value="1.33586348479177" />
+            <AttributeBool name="_3dv.TextAboveLeader" value="0" />
+            <AttributeBool name="_3dv.TextBelowLeader" value="0" />
+            <AttributeBool name="_3dv.TextMainBBConnect" value="1" />
+          </Attributes>
+          <Color>55 0 95</Color>
+          <Plane>
+            <AnnotationViewId>
+              <Id>346</Id>
+            </AnnotationViewId>
+            <Origin>8.01812590332777 11.3381930653658 -30.0716353968285</Origin>
+          </Plane>
+          <Texts lineHeight="0.758770459361723" fontIndex="4" n="4">
+            <Text>
+              <Data>{PARALLELISM}</Data>
+              <XY>0.27315736537022 0.27315736537022</XY>
+            </Text>
+            <Text>
+              <Data>0.3</Data>
+              <XY>2.52191579056665 0.27315736537022</XY>
+            </Text>
+            <Text>
+              <Data>A</Data>
+              <XY>4.76792338376174 0.27315736537022</XY>
+            </Text>
+            <Text>
+              <Data>{CF}</Data>
+              <XY>6.40284584673477 0.27315736537022</XY>
+            </Text>
+          </Texts>
+          <LeaderExtend>
+            <StartPoint>-4.13943653177279 -5.07163539682852</StartPoint>
+            <EndPoint>-1.33586348479177 0.68289341342555</EndPoint>
+            <HeadForm>ARROW_FILLED</HeadForm>
+            <HeadHeight>0.455262275617034</HeadHeight>
+            <PointExtension>0 0.68289341342555</PointExtension>
+          </LeaderExtend>
+          <Frames n="3">
+            <FrameRectangular>
+              <XY>0 0</XY>
+              <Width>2.24875842519643</Width>
+              <Height>1.3657868268511</Height>
+            </FrameRectangular>
+            <FrameRectangular>
+              <XY>2.24875842519643 0</XY>
+              <Width>2.24600759319509</Width>
+              <Height>1.3657868268511</Height>
+            </FrameRectangular>
+            <FrameRectangular>
+              <XY>4.49476601839152 0</XY>
+              <Width>1.3617650976028</Width>
+              <Height>1.3657868268511</Height>
+            </FrameRectangular>
+          </Frames>
+          <Reference>
+            <Id>207</Id>
+          </Reference>
+        </PMIDisplay>
+        <PMIDisplay>
+          <Attributes n="7">
+            <AttributeI1 name="DimensionDisplayMode" value="1" />
+            <AttributeI2 name="_3dv.PmiGroupId" value="7 -1" />
+            <AttributeI1 name="_3dv.ArrowheadSide" value="2" />
+            <AttributeBool name="_3dv.DisplayInfoCorrectPositions" value="1" />
+            <AttributeBool name="_3dv.TextAboveLeader" value="0" />
+            <AttributeBool name="_3dv.TextBelowLeader" value="0" />
+            <AttributeBool name="_3dv.TextMainBBConnect" value="0" />
+          </Attributes>
+          <Color>55 0 95</Color>
+          <Plane>
+            <AnnotationViewId>
+              <Id>344</Id>
+            </AnnotationViewId>
+            <Origin>898.606636597938 198.73893465275 0</Origin>
+          </Plane>
+          <Texts lineHeight="0.758770459361723" fontIndex="4" n="4">
+            <Text>
+              <Data>{PERPENDICULARITY}</Data>
+              <XY>0.27315736537022 0.27315736537022</XY>
+            </Text>
+            <Text>
+              <Data>0.2</Data>
+              <XY>2.52191579056665 0.27315736537022</XY>
+            </Text>
+            <Text>
+              <Data>A</Data>
+              <XY>4.76792338376174 0.27315736537022</XY>
+            </Text>
+            <Text>
+              <Data>B</Data>
+              <XY>6.12968848136455 0.27315736537022</XY>
+            </Text>
+          </Texts>
+          <Frames n="4">
+            <FrameRectangular>
+              <XY>0 0</XY>
+              <Width>2.24875842519643</Width>
+              <Height>1.3657868268511</Height>
+            </FrameRectangular>
+            <FrameRectangular>
+              <XY>2.24875842519643 0</XY>
+              <Width>2.24600759319509</Width>
+              <Height>1.3657868268511</Height>
+            </FrameRectangular>
+            <FrameRectangular>
+              <XY>4.49476601839152 0</XY>
+              <Width>1.3617650976028</Width>
+              <Height>1.3657868268511</Height>
+            </FrameRectangular>
+            <FrameRectangular>
+              <XY>5.85653111599433 0</XY>
+              <Width>1.36176509760281</Width>
+              <Height>1.3657868268511</Height>
+            </FrameRectangular>
+          </Frames>
+          <Reference>
+            <Id>214</Id>
+          </Reference>
+        </PMIDisplay>
+        <PMIDisplay>
+          <Attributes n="7">
+            <AttributeI1 name="DimensionDisplayMode" value="1" />
+            <AttributeI2 name="_3dv.PmiGroupId" value="8 -1" />
+            <AttributeI1 name="_3dv.ArrowheadSide" value="2" />
+            <AttributeBool name="_3dv.DisplayInfoCorrectPositions" value="1" />
+            <AttributeBool name="_3dv.TextAboveLeader" value="0" />
+            <AttributeBool name="_3dv.TextBelowLeader" value="0" />
+            <AttributeBool name="_3dv.TextMainBBConnect" value="0" />
+          </Attributes>
+          <Color>55 0 95</Color>
+          <Plane>
+            <AnnotationViewId>
+              <Id>344</Id>
+            </AnnotationViewId>
+            <Origin>937.749677835052 313.558522281616 0</Origin>
+          </Plane>
+          <Texts lineHeight="0.758770459361723" fontIndex="4" n="4">
+            <Text>
+              <Data>{PERPENDICULARITY}</Data>
+              <XY>0.27315736537022 0.27315736537022</XY>
+            </Text>
+            <Text>
+              <Data>0.2</Data>
+              <XY>2.52191579056665 0.27315736537022</XY>
+            </Text>
+            <Text>
+              <Data>A</Data>
+              <XY>4.76792338376174 0.27315736537022</XY>
+            </Text>
+            <Text>
+              <Data>B</Data>
+              <XY>6.12968848136455 0.27315736537022</XY>
+            </Text>
+          </Texts>
+          <Frames n="4">
+            <FrameRectangular>
+              <XY>0 0</XY>
+              <Width>2.24875842519643</Width>
+              <Height>1.3657868268511</Height>
+            </FrameRectangular>
+            <FrameRectangular>
+              <XY>2.24875842519643 0</XY>
+              <Width>2.24600759319509</Width>
+              <Height>1.3657868268511</Height>
+            </FrameRectangular>
+            <FrameRectangular>
+              <XY>4.49476601839152 0</XY>
+              <Width>1.3617650976028</Width>
+              <Height>1.3657868268511</Height>
+            </FrameRectangular>
+            <FrameRectangular>
+              <XY>5.85653111599433 0</XY>
+              <Width>1.36176509760281</Width>
+              <Height>1.3657868268511</Height>
+            </FrameRectangular>
+          </Frames>
+          <Reference>
+            <Id>216</Id>
+          </Reference>
+        </PMIDisplay>
+        <PMIDisplay>
+          <Attributes n="9">
+            <AttributeI1 name="DimensionDisplayMode" value="1" />
+            <AttributeBool name="_3dv.PMIVisible" value="0" />
+            <AttributeI2 name="_3dv.PmiGroupId" value="15 -1" />
+            <AttributeI1 name="_3dv.ArrowheadSide" value="2" />
+            <AttributeBool name="_3dv.DisplayInfoCorrectPositions" value="1" />
+            <AttributeD1 name="_3dv.LeaderShelfLength" value="1.33586348479177" />
+            <AttributeBool name="_3dv.TextAboveLeader" value="0" />
+            <AttributeBool name="_3dv.TextBelowLeader" value="0" />
+            <AttributeBool name="_3dv.TextMainBBConnect" value="1" />
+          </Attributes>
+          <Color>55 0 95</Color>
+          <Plane>
+            <AnnotationViewId>
+              <Id>344</Id>
+            </AnnotationViewId>
+            <Origin>18.8892700467396 22.2876070496344 -15.9205388786441</Origin>
+          </Plane>
+          <Texts lineHeight="0.758770459361723" fontIndex="4" n="4">
+            <Text>
+              <Data>{POSITION}</Data>
+              <XY>0.27315736537022 0.27315736537022</XY>
+            </Text>
+            <Text>
+              <Data>0.4</Data>
+              <XY>2.52191579056665 0.27315736537022</XY>
+            </Text>
+            <Text>
+              <Data>A</Data>
+              <XY>4.76792338376174 0.27315736537022</XY>
+            </Text>
+            <Text>
+              <Data>B</Data>
+              <XY>6.12968848136455 0.27315736537022</XY>
+            </Text>
+          </Texts>
+          <LeaderExtend>
+            <StartPoint>11.1107299532604 0.68289341342555</StartPoint>
+            <EndPoint>8.5541596983889 0.68289341342555</EndPoint>
+            <HeadForm>ARROW_FILLED</HeadForm>
+            <HeadHeight>0.455262275617034</HeadHeight>
+            <PointExtension>7.21829621359714 0.68289341342555</PointExtension>
+          </LeaderExtend>
+          <Frames n="4">
+            <FrameRectangular>
+              <XY>0 0</XY>
+              <Width>2.24875842519643</Width>
+              <Height>1.3657868268511</Height>
+            </FrameRectangular>
+            <FrameRectangular>
+              <XY>2.24875842519643 0</XY>
+              <Width>2.24600759319509</Width>
+              <Height>1.3657868268511</Height>
+            </FrameRectangular>
+            <FrameRectangular>
+              <XY>4.49476601839152 0</XY>
+              <Width>1.3617650976028</Width>
+              <Height>1.3657868268511</Height>
+            </FrameRectangular>
+            <FrameRectangular>
+              <XY>5.85653111599433 0</XY>
+              <Width>1.36176509760281</Width>
+              <Height>1.3657868268511</Height>
+            </FrameRectangular>
+          </Frames>
+          <Reference>
+            <Id>224</Id>
+          </Reference>
+        </PMIDisplay>
+        <PMIDisplay>
+          <Attributes n="9">
+            <AttributeI1 name="DimensionDisplayMode" value="1" />
+            <AttributeBool name="_3dv.PMIVisible" value="0" />
+            <AttributeI2 name="_3dv.PmiGroupId" value="13 0" />
+            <AttributeI1 name="_3dv.ArrowheadSide" value="2" />
+            <AttributeBool name="_3dv.DisplayInfoCorrectPositions" value="1" />
+            <AttributeD1 name="_3dv.LeaderShelfLength" value="1.33586348479177" />
+            <AttributeBool name="_3dv.TextAboveLeader" value="0" />
+            <AttributeBool name="_3dv.TextBelowLeader" value="0" />
+            <AttributeBool name="_3dv.TextMainBBConnect" value="1" />
+          </Attributes>
+          <Color>55 0 95</Color>
+          <Plane>
+            <AnnotationViewId>
+              <Id>344</Id>
+            </AnnotationViewId>
+            <Origin>47.6565227244051 -5.00495861680231 -10.8022343548272</Origin>
+          </Plane>
+          <Texts lineHeight="0.758770459361723" fontIndex="4" n="4">
+            <Text>
+              <Data>{PERPENDICULARITY}</Data>
+              <XY>0.27315736537022 0.27315736537022</XY>
+            </Text>
+            <Text>
+              <Data>0.2</Data>
+              <XY>2.52191579056665 0.27315736537022</XY>
+            </Text>
+            <Text>
+              <Data>A</Data>
+              <XY>4.76792338376174 0.27315736537022</XY>
+            </Text>
+            <Text>
+              <Data>B</Data>
+              <XY>6.12968848136455 0.27315736537022</XY>
+            </Text>
+          </Texts>
+          <LeaderExtend>
+            <StartPoint>-2.77914448595306 5.00495861680231</StartPoint>
+            <EndPoint>-1.33586348479177 0.682893413425551</EndPoint>
+            <HeadForm>ARROW_FILLED</HeadForm>
+            <HeadHeight>0.455262275617034</HeadHeight>
+            <PointExtension>0 0.682893413425551</PointExtension>
+          </LeaderExtend>
+          <Frames n="4">
+            <FrameRectangular>
+              <XY>0 0</XY>
+              <Width>2.24875842519643</Width>
+              <Height>1.3657868268511</Height>
+            </FrameRectangular>
+            <FrameRectangular>
+              <XY>2.24875842519643 0</XY>
+              <Width>2.24600759319509</Width>
+              <Height>1.3657868268511</Height>
+            </FrameRectangular>
+            <FrameRectangular>
+              <XY>4.49476601839152 0</XY>
+              <Width>1.3617650976028</Width>
+              <Height>1.3657868268511</Height>
+            </FrameRectangular>
+            <FrameRectangular>
+              <XY>5.85653111599433 0</XY>
+              <Width>1.36176509760281</Width>
+              <Height>1.3657868268511</Height>
+            </FrameRectangular>
+          </Frames>
+          <Reference>
+            <Id>231</Id>
+          </Reference>
+        </PMIDisplay>
+        <PMIDisplay>
+          <Attributes n="10">
+            <AttributeI1 name="DimensionDisplayMode" value="1" />
+            <AttributeBool name="_3dv.PMIVisible" value="0" />
+            <AttributeI2 name="_3dv.PmiGroupId" value="16 -1" />
+            <AttributeI1 name="_3dv.ArrowheadSide" value="2" />
+            <AttributeBool name="_3dv.DisplayInfoCorrectPositions" value="1" />
+            <AttributeD1 name="_3dv.LeaderShelfLength" value="1.33586348479177" />
+            <AttributeBool name="_3dv.TextAboveLeader" value="0" />
+            <AttributeBool name="_3dv.TextBelowLeader" value="0" />
+            <AttributeBool name="_3dv.TextMainBBConnect" value="1" />
+            <AttributeUser name="_3dv.LeaderOriginNonPlanar" nameUserAttribute="AttributeArrayD3">
+              <UserDataXML>
+                <Value xmlns="##other" count="2">
+                  44.2421325155529 20 -16.2581801738659
+                  24.5526610184366 20 -24.722086977711
+                </Value>
+              </UserDataXML>
+            </AttributeUser>
+          </Attributes>
+          <Color>55 0 95</Color>
+          <Plane>
+            <AnnotationViewId>
+              <Id>344</Id>
+            </AnnotationViewId>
+            <Origin>47.1130736970771 30.1122990289133 -16.2581801738659</Origin>
+          </Plane>
+          <Texts lineHeight="0.758770459361723" fontIndex="4" n="5">
+            <Text>
+              <Data>{POSITION}</Data>
+              <XY>0.27315736537022 0.27315736537022</XY>
+            </Text>
+            <Text>
+              <Data>0.5</Data>
+              <XY>2.52191579056665 0.27315736537022</XY>
+            </Text>
+            <Text>
+              <Data>A</Data>
+              <XY>4.76792338376174 0.27315736537022</XY>
+            </Text>
+            <Text>
+              <Data>B</Data>
+              <XY>6.12968848136455 0.27315736537022</XY>
+            </Text>
+            <Text>
+              <Data>C</Data>
+              <XY>7.49145357896735 0.27315736537022</XY>
+            </Text>
+          </Texts>
+          <LeaderExtend>
+            <StartPoint>-2.87094118152424 -10.1122990289133</StartPoint>
+            <EndPoint>-1.33586348479177 0.68289341342555</EndPoint>
+            <HeadForm>ARROW_FILLED</HeadForm>
+            <HeadHeight>0.455262275617034</HeadHeight>
+            <PointExtension>0 0.68289341342555</PointExtension>
+          </LeaderExtend>
+          <LeaderExtend>
+            <StartPoint>-22.5604126786405 -10.1122990289133</StartPoint>
+            <EndPoint>-1.33586348479177 0.68289341342555</EndPoint>
+            <HeadForm>ARROW_FILLED</HeadForm>
+            <HeadHeight>0.455262275617034</HeadHeight>
+            <PointExtension>0 0.68289341342555</PointExtension>
+          </LeaderExtend>
+          <Frames n="5">
+            <FrameRectangular>
+              <XY>0 0</XY>
+              <Width>2.24875842519643</Width>
+              <Height>1.3657868268511</Height>
+            </FrameRectangular>
+            <FrameRectangular>
+              <XY>2.24875842519643 0</XY>
+              <Width>2.24600759319509</Width>
+              <Height>1.3657868268511</Height>
+            </FrameRectangular>
+            <FrameRectangular>
+              <XY>4.49476601839152 0</XY>
+              <Width>1.3617650976028</Width>
+              <Height>1.3657868268511</Height>
+            </FrameRectangular>
+            <FrameRectangular>
+              <XY>5.85653111599433 0</XY>
+              <Width>1.36176509760281</Width>
+              <Height>1.3657868268511</Height>
+            </FrameRectangular>
+            <FrameRectangular>
+              <XY>7.21829621359713 0</XY>
+              <Width>1.42896970377175</Width>
+              <Height>1.3657868268511</Height>
+            </FrameRectangular>
+          </Frames>
+          <Reference>
+            <Id>236</Id>
+          </Reference>
+        </PMIDisplay>
+        <PMIDisplay>
+          <Attributes n="7">
+            <AttributeI1 name="DimensionDisplayMode" value="0" />
+            <AttributeI2 name="_3dv.PmiGroupId" value="9 -1" />
+            <AttributeI1 name="_3dv.ArrowheadSide" value="2" />
+            <AttributeBool name="_3dv.DisplayInfoCorrectPositions" value="1" />
+            <AttributeBool name="_3dv.TextAboveLeader" value="0" />
+            <AttributeBool name="_3dv.TextBelowLeader" value="0" />
+            <AttributeBool name="_3dv.TextMainBBConnect" value="1" />
+          </Attributes>
+          <Color>55 0 95</Color>
+          <Plane>
+            <AnnotationViewId>
+              <Id>346</Id>
+            </AnnotationViewId>
+            <Origin>12.6344506599906 12.7361142014198 -24.8869386711081</Origin>
+          </Plane>
+          <Texts lineHeight="0.758770459361723" fontIndex="4" n="1">
+            <Text>
+              <Data>120{DEGREE}</Data>
+              <XY>0 0</XY>
+            </Text>
+          </Texts>
+          <LeaderDoubleHeadCircular>
+            <StartPoint>4.64293568747586 -1.45884039629768</StartPoint>
+            <EndPoint>-1.91183700745714 -1.45884039629768</EndPoint>
+            <HeadForm>ARROW_FILLED</HeadForm>
+            <HeadHeight>0.455262275617034</HeadHeight>
+            <HeadForm2>ARROW_FILLED</HeadForm2>
+            <PointConnection>-1.91183700745714 -1.45884039629768</PointConnection>
+            <Center>1.36554934000936 -3.35104028624587</Center>
+          </LeaderDoubleHeadCircular>
+          <WitnessLines width="1">
+            <Segment1>
+              <StartPoint>-4.63445065999064 0.113061328891881</StartPoint>
+              <EndPoint>-4.6344506859714 0.113061343891882</EndPoint>
+            </Segment1>
+            <Segment2>
+              <StartPoint>7.36554934000936 0.113061328891881</StartPoint>
+              <EndPoint>7.36554936599012 0.113061343891882</EndPoint>
+            </Segment2>
+          </WitnessLines>
+          <Reference>
+            <Id>323</Id>
+          </Reference>
+        </PMIDisplay>
+        <PMIDisplay>
+          <Attributes n="7">
+            <AttributeI1 name="DimensionDisplayMode" value="0" />
+            <AttributeI2 name="_3dv.PmiGroupId" value="10 -1" />
+            <AttributeI1 name="_3dv.ArrowheadSide" value="2" />
+            <AttributeBool name="_3dv.DisplayInfoCorrectPositions" value="1" />
+            <AttributeBool name="_3dv.TextAboveLeader" value="0" />
+            <AttributeBool name="_3dv.TextBelowLeader" value="0" />
+            <AttributeBool name="_3dv.TextMainBBConnect" value="1" />
+          </Attributes>
+          <Color>55 0 95</Color>
+          <Plane>
+            <AnnotationViewId>
+              <Id>346</Id>
+            </AnnotationViewId>
+            <Origin>25.515833187253 9.4727636738214 10.6455811471123</Origin>
+          </Plane>
+          <Texts lineHeight="0.758770459361723" fontIndex="4" n="1">
+            <Text>
+              <Data>(50)</Data>
+              <XY>0 0</XY>
+            </Text>
+          </Texts>
+          <LeaderDoubleHead>
+            <StartPoint>-25.515833187253 0.316443490950872</StartPoint>
+            <EndPoint>24.484166812747 0.316443490950872</EndPoint>
+            <HeadForm>ARROW_FILLED</HeadForm>
+            <HeadHeight>0.455262275617034</HeadHeight>
+            <HeadForm2>ARROW_FILLED</HeadForm2>
+            <PointConnection>24.484166812747 0.316443490950872</PointConnection>
+          </LeaderDoubleHead>
+          <WitnessLines width="1">
+            <Segment1>
+              <StartPoint>-25.515833187253 10.6455811471123</StartPoint>
+              <EndPoint>-25.515833187253 -0.0629417387299895</EndPoint>
+            </Segment1>
+            <Segment2>
+              <StartPoint>24.484166812747 10.6455811471123</StartPoint>
+              <EndPoint>24.484166812747 -0.0629417387299895</EndPoint>
+            </Segment2>
+          </WitnessLines>
+          <Reference>
+            <Id>327</Id>
+          </Reference>
+        </PMIDisplay>
+        <PMIDisplay>
+          <Attributes n="8">
+            <AttributeI1 name="DimensionDisplayMode" value="0" />
+            <AttributeI2 name="_3dv.PmiGroupId" value="11 -1" />
+            <AttributeI1 name="_3dv.ArrowheadSide" value="2" />
+            <AttributeBool name="_3dv.DisplayInfoCorrectPositions" value="1" />
+            <AttributeD1 name="_3dv.LeaderShelfLength" value="0.712460525222276" />
+            <AttributeBool name="_3dv.TextAboveLeader" value="0" />
+            <AttributeBool name="_3dv.TextBelowLeader" value="0" />
+            <AttributeBool name="_3dv.TextMainBBConnect" value="1" />
+          </Attributes>
+          <Color>55 0 95</Color>
+          <Plane>
+            <AnnotationViewId>
+              <Id>346</Id>
+            </AnnotationViewId>
+            <Origin>55.4109402972801 6.38020195288516 -11.0380280779509</Origin>
+          </Plane>
+          <Texts lineHeight="0.758770459361723" fontIndex="4" n="1">
+            <Text>
+              <Data>25</Data>
+              <XY>0.13657868268511 0.27315736537022</XY>
+            </Text>
+          </Texts>
+          <LeaderDoubleHead>
+            <StartPoint>0.816561665217947 13.9619719220491</StartPoint>
+            <EndPoint>0.816561665217947 -11.0380280779509</EndPoint>
+            <HeadForm>ARROW_FILLED</HeadForm>
+            <HeadHeight>0.455262275617034</HeadHeight>
+            <HeadForm2>ARROW_FILLED</HeadForm2>
+            <PointConnection>0.816561665217947 -11.0380280779509</PointConnection>
+          </LeaderDoubleHead>
+          <WitnessLines width="1">
+            <Segment1>
+              <StartPoint>-5.41094029728015 13.9619719220491</StartPoint>
+              <EndPoint>1.19594689489881 13.9619719220491</EndPoint>
+            </Segment1>
+            <Segment2>
+              <StartPoint>-5.41094029728015 -11.0380280779509</StartPoint>
+              <EndPoint>1.19594689489881 -11.0380280779509</EndPoint>
+            </Segment2>
+          </WitnessLines>
+          <Frames n="1">
+            <FrameRectangular>
+              <XY>0 0.0138642444259972</XY>
+              <Width>1.63312333043589</Width>
+              <Height>1.3657868268511</Height>
+            </FrameRectangular>
+          </Frames>
+          <Reference>
+            <Id>331</Id>
+          </Reference>
+        </PMIDisplay>
+        <PMIDisplay>
+          <Attributes n="8">
+            <AttributeI1 name="DimensionDisplayMode" value="1" />
+            <AttributeBool name="_3dv.PMIVisible" value="0" />
+            <AttributeI2 name="_3dv.PmiGroupId" value="12 -1" />
+            <AttributeI1 name="_3dv.ArrowheadSide" value="2" />
+            <AttributeBool name="_3dv.DisplayInfoCorrectPositions" value="1" />
+            <AttributeBool name="_3dv.TextAboveLeader" value="0" />
+            <AttributeBool name="_3dv.TextBelowLeader" value="0" />
+            <AttributeBool name="_3dv.TextMainBBConnect" value="1" />
+          </Attributes>
+          <Color>55 0 95</Color>
+          <Plane>
+            <AnnotationViewId>
+              <Id>344</Id>
+            </AnnotationViewId>
+            <Origin>32.7735608586804 22.5386979897993 -15.9205388786441</Origin>
+          </Plane>
+          <Texts lineHeight="0.758770459361723" fontIndex="4" n="2">
+            <Text>
+              <Data>10</Data>
+              <XY>0 0</XY>
+            </Text>
+            <Text>
+              <Data>{PLUS_MINUS}0.1</Data>
+              <XY>1.35996596506567 0</XY>
+            </Text>
+          </Texts>
+          <LeaderDoubleHead>
+            <StartPoint>-2.77356085868038 0.431802473260639</StartPoint>
+            <EndPoint>7.22643914131962 0.431802473260639</EndPoint>
+            <HeadForm>ARROW_FILLED</HeadForm>
+            <HeadHeight>0.455262275617034</HeadHeight>
+            <HeadForm2>ARROW_FILLED</HeadForm2>
+            <PointConnection>7.22643914131962 0.431802473260639</PointConnection>
+          </LeaderDoubleHead>
+          <WitnessLines width="1">
+            <Segment1>
+              <StartPoint>-2.77356085868038 -2.53869798979934</StartPoint>
+              <EndPoint>-2.77356085868038 0.811187702941499</EndPoint>
+            </Segment1>
+            <Segment2>
+              <StartPoint>7.22643914131962 -2.53869798979934</StartPoint>
+              <EndPoint>7.22643914131962 0.811187702941499</EndPoint>
+            </Segment2>
+          </WitnessLines>
+          <Reference>
+            <Id>338</Id>
+          </Reference>
+        </PMIDisplay>
+        <PMIDisplay>
+          <Attributes n="7">
+            <AttributeI1 name="DimensionDisplayMode" value="1" />
+            <AttributeI2 name="_3dv.PmiGroupId" value="4 1" />
+            <AttributeI1 name="_3dv.ArrowheadSide" value="2" />
+            <AttributeBool name="_3dv.DisplayInfoCorrectPositions" value="1" />
+            <AttributeBool name="_3dv.TextAboveLeader" value="0" />
+            <AttributeBool name="_3dv.TextBelowLeader" value="0" />
+            <AttributeBool name="_3dv.TextMainBBConnect" value="0" />
+          </Attributes>
+          <Color>55 0 95</Color>
+          <Plane>
+            <AnnotationViewId>
+              <Id>346</Id>
+            </AnnotationViewId>
+            <Origin>19.0373600446496 10.9325999287218 6.75090254811869</Origin>
+          </Plane>
+          <Texts lineHeight="0.758770459361723" fontIndex="4" n="1">
+            <Text>
+              <Data>A</Data>
+              <XY>0 0</XY>
+            </Text>
+          </Texts>
+          <Leader>
+            <StartPoint>0.407725183431186 2.27631137808517</StartPoint>
+            <EndPoint>0.407725183431186 1.14840395405512</EndPoint>
+            <HeadForm>TRIANGLE_FILLED</HeadForm>
+            <HeadHeight>0.758770459361723</HeadHeight>
+          </Leader>
+          <Frames n="1">
+            <FrameRectangular>
+              <XY>-0.273157365370217 -0.27315736537022</XY>
+              <Width>1.3617650976028</Width>
+              <Height>1.42156131942534</Height>
+            </FrameRectangular>
+          </Frames>
+          <Reference>
+            <Id>199</Id>
+          </Reference>
+        </PMIDisplay>
+        <PMIDisplay>
+          <Attributes n="7">
+            <AttributeI1 name="DimensionDisplayMode" value="1" />
+            <AttributeI2 name="_3dv.PmiGroupId" value="5 1" />
+            <AttributeI1 name="_3dv.ArrowheadSide" value="2" />
+            <AttributeBool name="_3dv.DisplayInfoCorrectPositions" value="1" />
+            <AttributeBool name="_3dv.TextAboveLeader" value="0" />
+            <AttributeBool name="_3dv.TextBelowLeader" value="0" />
+            <AttributeBool name="_3dv.TextMainBBConnect" value="0" />
+          </Attributes>
+          <Color>55 0 95</Color>
+          <Plane>
+            <AnnotationViewId>
+              <Id>346</Id>
+            </AnnotationViewId>
+            <Origin>-9.44602944135884 12.5448558211033 -16.1714385662482</Origin>
+          </Plane>
+          <Texts lineHeight="0.758770459361723" fontIndex="4" n="1">
+            <Text>
+              <Data>B</Data>
+              <XY>0 0</XY>
+            </Text>
+          </Texts>
+          <Leader>
+            <StartPoint>0.407725183431182 2.27631137808517</StartPoint>
+            <EndPoint>0.407725183431182 1.14840395405512</EndPoint>
+            <HeadForm>TRIANGLE_FILLED</HeadForm>
+            <HeadHeight>0.758770459361723</HeadHeight>
+          </Leader>
+          <Frames n="1">
+            <FrameRectangular>
+              <XY>-0.27315736537022 -0.273157365370219</XY>
+              <Width>1.3617650976028</Width>
+              <Height>1.42156131942534</Height>
+            </FrameRectangular>
+          </Frames>
+          <Reference>
+            <Id>209</Id>
+          </Reference>
+        </PMIDisplay>
+        <PMIDisplay>
+          <Attributes n="8">
+            <AttributeI1 name="DimensionDisplayMode" value="1" />
+            <AttributeBool name="_3dv.PMIVisible" value="0" />
+            <AttributeI2 name="_3dv.PmiGroupId" value="13 1" />
+            <AttributeI1 name="_3dv.ArrowheadSide" value="2" />
+            <AttributeBool name="_3dv.DisplayInfoCorrectPositions" value="1" />
+            <AttributeBool name="_3dv.TextAboveLeader" value="0" />
+            <AttributeBool name="_3dv.TextBelowLeader" value="0" />
+            <AttributeBool name="_3dv.TextMainBBConnect" value="0" />
+          </Attributes>
+          <Color>55 0 95</Color>
+          <Plane>
+            <AnnotationViewId>
+              <Id>344</Id>
+            </AnnotationViewId>
+            <Origin>50.824343344688 -7.28126999488748 -10.8022343548272</Origin>
+          </Plane>
+          <Texts lineHeight="0.758770459361723" fontIndex="4" n="1">
+            <Text>
+              <Data>C</Data>
+              <XY>0 0</XY>
+            </Text>
+          </Texts>
+          <Leader>
+            <StartPoint>0.441327486515661 2.27631137808517</StartPoint>
+            <EndPoint>0.441327486515661 1.16322072274794</EndPoint>
+            <HeadForm>TRIANGLE_FILLED</HeadForm>
+            <HeadHeight>0.758770459361723</HeadHeight>
+          </Leader>
+          <Frames n="1">
+            <FrameRectangular>
+              <XY>-0.273157365370214 -0.287974052655804</XY>
+              <Width>1.42896970377175</Width>
+              <Height>1.45119477540374</Height>
+            </FrameRectangular>
+          </Frames>
+          <Reference>
+            <Id>228</Id>
+          </Reference>
+        </PMIDisplay>
+        <PMIDisplay>
+          <Attributes n="6">
+            <AttributeI1 name="DimensionDisplayMode" value="1" />
+            <AttributeI1 name="_3dv.ArrowheadSide" value="2" />
+            <AttributeBool name="_3dv.DisplayInfoCorrectPositions" value="1" />
+            <AttributeBool name="_3dv.TextAboveLeader" value="0" />
+            <AttributeBool name="_3dv.TextBelowLeader" value="0" />
+            <AttributeBool name="_3dv.TextMainBBConnect" value="0" />
+          </Attributes>
+          <Color>55 0 95</Color>
+          <Plane>
+            <AnnotationViewId>
+              <Id>344</Id>
+            </AnnotationViewId>
+          </Plane>
+          <Texts lineHeight="0.0426" fontIndex="4" n="8">
+            <Text>
+              <Data>General Tolerances ISO 22081</Data>
+              <XY>0.0100502912621359 -0.0408597680412371</XY>
+            </Text>
+            <Text>
+              <Data>{PROFILE_SURFACE}</Data>
+              <XY>0.0100502912621359 -0.0441263360412371</XY>
+            </Text>
+            <Text>
+              <Data>.75</Data>
+              <XY>0.0127081418360363 -0.0441263360412371</XY>
+            </Text>
+            <Text>
+              <Data>A</Data>
+              <XY>0.0153622916119558 -0.0441263360412371</XY>
+            </Text>
+            <Text>
+              <Data>B</Data>
+              <XY>0.0168268366280034 -0.0441263360412371</XY>
+            </Text>
+            <Text>
+              <Data>C</Data>
+              <XY>0.018291381644051 -0.0441263360412371</XY>
+            </Text>
+            <Text>
+              <Data>Angular sizes: {PLUS_MINUS}0.5{DEGREE}</Data>
+              <XY>0.0100502912621359 -0.0473929040412371</XY>
+            </Text>
+            <Text>
+              <Data>All unspecificatd dimensions are basic</Data>
+              <XY>0.0100502912621359 -0.0506594720412371</XY>
+            </Text>
+          </Texts>
+          <Frames n="5">
+            <FrameRectangular>
+              <XY>-0.007668 -0.0864686086707115</XY>
+              <Width>0.110917081852913</Width>
+              <Height>0.0674278464231491</Height>
+            </FrameRectangular>
+            <FrameRectangular>
+              <XY>0.103249081852913 -0.0864686086707115</XY>
+              <Width>0.110762640622616</Width>
+              <Height>0.0674278464231491</Height>
+            </FrameRectangular>
+            <FrameRectangular>
+              <XY>0.214011722475529 -0.0864686086707115</XY>
+              <Width>0.0611182061991691</Width>
+              <Height>0.0674278464231491</Height>
+            </FrameRectangular>
+            <FrameRectangular>
+              <XY>0.275129928674698 -0.0864686086707115</XY>
+              <Width>0.0611182061991692</Width>
+              <Height>0.0674278464231491</Height>
+            </FrameRectangular>
+            <FrameRectangular>
+              <XY>0.336248134873867 -0.0864686086707115</XY>
+              <Width>0.0648913054118155</Width>
+              <Height>0.0674278464231491</Height>
+            </FrameRectangular>
+          </Frames>
+          <Reference>
+            <Id>217</Id>
+          </Reference>
+        </PMIDisplay>
+      </PMIDisplaySet>
+    </VisualizationSet>
+    <PartSet n="1">
+      <Part id="2" label="Model Entities" materialIndex="1">
+        <Attributes n="12">
+          <AttributeStr name="_3dv.PersistentId" value="2.1572864.ISO22081_FIG3" />
+          <AttributeStr name="_3dv.PartRevisionLevel" value="0++" />
+          <AttributeStr name="_3dvAttributePartFamilyInstanceName" value="ISO22081_FIG3" />
+          <AttributeD1 name="_3dv.Mass" value="22138.5114793886" />
+          <AttributeI3 name="_3dv.BackgroundColor" value="232 234 237" />
+          <AttributeBool name="_3dv.BackgroundColorGradient" value="0" />
+          <AttributeD1 name="_3dv.PartTolerance" value="0.01" />
+          <AttributeBool name="_3dv.CharacteristicApproximated" value="1" />
+          <AttributeI1 name="_3dv.ReportTypeSaved" value="1" />
+          <AttributeD1 name="_3dv.PartTemperature" value="20" />
+          <AttributeD1 name="_3dv.PartTemperatureUncertainty" value="3" />
+          <AttributeD1 name="_3dv.PartExpansionCoefficientUncertainty" value="2" />
+        </Attributes>
+        <Header>
+          <Name>iso22081_fig3.prt</Name>
+          <File>
+            <Name>ISO22081_FIG3.PRT</Name>
+          </File>
+          <Application>
+            <Name>PTC Creo Parametric 10</Name>
+            <Organization>PTC Creo</Organization>
+            <AddonName>MBDConnect for PTC Creo 2025.3.2602.18</AddonName>
+            <AddonOrganization>Capvidia</AddonOrganization>
+          </Application>
+          <ApplicationSource>
+            <Name>PTC Creo Parametric 10</Name>
+          </ApplicationSource>
+        </Header>
+        <SecurityClassification>
+          <OtherSecurityClassification> CONFIDENTIAL AND PROPRIETARY TO DEERE &amp; COMPANY.{BR}UNAUTHORIZED USE, DISCLOSURE, OR REPRODUCTION PROHIBITED.{BR} COPYRIGHT © DEERE &amp; COMPANY. ALL RIGHTS RESERVED.</OtherSecurityClassification>
+        </SecurityClassification>
+        <FeatureNominalIds n="10">
+          <Id>320</Id>
+          <Id>321</Id>
+          <Id>325</Id>
+          <Id>329</Id>
+          <Id>332</Id>
+          <Id>333</Id>
+          <Id>334</Id>
+          <Id>336</Id>
+          <Id>339</Id>
+          <Id>342</Id>
+        </FeatureNominalIds>
+        <CharacteristicNominalIds n="13">
+          <Id>4</Id>
+          <Id>197</Id>
+          <Id>204</Id>
+          <Id>207</Id>
+          <Id>214</Id>
+          <Id>216</Id>
+          <Id>224</Id>
+          <Id>231</Id>
+          <Id>236</Id>
+          <Id>323</Id>
+          <Id>327</Id>
+          <Id>331</Id>
+          <Id>338</Id>
+        </CharacteristicNominalIds>
+        <NoteIds n="1">
+          <Id>217</Id>
+        </NoteIds>
+        <DatumDefinitionIds n="3">
+          <Id>199</Id>
+          <Id>209</Id>
+          <Id>228</Id>
+        </DatumDefinitionIds>
+        <DatumReferenceFrameIds n="3">
+          <Id>202</Id>
+          <Id>212</Id>
+          <Id>234</Id>
+        </DatumReferenceFrameIds>
+        <BodyIds n="1">
+          <Id>5</Id>
+        </BodyIds>
+        <CoordinateSystemIds n="1">
+          <Id>182</Id>
+        </CoordinateSystemIds>
+        <ViewIds n="8">
+          <Id>183</Id>
+          <Id>184</Id>
+          <Id>218</Id>
+          <Id>219</Id>
+          <Id>237</Id>
+          <Id>238</Id>
+          <Id>344</Id>
+          <Id>346</Id>
+        </ViewIds>
+      </Part>
+    </PartSet>
+    <RootPart>
+      <Id>2</Id>
+    </RootPart>
+    <MaterialLibrary n="1">
+      <Material Index="1" MaterialName="PTC_SYSTEM_MTRL_PROPS">
+        <Attributes n="3">
+          <AttributeI1 name="_3dv.MaterialCreoType" value="9" />
+          <AttributeD1 name="_3dv.MaterialInitalBendYFactor" value="0" />
+          <AttributeStr name="_3dv.MaterialSybType" value="LINEAR" />
+        </Attributes>
+        <MassDensity>1</MassDensity>
+        <ThermalExpansion>15</ThermalExpansion>
+      </Material>
+    </MaterialLibrary>
+  </Product>
+  <Features>
+    <FeatureDefinitions n="5">
+      <PlaneFeatureDefinition id="319" />
+      <OppositeAngledPlanesFeatureDefinition id="370">
+        <InternalExternal>INTERNAL</InternalExternal>
+        <Width>0</Width>
+        <Length>20</Length>
+        <EndType>
+          <SlotEndEnum>UNDEFINED</SlotEndEnum>
+        </EndType>
+        <Depth>25</Depth>
+        <DraftAngle decimalPlaces="1">60</DraftAngle>
+      </OppositeAngledPlanesFeatureDefinition>
+      <OppositeParallelPlanesFeatureDefinition id="324">
+        <InternalExternal>EXTERNAL</InternalExternal>
+        <Width>50</Width>
+        <Length>25</Length>
+        <EndType>
+          <SlotEndEnum>UNDEFINED</SlotEndEnum>
+        </EndType>
+        <Depth>20</Depth>
+        <Bottom>
+          <BottomEnum>UNDEFINED</BottomEnum>
+        </Bottom>
+      </OppositeParallelPlanesFeatureDefinition>
+      <OppositeParallelPlanesFeatureDefinition id="328">
+        <InternalExternal>EXTERNAL</InternalExternal>
+        <Width>25</Width>
+        <Length>20</Length>
+        <EndType>
+          <SlotEndEnum>UNDEFINED</SlotEndEnum>
+        </EndType>
+        <Depth>50</Depth>
+        <Bottom>
+          <BottomEnum>UNDEFINED</BottomEnum>
+        </Bottom>
+      </OppositeParallelPlanesFeatureDefinition>
+      <OppositeParallelPlanesFeatureDefinition id="335">
+        <InternalExternal>INTERNAL</InternalExternal>
+        <Width>10</Width>
+        <Length>3.5</Length>
+        <EndType>
+          <SlotEndEnum>UNDEFINED</SlotEndEnum>
+        </EndType>
+        <Depth>25</Depth>
+        <Bottom>
+          <BottomEnum>THROUGH</BottomEnum>
+        </Bottom>
+      </OppositeParallelPlanesFeatureDefinition>
+    </FeatureDefinitions>
+    <FeatureNominals n="11">
+      <PlaneFeatureNominal id="320">
+        <Attributes n="1">
+          <AttributeStr name="_3dv.TrueGeomAlgo" value="Y14.5-2009" />
+        </Attributes>
+        <Name>Nominal 320</Name>
+        <UUID>f3d8d90f-39bb-4de4-aa3f-438ecba7e9d1</UUID>
+        <FeatureDefinitionId>319</FeatureDefinitionId>
+        <EntityInternalIds n="1">
+          <Id>154</Id>
+        </EntityInternalIds>
+        <SubstituteFeatureAlgorithm>
+          <SubstituteFeatureAlgorithmEnum>ONESIDED</SubstituteFeatureAlgorithmEnum>
+        </SubstituteFeatureAlgorithm>
+        <Location>11.000000000000004 10 -23.267949192431121</Location>
+        <Normal>0.5 -0 -0.866025403784439</Normal>
+      </PlaneFeatureNominal>
+      <PlaneFeatureNominal id="321">
+        <Attributes n="1">
+          <AttributeStr name="_3dv.TrueGeomAlgo" value="Y14.5-2009" />
+        </Attributes>
+        <Name>Nominal 321</Name>
+        <UUID>628abac2-8937-4522-8e6d-cbe608e5a51b</UUID>
+        <FeatureDefinitionId>319</FeatureDefinitionId>
+        <EntityInternalIds n="1">
+          <Id>157</Id>
+        </EntityInternalIds>
+        <SubstituteFeatureAlgorithm>
+          <SubstituteFeatureAlgorithmEnum>ONESIDED</SubstituteFeatureAlgorithmEnum>
+        </SubstituteFeatureAlgorithm>
+        <Location>17 10 -23.267949192431121</Location>
+        <Normal>-0.5 -0 -0.866025403784439</Normal>
+      </PlaneFeatureNominal>
+      <OppositeAngledPlanesFeatureNominal id="371">
+        <Attributes n="1">
+          <AttributeStr name="_3dv.TrueGeomAlgo" value="Y14.5-2009" />
+        </Attributes>
+        <Name>Nominal 371</Name>
+        <UUID>0e7c96d1-bd87-4221-95fb-ce0bc313e7c7</UUID>
+        <FeatureDefinitionId>370</FeatureDefinitionId>
+        <EntityInternalIds n="2">
+          <Id>154</Id>
+          <Id>157</Id>
+        </EntityInternalIds>
+        <SubstituteFeatureAlgorithm>
+          <SubstituteFeatureAlgorithmEnum>MINCIRCUMSCRIBED</SubstituteFeatureAlgorithmEnum>
+        </SubstituteFeatureAlgorithm>
+        <CenterPlane>
+          <Point>14 10 -21.5358983848622</Point>
+          <Normal>1 0 0</Normal>
+        </CenterPlane>
+        <LengthVector>0 1 0</LengthVector>
+        <DepthVector>0 0 1</DepthVector>
+      </OppositeAngledPlanesFeatureNominal>
+      <OppositeParallelPlanesFeatureNominal id="325">
+        <Attributes n="1">
+          <AttributeStr name="_3dv.TrueGeomAlgo" value="Y14.5-2009" />
+        </Attributes>
+        <Name>Nominal 325</Name>
+        <UUID>b7276f84-2246-43ae-83fb-d23fb013b907</UUID>
+        <FeatureDefinitionId>324</FeatureDefinitionId>
+        <EntityInternalIds n="2">
+          <Id>125</Id>
+          <Id>149</Id>
+        </EntityInternalIds>
+        <SubstituteFeatureAlgorithm>
+          <SubstituteFeatureAlgorithmEnum>MINCIRCUMSCRIBED</SubstituteFeatureAlgorithmEnum>
+        </SubstituteFeatureAlgorithm>
+        <CenterPlane>
+          <Point>25 10 -12.5</Point>
+          <Normal>1 0 0</Normal>
+        </CenterPlane>
+        <LengthVector>-0 0 1</LengthVector>
+      </OppositeParallelPlanesFeatureNominal>
+      <OppositeParallelPlanesFeatureNominal id="329">
+        <Attributes n="1">
+          <AttributeStr name="_3dv.TrueGeomAlgo" value="Y14.5-2009" />
+        </Attributes>
+        <Name>Nominal 329</Name>
+        <UUID>468da9ab-fb0d-4881-9215-3a573369ac5a</UUID>
+        <FeatureDefinitionId>328</FeatureDefinitionId>
+        <EntityInternalIds n="3">
+          <Id>120</Id>
+          <Id>145</Id>
+          <Id>146</Id>
+        </EntityInternalIds>
+        <SubstituteFeatureAlgorithm>
+          <SubstituteFeatureAlgorithmEnum>MINCIRCUMSCRIBED</SubstituteFeatureAlgorithmEnum>
+        </SubstituteFeatureAlgorithm>
+        <CenterPlane>
+          <Point>25 10 -12.5</Point>
+          <Normal>0 0 1</Normal>
+        </CenterPlane>
+        <LengthVector>0 -1 0</LengthVector>
+      </OppositeParallelPlanesFeatureNominal>
+      <PlaneFeatureNominal id="332">
+        <Attributes n="1">
+          <AttributeStr name="_3dv.TrueGeomAlgo" value="Y14.5-2009" />
+        </Attributes>
+        <Name>Nominal 332</Name>
+        <UUID>53410be0-8501-44c7-acc4-81b5661af348</UUID>
+        <FeatureDefinitionId>319</FeatureDefinitionId>
+        <EntityInternalIds n="1">
+          <Id>120</Id>
+        </EntityInternalIds>
+        <SubstituteFeatureAlgorithm>
+          <SubstituteFeatureAlgorithmEnum>ONESIDED</SubstituteFeatureAlgorithmEnum>
+        </SubstituteFeatureAlgorithm>
+        <Location>25 10 0</Location>
+        <Normal>0 0 1</Normal>
+      </PlaneFeatureNominal>
+      <PlaneFeatureNominal id="333">
+        <Attributes n="1">
+          <AttributeStr name="_3dv.TrueGeomAlgo" value="Y14.5-2009" />
+        </Attributes>
+        <Name>Nominal 333</Name>
+        <UUID>27791f0e-38ae-45e3-b973-23f25c769695</UUID>
+        <FeatureDefinitionId>319</FeatureDefinitionId>
+        <EntityInternalIds n="1">
+          <Id>149</Id>
+        </EntityInternalIds>
+        <SubstituteFeatureAlgorithm>
+          <SubstituteFeatureAlgorithmEnum>ONESIDED</SubstituteFeatureAlgorithmEnum>
+        </SubstituteFeatureAlgorithm>
+        <Location>0 10 -12.5</Location>
+        <Normal>-1 0 0</Normal>
+      </PlaneFeatureNominal>
+      <PlaneFeatureNominal id="334">
+        <Attributes n="1">
+          <AttributeStr name="_3dv.TrueGeomAlgo" value="Y14.5-2009" />
+        </Attributes>
+        <Name>Nominal 334</Name>
+        <UUID>26537882-09a2-49a8-ad83-2ece9e330d69</UUID>
+        <FeatureDefinitionId>319</FeatureDefinitionId>
+        <EntityInternalIds n="2">
+          <Id>145</Id>
+          <Id>146</Id>
+        </EntityInternalIds>
+        <SubstituteFeatureAlgorithm>
+          <SubstituteFeatureAlgorithmEnum>ONESIDED</SubstituteFeatureAlgorithmEnum>
+        </SubstituteFeatureAlgorithm>
+        <Location>25.000000000000004 10 -25</Location>
+        <Normal>0 0 -1</Normal>
+      </PlaneFeatureNominal>
+      <OppositeParallelPlanesFeatureNominal id="336">
+        <Attributes n="1">
+          <AttributeStr name="_3dv.TrueGeomAlgo" value="Y14.5-2009" />
+        </Attributes>
+        <Name>Nominal 336</Name>
+        <UUID>32f1ad3a-b15c-498b-9176-f7674f1a4f8a</UUID>
+        <FeatureDefinitionId>335</FeatureDefinitionId>
+        <EntityInternalIds n="2">
+          <Id>162</Id>
+          <Id>170</Id>
+        </EntityInternalIds>
+        <SubstituteFeatureAlgorithm>
+          <SubstituteFeatureAlgorithmEnum>MAXINSCRIBED</SubstituteFeatureAlgorithmEnum>
+        </SubstituteFeatureAlgorithm>
+        <CenterPlane>
+          <Point>35 18.25 -12.5</Point>
+          <Normal>1 -0 -0</Normal>
+        </CenterPlane>
+        <LengthVector>0 1 -0</LengthVector>
+      </OppositeParallelPlanesFeatureNominal>
+      <PlaneFeatureNominal id="339">
+        <Attributes n="1">
+          <AttributeStr name="_3dv.TrueGeomAlgo" value="Y14.5-2009" />
+        </Attributes>
+        <Name>Nominal 339</Name>
+        <UUID>abb2dfc6-7bee-42e4-a4ac-e2379089924b</UUID>
+        <FeatureDefinitionId>319</FeatureDefinitionId>
+        <EntityInternalIds n="1">
+          <Id>45</Id>
+        </EntityInternalIds>
+        <SubstituteFeatureAlgorithm>
+          <SubstituteFeatureAlgorithmEnum>ONESIDED</SubstituteFeatureAlgorithmEnum>
+        </SubstituteFeatureAlgorithm>
+        <Location>25 0 -12.5</Location>
+        <Normal>0 -1 -0</Normal>
+      </PlaneFeatureNominal>
+      <PlaneFeatureNominal id="342">
+        <Attributes n="1">
+          <AttributeStr name="_3dv.TrueGeomAlgo" value="Y14.5-2009" />
+        </Attributes>
+        <Name>Nominal 342</Name>
+        <UUID>eba399bb-f02f-4028-ba08-ad4bdf3041e4</UUID>
+        <FeatureDefinitionId>319</FeatureDefinitionId>
+        <EntityInternalIds n="2">
+          <Id>102</Id>
+          <Id>103</Id>
+        </EntityInternalIds>
+        <SubstituteFeatureAlgorithm>
+          <SubstituteFeatureAlgorithmEnum>ONESIDED</SubstituteFeatureAlgorithmEnum>
+        </SubstituteFeatureAlgorithm>
+        <Location>0 20 0</Location>
+        <Normal>-0 1 0</Normal>
+      </PlaneFeatureNominal>
+    </FeatureNominals>
+    <FeatureItems n="10">
+      <PlaneFeatureItem id="349">
+        <FeatureNominalId>320</FeatureNominalId>
+        <FeatureName>PlaneItem349</FeatureName>
+        <DeterminationMode>
+          <Checked />
+        </DeterminationMode>
+      </PlaneFeatureItem>
+      <PlaneFeatureItem id="350">
+        <FeatureNominalId>321</FeatureNominalId>
+        <FeatureName>PlaneItem350</FeatureName>
+        <DeterminationMode>
+          <Checked />
+        </DeterminationMode>
+      </PlaneFeatureItem>
+      <OppositeAngledPlanesFeatureItem id="372">
+        <FeatureNominalId>371</FeatureNominalId>
+        <FeatureName>OppositeAngledPlanesItem372</FeatureName>
+        <DeterminationMode>
+          <Checked />
+        </DeterminationMode>
+      </OppositeAngledPlanesFeatureItem>
+      <OppositeParallelPlanesFeatureItem id="352">
+        <FeatureNominalId>336</FeatureNominalId>
+        <FeatureName>OppositePlanesItem352</FeatureName>
+        <DeterminationMode>
+          <Checked />
+        </DeterminationMode>
+      </OppositeParallelPlanesFeatureItem>
+      <PlaneFeatureItem id="354">
+        <FeatureNominalId>332</FeatureNominalId>
+        <FeatureName>PlaneItem354</FeatureName>
+        <DeterminationMode>
+          <Checked />
+        </DeterminationMode>
+      </PlaneFeatureItem>
+      <PlaneFeatureItem id="356">
+        <FeatureNominalId>333</FeatureNominalId>
+        <FeatureName>PlaneItem356</FeatureName>
+        <DeterminationMode>
+          <Checked />
+        </DeterminationMode>
+      </PlaneFeatureItem>
+      <PlaneFeatureItem id="358">
+        <FeatureNominalId>334</FeatureNominalId>
+        <FeatureName>PlaneItem358</FeatureName>
+        <DeterminationMode>
+          <Checked />
+        </DeterminationMode>
+      </PlaneFeatureItem>
+      <OppositeParallelPlanesFeatureItem id="362">
+        <FeatureNominalId>336</FeatureNominalId>
+        <FeatureName>OppositePlanesItem362</FeatureName>
+        <DeterminationMode>
+          <Checked />
+        </DeterminationMode>
+      </OppositeParallelPlanesFeatureItem>
+      <PlaneFeatureItem id="364">
+        <FeatureNominalId>339</FeatureNominalId>
+        <FeatureName>PlaneItem364</FeatureName>
+        <DeterminationMode>
+          <Checked />
+        </DeterminationMode>
+      </PlaneFeatureItem>
+      <PlaneFeatureItem id="366">
+        <FeatureNominalId>342</FeatureNominalId>
+        <FeatureName>PlaneItem366</FeatureName>
+        <DeterminationMode>
+          <Checked />
+        </DeterminationMode>
+      </PlaneFeatureItem>
+    </FeatureItems>
+  </Features>
+  <Characteristics>
+    <FormalStandardId>367</FormalStandardId>
+    <CharacteristicDefinitions n="13">
+      <UserDefinedMassCharacteristicDefinition id="3">
+        <CharacteristicDesignator>
+          <Designator></Designator>
+          <UUID>ed1e16d3-90cf-4333-9ec2-c8da303d49b8</UUID>
+        </CharacteristicDesignator>
+        <NonTolerance>MEASURED</NonTolerance>
+        <WhatToMeasure>Full mass of the part</WhatToMeasure>
+      </UserDefinedMassCharacteristicDefinition>
+      <FlatnessCharacteristicDefinition id="196">
+        <CharacteristicDesignator>
+          <Designator></Designator>
+          <UUID>b1e962f6-ee78-4e3e-92d1-e70521c54f21</UUID>
+        </CharacteristicDesignator>
+        <StatisticalCharacteristic>false</StatisticalCharacteristic>
+        <UnitedOrContinuousFeature>false</UnitedOrContinuousFeature>
+        <ToleranceValue decimalPlaces="2">0.05</ToleranceValue>
+        <MaterialCondition>NONE</MaterialCondition>
+      </FlatnessCharacteristicDefinition>
+      <PerpendicularityCharacteristicDefinition id="203">
+        <CharacteristicDesignator>
+          <Designator></Designator>
+          <UUID>289489d8-acc7-43e5-8fc7-82fdd230bad2</UUID>
+        </CharacteristicDesignator>
+        <StatisticalCharacteristic>false</StatisticalCharacteristic>
+        <UnitedOrContinuousFeature>false</UnitedOrContinuousFeature>
+        <ToleranceValue decimalPlaces="1">0.1</ToleranceValue>
+        <DatumReferenceFrameId>202</DatumReferenceFrameId>
+        <MaterialCondition>NONE</MaterialCondition>
+        <ZoneShape>
+          <PlanarZone />
+        </ZoneShape>
+      </PerpendicularityCharacteristicDefinition>
+      <ParallelismCharacteristicDefinition id="206">
+        <CharacteristicDesignator>
+          <Designator></Designator>
+          <UUID>b4d8c67b-cfe9-4304-a3d1-8a818114a61b</UUID>
+        </CharacteristicDesignator>
+        <StatisticalCharacteristic>false</StatisticalCharacteristic>
+        <UnitedOrContinuousFeature>false</UnitedOrContinuousFeature>
+        <ToleranceValue decimalPlaces="1">0.3</ToleranceValue>
+        <DatumReferenceFrameId>202</DatumReferenceFrameId>
+        <MaterialCondition>NONE</MaterialCondition>
+        <ZoneShape>
+          <PlanarZone />
+        </ZoneShape>
+      </ParallelismCharacteristicDefinition>
+      <PerpendicularityCharacteristicDefinition id="213">
+        <CharacteristicDesignator>
+          <Designator></Designator>
+          <UUID>f8e23281-5232-4921-9db9-0b36d14b697f</UUID>
+        </CharacteristicDesignator>
+        <StatisticalCharacteristic>false</StatisticalCharacteristic>
+        <UnitedOrContinuousFeature>false</UnitedOrContinuousFeature>
+        <ToleranceValue decimalPlaces="1">0.2</ToleranceValue>
+        <DatumReferenceFrameId>212</DatumReferenceFrameId>
+        <MaterialCondition>NONE</MaterialCondition>
+        <ZoneShape>
+          <PlanarZone />
+        </ZoneShape>
+      </PerpendicularityCharacteristicDefinition>
+      <PerpendicularityCharacteristicDefinition id="215">
+        <CharacteristicDesignator>
+          <Designator></Designator>
+          <UUID>2df222f6-d8c1-4fad-a5c6-f008c2ed3135</UUID>
+        </CharacteristicDesignator>
+        <StatisticalCharacteristic>false</StatisticalCharacteristic>
+        <UnitedOrContinuousFeature>false</UnitedOrContinuousFeature>
+        <ToleranceValue decimalPlaces="1">0.2</ToleranceValue>
+        <DatumReferenceFrameId>212</DatumReferenceFrameId>
+        <MaterialCondition>NONE</MaterialCondition>
+        <ZoneShape>
+          <PlanarZone />
+        </ZoneShape>
+      </PerpendicularityCharacteristicDefinition>
+      <PositionCharacteristicDefinition id="223">
+        <CharacteristicDesignator>
+          <Designator></Designator>
+          <UUID>0dd5c001-c559-4216-93c8-a48b8d8c605d</UUID>
+        </CharacteristicDesignator>
+        <StatisticalCharacteristic>false</StatisticalCharacteristic>
+        <UnitedOrContinuousFeature>false</UnitedOrContinuousFeature>
+        <ToleranceValue decimalPlaces="1">0.4</ToleranceValue>
+        <DatumReferenceFrameId>212</DatumReferenceFrameId>
+        <MaterialCondition>NONE</MaterialCondition>
+        <ZoneShape>
+          <NonDiametricalZone />
+        </ZoneShape>
+      </PositionCharacteristicDefinition>
+      <PerpendicularityCharacteristicDefinition id="230">
+        <CharacteristicDesignator>
+          <Designator></Designator>
+          <UUID>74fcf445-aa7d-4f7e-9eae-ef594aa7a5cb</UUID>
+        </CharacteristicDesignator>
+        <StatisticalCharacteristic>false</StatisticalCharacteristic>
+        <UnitedOrContinuousFeature>false</UnitedOrContinuousFeature>
+        <ToleranceValue decimalPlaces="1">0.2</ToleranceValue>
+        <DatumReferenceFrameId>212</DatumReferenceFrameId>
+        <MaterialCondition>NONE</MaterialCondition>
+        <ZoneShape>
+          <PlanarZone />
+        </ZoneShape>
+      </PerpendicularityCharacteristicDefinition>
+      <PositionCharacteristicDefinition id="235">
+        <CharacteristicDesignator>
+          <Designator></Designator>
+          <UUID>4d8f753b-b0f2-473c-b496-dfde77ca0aab</UUID>
+        </CharacteristicDesignator>
+        <StatisticalCharacteristic>false</StatisticalCharacteristic>
+        <UnitedOrContinuousFeature>false</UnitedOrContinuousFeature>
+        <ToleranceValue decimalPlaces="1">0.5</ToleranceValue>
+        <DatumReferenceFrameId>234</DatumReferenceFrameId>
+        <MaterialCondition>NONE</MaterialCondition>
+        <ZoneShape>
+          <NonDiametricalZone />
+        </ZoneShape>
+      </PositionCharacteristicDefinition>
+      <AngleCharacteristicDefinition id="322">
+        <CharacteristicDesignator>
+          <Designator></Designator>
+          <UUID>1ed93741-3d99-4dfb-933c-e24f9fdc677d</UUID>
+        </CharacteristicDesignator>
+        <DimensionType>SET</DimensionType>
+        <Tolerance>
+          <MaxValue decimalPlaces="1">0</MaxValue>
+          <MinValue decimalPlaces="1">0</MinValue>
+          <DefinedAsLimit>false</DefinedAsLimit>
+        </Tolerance>
+      </AngleCharacteristicDefinition>
+      <WidthCharacteristicDefinition id="326">
+        <CharacteristicDesignator>
+          <Designator></Designator>
+          <UUID>96b4d9b8-efaf-4c66-b4b8-36f188dc3416</UUID>
+        </CharacteristicDesignator>
+        <DimensionType>REFERENCE_OR_AUXILIARY</DimensionType>
+        <NonTolerance>MEASURED</NonTolerance>
+      </WidthCharacteristicDefinition>
+      <WidthCharacteristicDefinition id="330">
+        <CharacteristicDesignator>
+          <Designator></Designator>
+          <UUID>8cb4f859-f446-4c26-8774-0ec4732a7049</UUID>
+        </CharacteristicDesignator>
+        <DimensionType>BASIC_OR_TED</DimensionType>
+        <NonTolerance>MEASURED</NonTolerance>
+      </WidthCharacteristicDefinition>
+      <WidthCharacteristicDefinition id="337">
+        <CharacteristicDesignator>
+          <Designator></Designator>
+          <UUID>f7b7e714-1e85-4bc1-910f-ca501a81862a</UUID>
+        </CharacteristicDesignator>
+        <Tolerance>
+          <MaxValue decimalPlaces="2">0.1</MaxValue>
+          <MinValue decimalPlaces="2">-0.1</MinValue>
+          <DefinedAsLimit>false</DefinedAsLimit>
+        </Tolerance>
+      </WidthCharacteristicDefinition>
+    </CharacteristicDefinitions>
+    <!-- Default ISO 22081 general geometrical specification payload -->
+    <DefaultCharacteristicDefinitions n="1">
+      <SurfaceProfileCharacteristicDefinition id="368">
+        <Attributes n="1">
+          <AttributeStr name="rp:ISO22081Category" value="GEOMETRICAL" />
+        </Attributes>
+        <ToleranceValue decimalPlaces="2">0.75</ToleranceValue>
+        <DatumReferenceFrameId>234</DatumReferenceFrameId>
+      </SurfaceProfileCharacteristicDefinition>
+    </DefaultCharacteristicDefinitions>
+    <CharacteristicNominals n="13">
+      <UserDefinedMassCharacteristicNominal id="4">
+        <Attributes n="1">
+          <AttributeUser name="_3dv.PmiReportableAdvanced" nameUserAttribute="AttributePmiReportable">
+            <UserDataXML>
+              <ReportableStates xmlns="##other" n="1">
+                <Reportable reportType="1" val="1" />
+              </ReportableStates>
+            </UserDataXML>
+          </AttributeUser>
+        </Attributes>
+        <CharacteristicDefinitionId>3</CharacteristicDefinitionId>
+        <Name>Part mass</Name>
+        <CharacteristicDesignator>
+          <Designator>17</Designator>
+          <UUID>16102b91-f7ef-45c3-9d63-47e76df68d0d</UUID>
+        </CharacteristicDesignator>
+        <TargetValue massUnit="kg">22138.511479388565931</TargetValue>
+      </UserDefinedMassCharacteristicNominal>
+      <FlatnessCharacteristicNominal id="197">
+        <Attributes n="4">
+          <AttributeStr name="Id_name" value="gp0" />
+          <AttributeD1 name="_3dv.FCFHeightCAD" value="1.78115131305569" />
+          <AttributeStr name="_3dv.PersistentId" value="32.0.ISO22081_FIG3" />
+          <AttributeUser name="_3dv.PmiReportableAdvanced" nameUserAttribute="AttributePmiReportable">
+            <UserDataXML>
+              <ReportableStates xmlns="##other" n="1">
+                <Reportable reportType="1" val="1" />
+              </ReportableStates>
+            </UserDataXML>
+          </AttributeUser>
+        </Attributes>
+        <CharacteristicDefinitionId>196</CharacteristicDefinitionId>
+        <FeatureNominalIds n="1">
+          <Id>332</Id>
+        </FeatureNominalIds>
+        <Name>gp0</Name>
+        <CharacteristicDesignator>
+          <Designator>D6</Designator>
+          <UUID>a02acc00-10c8-4dd3-868f-ab4f0437c8c6</UUID>
+        </CharacteristicDesignator>
+      </FlatnessCharacteristicNominal>
+      <PerpendicularityCharacteristicNominal id="204">
+        <Attributes n="4">
+          <AttributeStr name="Id_name" value="gp1" />
+          <AttributeD1 name="_3dv.FCFHeightCAD" value="1.78115131305569" />
+          <AttributeStr name="_3dv.PersistentId" value="32.1.ISO22081_FIG3" />
+          <AttributeUser name="_3dv.PmiReportableAdvanced" nameUserAttribute="AttributePmiReportable">
+            <UserDataXML>
+              <ReportableStates xmlns="##other" n="1">
+                <Reportable reportType="1" val="1" />
+              </ReportableStates>
+            </UserDataXML>
+          </AttributeUser>
+        </Attributes>
+        <CharacteristicDefinitionId>203</CharacteristicDefinitionId>
+        <FeatureNominalIds n="1">
+          <Id>333</Id>
+        </FeatureNominalIds>
+        <Name>gp1</Name>
+        <CharacteristicDesignator>
+          <Designator>D8</Designator>
+          <UUID>ed7c17ec-937f-46ab-9fbd-e25852883fd8</UUID>
+        </CharacteristicDesignator>
+      </PerpendicularityCharacteristicNominal>
+      <ParallelismCharacteristicNominal id="207">
+        <Attributes n="5">
+          <AttributeStr name="Id_name" value="gp2" />
+          <AttributeD1 name="_3dv.FCFHeightCAD" value="1.78115131305569" />
+          <AttributeStr name="_3dv.PersistentId" value="32.2.ISO22081_FIG3" />
+          <AttributeUser name="_3dv.PmiReportableAdvanced" nameUserAttribute="AttributePmiReportable">
+            <UserDataXML>
+              <ReportableStates xmlns="##other" n="1">
+                <Reportable reportType="1" val="1" />
+              </ReportableStates>
+            </UserDataXML>
+          </AttributeUser>
+          <AttributeStr name="_3dv.TextSuffix" value="{CF}" />
+        </Attributes>
+        <CharacteristicDefinitionId>206</CharacteristicDefinitionId>
+        <FeatureNominalIds n="1">
+          <Id>334</Id>
+        </FeatureNominalIds>
+        <Name>gp2</Name>
+        <CharacteristicDesignator>
+          <Designator>D1</Designator>
+          <UUID>43e56d6d-13fb-4bd8-a6c1-26b01ccf6719</UUID>
+        </CharacteristicDesignator>
+      </ParallelismCharacteristicNominal>
+      <PerpendicularityCharacteristicNominal id="214">
+        <Attributes n="5">
+          <AttributeStr name="Id_name" value="gp6" />
+          <AttributeI1 name="_3dv.PmiUpdater" value="22" />
+          <AttributeD1 name="_3dv.FCFHeightCAD" value="1.78115131305572" />
+          <AttributeStr name="_3dv.PersistentId" value="32.6.ISO22081_FIG3" />
+          <AttributeUser name="_3dv.PmiReportableAdvanced" nameUserAttribute="AttributePmiReportable">
+            <UserDataXML>
+              <ReportableStates xmlns="##other" n="1">
+                <Reportable reportType="1" val="1" />
+              </ReportableStates>
+            </UserDataXML>
+          </AttributeUser>
+        </Attributes>
+        <CharacteristicDefinitionId>213</CharacteristicDefinitionId>
+        <Name>gp6</Name>
+        <CharacteristicDesignator>
+          <Designator>D3</Designator>
+          <UUID>490453f1-92d5-436d-a623-1051f49b5bfe</UUID>
+        </CharacteristicDesignator>
+      </PerpendicularityCharacteristicNominal>
+      <PerpendicularityCharacteristicNominal id="216">
+        <Attributes n="5">
+          <AttributeStr name="Id_name" value="gp7" />
+          <AttributeI1 name="_3dv.PmiUpdater" value="22" />
+          <AttributeD1 name="_3dv.FCFHeightCAD" value="1.78115131305572" />
+          <AttributeStr name="_3dv.PersistentId" value="32.7.ISO22081_FIG3" />
+          <AttributeUser name="_3dv.PmiReportableAdvanced" nameUserAttribute="AttributePmiReportable">
+            <UserDataXML>
+              <ReportableStates xmlns="##other" n="1">
+                <Reportable reportType="1" val="1" />
+              </ReportableStates>
+            </UserDataXML>
+          </AttributeUser>
+        </Attributes>
+        <CharacteristicDefinitionId>215</CharacteristicDefinitionId>
+        <Name>gp7</Name>
+        <CharacteristicDesignator>
+          <Designator>D2</Designator>
+          <UUID>78b42608-cf9f-4975-9a3d-9400e197351e</UUID>
+        </CharacteristicDesignator>
+      </PerpendicularityCharacteristicNominal>
+      <PositionCharacteristicNominal id="224">
+        <Attributes n="7">
+          <AttributeStr name="Id_name" value="gp3" />
+          <AttributeD1 name="_3dv.GtolAtTheDimensionWLPosition" value="0" />
+          <AttributeBool name="_3dv.GtolAtTheDimensionWLPerpendicular" value="1" />
+          <AttributeD1 name="_3dv.FCFHeightCAD" value="1.78115131305569" />
+          <AttributeStr name="_3dv.PersistentId" value="32.3.ISO22081_FIG3" />
+          <AttributeI1 name="_3dv.GtolAtTheDimensionWL_ID" value="338" />
+          <AttributeUser name="_3dv.PmiReportableAdvanced" nameUserAttribute="AttributePmiReportable">
+            <UserDataXML>
+              <ReportableStates xmlns="##other" n="1">
+                <Reportable reportType="1" val="1" />
+              </ReportableStates>
+            </UserDataXML>
+          </AttributeUser>
+        </Attributes>
+        <CharacteristicDefinitionId>223</CharacteristicDefinitionId>
+        <FeatureNominalIds n="1">
+          <Id>336</Id>
+        </FeatureNominalIds>
+        <Name>gp3</Name>
+        <CharacteristicDesignator>
+          <Designator>D14</Designator>
+          <UUID>8e2c95f5-0004-4b74-957d-f8edc5836cc9</UUID>
+        </CharacteristicDesignator>
+      </PositionCharacteristicNominal>
+      <PerpendicularityCharacteristicNominal id="231">
+        <Attributes n="4">
+          <AttributeStr name="Id_name" value="gp5" />
+          <AttributeD1 name="_3dv.FCFHeightCAD" value="1.78115131305569" />
+          <AttributeStr name="_3dv.PersistentId" value="32.5.ISO22081_FIG3" />
+          <AttributeUser name="_3dv.PmiReportableAdvanced" nameUserAttribute="AttributePmiReportable">
+            <UserDataXML>
+              <ReportableStates xmlns="##other" n="1">
+                <Reportable reportType="1" val="1" />
+              </ReportableStates>
+            </UserDataXML>
+          </AttributeUser>
+        </Attributes>
+        <CharacteristicDefinitionId>230</CharacteristicDefinitionId>
+        <FeatureNominalIds n="1">
+          <Id>339</Id>
+        </FeatureNominalIds>
+        <Name>gp5</Name>
+        <CharacteristicDesignator>
+          <Designator>D13</Designator>
+          <UUID>960e4d83-6cae-4498-951e-e96e77e8d8b0</UUID>
+        </CharacteristicDesignator>
+      </PerpendicularityCharacteristicNominal>
+      <PositionCharacteristicNominal id="236">
+        <Attributes n="4">
+          <AttributeStr name="Id_name" value="gp4" />
+          <AttributeD1 name="_3dv.FCFHeightCAD" value="1.78115131305569" />
+          <AttributeStr name="_3dv.PersistentId" value="32.4.ISO22081_FIG3" />
+          <AttributeUser name="_3dv.PmiReportableAdvanced" nameUserAttribute="AttributePmiReportable">
+            <UserDataXML>
+              <ReportableStates xmlns="##other" n="1">
+                <Reportable reportType="1" val="1" />
+              </ReportableStates>
+            </UserDataXML>
+          </AttributeUser>
+        </Attributes>
+        <CharacteristicDefinitionId>235</CharacteristicDefinitionId>
+        <FeatureNominalIds n="1">
+          <Id>342</Id>
+        </FeatureNominalIds>
+        <Name>gp4</Name>
+        <CharacteristicDesignator>
+          <Designator>D12</Designator>
+          <UUID>a8c0b246-ea1d-4805-a873-2b32cc32b771</UUID>
+        </CharacteristicDesignator>
+      </PositionCharacteristicNominal>
+      <AngleCharacteristicNominal id="323">
+        <Attributes n="4">
+          <AttributeStr name="_3dv.PersistentId" value="8.25.ISO22081_FIG3" />
+          <AttributeStr name="Id_name" value="ad25" />
+          <AttributeUser name="_3dv.PmiReportableAdvanced" nameUserAttribute="AttributePmiReportable">
+            <UserDataXML>
+              <ReportableStates xmlns="##other" n="1">
+                <Reportable reportType="1" val="1" />
+              </ReportableStates>
+            </UserDataXML>
+          </AttributeUser>
+          <AttributeI1 name="DimensionDisplayMode" value="0" />
+        </Attributes>
+        <CharacteristicDefinitionId>322</CharacteristicDefinitionId>
+        <FeatureNominalIds n="1">
+          <Id>371</Id>
+        </FeatureNominalIds>
+        <Name>ad25</Name>
+        <CharacteristicDesignator>
+          <Designator>D9</Designator>
+          <UUID>a02d91be-67a1-4b20-bd98-847e89e3a9fe</UUID>
+        </CharacteristicDesignator>
+        <TargetValue decimalPlaces="1">120.000000000000043</TargetValue>
+      </AngleCharacteristicNominal>
+      <WidthCharacteristicNominal id="327">
+        <Attributes n="4">
+          <AttributeStr name="_3dv.PersistentId" value="8.27.ISO22081_FIG3" />
+          <AttributeStr name="Id_name" value="ad27" />
+          <AttributeUser name="_3dv.PmiReportableAdvanced" nameUserAttribute="AttributePmiReportable">
+            <UserDataXML>
+              <ReportableStates xmlns="##other" n="1">
+                <Reportable reportType="1" val="0" />
+              </ReportableStates>
+            </UserDataXML>
+          </AttributeUser>
+          <AttributeI1 name="DimensionDisplayMode" value="0" />
+        </Attributes>
+        <CharacteristicDefinitionId>326</CharacteristicDefinitionId>
+        <FeatureNominalIds n="1">
+          <Id>325</Id>
+        </FeatureNominalIds>
+        <Name>ad27</Name>
+        <CharacteristicDesignator>
+          <Designator>D5</Designator>
+          <UUID>250cf21e-8d53-4774-ab60-4a41efaf9233</UUID>
+        </CharacteristicDesignator>
+        <TargetValue decimalPlaces="2">49.999999999999993</TargetValue>
+      </WidthCharacteristicNominal>
+      <WidthCharacteristicNominal id="331">
+        <Attributes n="4">
+          <AttributeStr name="_3dv.PersistentId" value="8.29.ISO22081_FIG3" />
+          <AttributeStr name="Id_name" value="ad29" />
+          <AttributeUser name="_3dv.PmiReportableAdvanced" nameUserAttribute="AttributePmiReportable">
+            <UserDataXML>
+              <ReportableStates xmlns="##other" n="1">
+                <Reportable reportType="1" val="0" />
+              </ReportableStates>
+            </UserDataXML>
+          </AttributeUser>
+          <AttributeI1 name="DimensionDisplayMode" value="0" />
+        </Attributes>
+        <CharacteristicDefinitionId>330</CharacteristicDefinitionId>
+        <FeatureNominalIds n="1">
+          <Id>329</Id>
+        </FeatureNominalIds>
+        <Name>ad29</Name>
+        <CharacteristicDesignator>
+          <Designator>D4</Designator>
+          <UUID>9949bda8-27d6-4932-826c-721dec6df063</UUID>
+        </CharacteristicDesignator>
+        <TargetValue decimalPlaces="2">25</TargetValue>
+      </WidthCharacteristicNominal>
+      <WidthCharacteristicNominal id="338">
+        <Attributes n="4">
+          <AttributeStr name="_3dv.PersistentId" value="8.23.ISO22081_FIG3" />
+          <AttributeStr name="Id_name" value="ad23" />
+          <AttributeUser name="_3dv.PmiReportableAdvanced" nameUserAttribute="AttributePmiReportable">
+            <UserDataXML>
+              <ReportableStates xmlns="##other" n="1">
+                <Reportable reportType="1" val="1" />
+              </ReportableStates>
+            </UserDataXML>
+          </AttributeUser>
+          <AttributeI1 name="DimensionDisplayMode" value="1" />
+        </Attributes>
+        <CharacteristicDefinitionId>337</CharacteristicDefinitionId>
+        <FeatureNominalIds n="1">
+          <Id>336</Id>
+        </FeatureNominalIds>
+        <Name>ad23</Name>
+        <CharacteristicDesignator>
+          <Designator>D15</Designator>
+          <UUID>1b30954f-7870-4a9a-aa37-4de4439a2546</UUID>
+        </CharacteristicDesignator>
+        <TargetValue decimalPlaces="2">10.000000000000012</TargetValue>
+      </WidthCharacteristicNominal>
+    </CharacteristicNominals>
+    <CharacteristicItems n="10">
+      <AngleCharacteristicItem id="348">
+        <Name>Angle Item 348</Name>
+        <CharacteristicDesignator>
+          <Designator>D9</Designator>
+          <UUID>a02d91be-67a1-4b20-bd98-847e89e3a9fe</UUID>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>372</Id>
+        </FeatureItemIds>
+        <CharacteristicNominalId>323</CharacteristicNominalId>
+      </AngleCharacteristicItem>
+      <WidthCharacteristicItem id="351">
+        <Name>Width Item 351</Name>
+        <CharacteristicDesignator>
+          <Designator>D15</Designator>
+          <UUID>1b30954f-7870-4a9a-aa37-4de4439a2546</UUID>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>352</Id>
+        </FeatureItemIds>
+        <CharacteristicNominalId>338</CharacteristicNominalId>
+      </WidthCharacteristicItem>
+      <FlatnessCharacteristicItem id="353">
+        <Name>Flatness Item 353</Name>
+        <CharacteristicDesignator>
+          <Designator>D6</Designator>
+          <UUID>a02acc00-10c8-4dd3-868f-ab4f0437c8c6</UUID>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>354</Id>
+        </FeatureItemIds>
+        <CharacteristicNominalId>197</CharacteristicNominalId>
+      </FlatnessCharacteristicItem>
+      <PerpendicularityCharacteristicItem id="355">
+        <Name>Perpendicularity Item 355</Name>
+        <CharacteristicDesignator>
+          <Designator>D8</Designator>
+          <UUID>ed7c17ec-937f-46ab-9fbd-e25852883fd8</UUID>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>356</Id>
+        </FeatureItemIds>
+        <CharacteristicNominalId>204</CharacteristicNominalId>
+      </PerpendicularityCharacteristicItem>
+      <ParallelismCharacteristicItem id="357">
+        <Name>Parallelism Item 357</Name>
+        <CharacteristicDesignator>
+          <Designator>D1</Designator>
+          <UUID>43e56d6d-13fb-4bd8-a6c1-26b01ccf6719</UUID>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>358</Id>
+        </FeatureItemIds>
+        <CharacteristicNominalId>207</CharacteristicNominalId>
+      </ParallelismCharacteristicItem>
+      <PerpendicularityCharacteristicItem id="359">
+        <Name>Perpendicularity Item 359</Name>
+        <CharacteristicDesignator>
+          <Designator>D3</Designator>
+          <UUID>490453f1-92d5-436d-a623-1051f49b5bfe</UUID>
+        </CharacteristicDesignator>
+        <CharacteristicNominalId>214</CharacteristicNominalId>
+      </PerpendicularityCharacteristicItem>
+      <PerpendicularityCharacteristicItem id="360">
+        <Name>Perpendicularity Item 360</Name>
+        <CharacteristicDesignator>
+          <Designator>D2</Designator>
+          <UUID>78b42608-cf9f-4975-9a3d-9400e197351e</UUID>
+        </CharacteristicDesignator>
+        <CharacteristicNominalId>216</CharacteristicNominalId>
+      </PerpendicularityCharacteristicItem>
+      <PositionCharacteristicItem id="361">
+        <Name>Position Item 361</Name>
+        <CharacteristicDesignator>
+          <Designator>D14</Designator>
+          <UUID>8e2c95f5-0004-4b74-957d-f8edc5836cc9</UUID>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>362</Id>
+        </FeatureItemIds>
+        <CharacteristicNominalId>224</CharacteristicNominalId>
+      </PositionCharacteristicItem>
+      <PerpendicularityCharacteristicItem id="363">
+        <Name>Perpendicularity Item 363</Name>
+        <CharacteristicDesignator>
+          <Designator>D13</Designator>
+          <UUID>960e4d83-6cae-4498-951e-e96e77e8d8b0</UUID>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>364</Id>
+        </FeatureItemIds>
+        <CharacteristicNominalId>231</CharacteristicNominalId>
+      </PerpendicularityCharacteristicItem>
+      <PositionCharacteristicItem id="365">
+        <Name>Position Item 365</Name>
+        <CharacteristicDesignator>
+          <Designator>D12</Designator>
+          <UUID>a8c0b246-ea1d-4805-a873-2b32cc32b771</UUID>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>366</Id>
+        </FeatureItemIds>
+        <CharacteristicNominalId>236</CharacteristicNominalId>
+      </PositionCharacteristicItem>
+    </CharacteristicItems>
+  </Characteristics>
+  <Results>
+    <MeasurementResultsSet n="1">
+      <MeasurementResults id="347">
+        <InspectionTraceability />
+        <InspectionStatus>
+          <InspectionStatusEnum>UNDEFINED</InspectionStatusEnum>
+        </InspectionStatus>
+      </MeasurementResults>
+    </MeasurementResultsSet>
+  </Results>
+</QIFDocument>

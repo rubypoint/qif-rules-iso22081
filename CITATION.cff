@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite the tagged version below."
+title: "QIF Rules Extension Prototype"
+type: software
+authors:
+  - family-names: "Campbell"
+    given-names: "Daniel"
+version: "v0.1"
+url: "https://github.com/rubypoint/qif-rules-extension/tree/v0.1"

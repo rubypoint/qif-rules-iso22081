@@ -1,0 +1,1417 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<q:QIFDocument xmlns:q="http://qifstandards.org/xsd/qif4"
+    xmlns:rp="https://ns.rubypoint.io/qif4wip/attr/1/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://qifstandards.org/xsd/qif4 ../../xsd/qif4-wip/QIFApplications/QIFDocument.xsd https://ns.rubypoint.io/qif4wip/attr/1/ ../../xsd/rubypoint.xsd"
+    versionQIF="4devel.0.17"
+    idMax="1">
+
+    <q:QIFUUID>8c86e9eb-f8b6-4cd4-99a7-67f5a48bbf85</q:QIFUUID>
+
+    <q:RulesSet n="1">
+        <q:Rules id="1">
+            <q:Name>ISO 22081:2021 Rules</q:Name>
+            <q:Description>
+                First-pass ISO 22081 rules encoded as QIF user-defined rules
+                with Rubypoint XML payloads.
+            </q:Description>
+
+            <q:UserDefinedRules n="3">
+                <q:IfThenElseUserDefinedRules n="3">
+
+                    <!--
+                      ISO 22081 general geometrical specification rule.
+
+                      This rule applies a default geometrical specification to
+                      eligible integral features when:
+                      - the model is marked with the ISO 22081 note text,
+                      - exactly one geometrical default payload is discovered,
+                      - the feature is integral,
+                      - the feature is not already covered by direct or
+                        derived individual geometrical specifications,
+                      - the feature is not used in the general datum system.
+
+                      Rule D1 is implemented here using the current size-model
+                      convention:
+                      - only size indications whose characteristic definition has
+                        TypeOfDimension == SET are treated as ordinary size
+                        specifications,
+                      - nonzero characteristic tolerance means individually
+                        toleranced size,
+                      - zero characteristic tolerance means a candidate for
+                        general linear/angular size coverage when the matching
+                        ISO 22081 default payload exists.
+                    -->
+                    <q:IfThenUserDefinedRule name="ISO22081_GeneralGeometrical">
+                        <q:UUID>
+                            <q:UUIDAssignment>eaf01448-47a8-4572-bf8b-db2d7b7e9b29</q:UUIDAssignment>
+                        </q:UUID>
+                        <q:ThenAttributes>
+                            <q:Attributes n="1">
+                                <q:AttributeUser name="RubypointRuleExtension"
+                                    nameUserAttribute="RuleExtension">
+                                    <q:UserDataXML>
+                                        <rp:RuleExtension
+                                            uuid="6d693626-7af4-4bbd-b572-7b6f0fe893af"
+                                            specification="ISO 22081:2021"
+                                            clause="Rule D">
+                                            <rp:Rule>
+                                                <rp:Target>
+                                                    <rp:TargetEnum>FEATURE</rp:TargetEnum>
+                                                </rp:Target>
+
+                                                <rp:Actions>
+                                                    <rp:CreateCharacteristic
+                                                        id="create_iso22081_general_geometrical" />
+                                                    <rp:EmitMessage
+                                                        id="emit_iso22081_general_geometrical_message" />
+                                                </rp:Actions>
+
+                                                <rp:RuleBlock UUID="3aa1df71-06a5-4bc7-ac9f-2bb56fd68a73">
+                                                    <rp:Variables n="24">
+                                                        <!-- Current feature as a singleton collection for reuse -->
+                                                        <rp:Variable name="current_feature" kind="FEATURE">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:CurrentTarget />
+                                                                </rp:Seed>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+
+                                                        <!-- First feature in the document, used to emit one document-level message -->
+                                                        <rp:Variable name="geom_all_features" kind="FEATURE">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:All />
+                                                                </rp:Seed>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+
+                                                        <!-- ISO 22081 activation note discovery -->
+                                                        <rp:Variable name="iso22081_part_notes" kind="PARTNOTE">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:All />
+                                                                </rp:Seed>
+                                                                <rp:Filter>
+                                                                    <rp:StringEqualsIgnoreCase>
+                                                                        <rp:StringObjectParameter>
+                                                                            <rp:Parameter>Text</rp:Parameter>
+                                                                        </rp:StringObjectParameter>
+                                                                        <rp:StringConstant val="General tolerances ISO 22081" />
+                                                                    </rp:StringEqualsIgnoreCase>
+                                                                </rp:Filter>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+
+                                                        <rp:Variable name="iso22081_notes" kind="NOTE">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:All />
+                                                                </rp:Seed>
+                                                                <rp:Filter>
+                                                                    <rp:StringEqualsIgnoreCase>
+                                                                        <rp:StringObjectParameter>
+                                                                            <rp:Parameter>Text</rp:Parameter>
+                                                                        </rp:StringObjectParameter>
+                                                                        <rp:StringConstant val="General tolerances ISO 22081" />
+                                                                    </rp:StringEqualsIgnoreCase>
+                                                                </rp:Filter>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+
+                                                        <rp:Variable name="iso22081_note_flags" kind="NOTEFLAG">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:All />
+                                                                </rp:Seed>
+                                                                <rp:Filter>
+                                                                    <rp:StringEqualsIgnoreCase>
+                                                                        <rp:StringObjectParameter>
+                                                                            <rp:Parameter>Text</rp:Parameter>
+                                                                        </rp:StringObjectParameter>
+                                                                        <rp:StringConstant val="General tolerances ISO 22081" />
+                                                                    </rp:StringEqualsIgnoreCase>
+                                                                </rp:Filter>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+
+                                                        <!-- ISO 22081 default payload discovery -->
+                                                        <rp:Variable name="iso22081_geom_defaults"
+                                                            kind="DEFAULT_CHARACTERISTIC_DEFINITION">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:All />
+                                                                </rp:Seed>
+                                                                <rp:Filter>
+                                                                    <rp:StringEqualsIgnoreCase>
+                                                                        <rp:StringObjectParameter>
+                                                                            <rp:Parameter>Attributes/rp:ISO22081Category</rp:Parameter>
+                                                                        </rp:StringObjectParameter>
+                                                                        <rp:StringConstant val="GEOMETRICAL" />
+                                                                    </rp:StringEqualsIgnoreCase>
+                                                                </rp:Filter>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+
+                                                        <rp:Variable name="iso22081_linear_defaults"
+                                                            kind="DEFAULT_CHARACTERISTIC_DEFINITION">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:All />
+                                                                </rp:Seed>
+                                                                <rp:Filter>
+                                                                    <rp:StringEqualsIgnoreCase>
+                                                                        <rp:StringObjectParameter>
+                                                                            <rp:Parameter>Attributes/rp:ISO22081Category</rp:Parameter>
+                                                                        </rp:StringObjectParameter>
+                                                                        <rp:StringConstant val="LINEAR" />
+                                                                    </rp:StringEqualsIgnoreCase>
+                                                                </rp:Filter>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+
+                                                        <rp:Variable name="iso22081_angular_defaults"
+                                                            kind="DEFAULT_CHARACTERISTIC_DEFINITION">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:All />
+                                                                </rp:Seed>
+                                                                <rp:Filter>
+                                                                    <rp:StringEqualsIgnoreCase>
+                                                                        <rp:StringObjectParameter>
+                                                                            <rp:Parameter>Attributes/rp:ISO22081Category</rp:Parameter>
+                                                                        </rp:StringObjectParameter>
+                                                                        <rp:StringConstant val="ANGULAR" />
+                                                                    </rp:StringEqualsIgnoreCase>
+                                                                </rp:Filter>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+
+                                                        <!-- Rule D2: derived features of the current feature -->
+                                                        <rp:Variable name="derived_features" kind="FEATURE">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:All />
+                                                                </rp:Seed>
+                                                                <rp:Filter>
+                                                                    <q:ArithmeticEqual>
+                                                                        <rp:ArithmeticObjectParameter>
+                                                                            <rp:Parameter>ParentFeatureNominalId</rp:Parameter>
+                                                                        </rp:ArithmeticObjectParameter>
+                                                                        <rp:ArithmeticObjectParameter>
+                                                                            <rp:Parameter>FeatureNominalId</rp:Parameter>
+                                                                            <rp:ObjectFromCollection variableRef="current_feature"
+                                                                                selection="FIRST" />
+                                                                        </rp:ArithmeticObjectParameter>
+                                                                    </q:ArithmeticEqual>
+                                                                </rp:Filter>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+
+                                                        <!-- Rule D2: direct + derived individual geometrical specifications -->
+                                                        <rp:Variable name="covered_geom_characteristics"
+                                                            kind="CHARACTERISTIC">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:CurrentTarget />
+                                                                </rp:Seed>
+                                                                <rp:Seed>
+                                                                    <rp:VariableRef name="derived_features" />
+                                                                </rp:Seed>
+                                                                <rp:ExpandCharacteristicRelationships includeSelf="false" />
+                                                                <rp:Filter>
+                                                                    <q:Or n="22">
+                                                                        <q:CharacteristicIs val="ANGULARITY" />
+                                                                        <q:CharacteristicIs val="CIRCULARITY" />
+                                                                        <q:CharacteristicIs val="CIRCULARRUNOUT" />
+                                                                        <q:CharacteristicIs val="COAXIALITY" />
+                                                                        <q:CharacteristicIs val="CONCENTRICITY" />
+                                                                        <q:CharacteristicIs val="CONICITY" />
+                                                                        <q:CharacteristicIs val="CYLINDRICITY" />
+                                                                        <q:CharacteristicIs val="ELLIPTICITY" />
+                                                                        <q:CharacteristicIs val="FLATNESS" />
+                                                                        <q:CharacteristicIs val="LINEPROFILE" />
+                                                                        <q:CharacteristicIs val="OTHERFORM" />
+                                                                        <q:CharacteristicIs val="PARALLELISM" />
+                                                                        <q:CharacteristicIs val="PERPENDICULARITY" />
+                                                                        <q:CharacteristicIs val="POINTPROFILE" />
+                                                                        <q:CharacteristicIs val="POSITION" />
+                                                                        <q:CharacteristicIs val="SPHERICITY" />
+                                                                        <q:CharacteristicIs val="STRAIGHTNESS" />
+                                                                        <q:CharacteristicIs val="SURFACEPROFILE" />
+                                                                        <q:CharacteristicIs val="SURFACEPROFILENONUNIFORM" />
+                                                                        <q:CharacteristicIs val="SYMMETRY" />
+                                                                        <q:CharacteristicIs val="TOROIDICITY" />
+                                                                        <q:CharacteristicIs val="TOTALRUNOUT" />
+                                                                    </q:Or>
+                                                                </rp:Filter>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+
+                                                        <!-- Rule D1: current feature linear size characteristics -->
+                                                        <rp:Variable name="linear_size_characteristics"
+                                                            kind="CHARACTERISTIC">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:CurrentTarget />
+                                                                </rp:Seed>
+                                                                <rp:ExpandCharacteristicRelationships includeSelf="false" />
+                                                                <rp:Filter>
+                                                                    <q:Or n="11">
+                                                                        <q:CharacteristicIs val="CURVELENGTH" />
+                                                                        <q:CharacteristicIs val="DEPTH" />
+                                                                        <q:CharacteristicIs val="DIAMETER" />
+                                                                        <q:CharacteristicIs val="HEIGHT" />
+                                                                        <q:CharacteristicIs val="LENGTH" />
+                                                                        <q:CharacteristicIs val="RADIUS" />
+                                                                        <q:CharacteristicIs val="SPHERICALDIAMTER" />
+                                                                        <q:CharacteristicIs val="SPHERICALRADIUS" />
+                                                                        <q:CharacteristicIs val="SQUARE" />
+                                                                        <q:CharacteristicIs val="THICKNESS" />
+                                                                        <q:CharacteristicIs val="WIDTH" />
+                                                                    </q:Or>
+                                                                </rp:Filter>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+
+                                                        <!-- Rule D1: individually toleranced linear size characteristics -->
+                                                        <rp:Variable name="individually_toleranced_linear_size_characteristics"
+                                                            kind="CHARACTERISTIC">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:VariableRef name="linear_size_characteristics" />
+                                                                </rp:Seed>
+                                                                <rp:Filter>
+                                                                    <q:GreaterThan>
+                                                                        <q:CharacteristicTolerance />
+                                                                        <q:ArithmeticConstant val="0" />
+                                                                    </q:GreaterThan>
+                                                                </rp:Filter>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+
+                                                        <!-- Rule D1: individually toleranced ordinary linear size characteristics -->
+                                                        <rp:Variable name="individually_toleranced_linear_size_ordinary_characteristics"
+                                                            kind="CHARACTERISTIC">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:VariableRef name="individually_toleranced_linear_size_characteristics" />
+                                                                </rp:Seed>
+                                                                <rp:Filter>
+                                                                    <q:TokenEqual>
+                                                                        <rp:TokenObjectParameter>
+                                                                            <rp:Parameter>TypeOfDimension</rp:Parameter>
+                                                                        </rp:TokenObjectParameter>
+                                                                        <q:TokenConstant val="SET" />
+                                                                    </q:TokenEqual>
+                                                                </rp:Filter>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+
+                                                        <!-- Rule D1: TED/basic linear size characteristics -->
+                                                        <rp:Variable name="geom_ted_linear_size_characteristics"
+                                                            kind="CHARACTERISTIC">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:VariableRef name="linear_size_characteristics" />
+                                                                </rp:Seed>
+                                                                <rp:Filter>
+                                                                    <q:TokenEqual>
+                                                                        <rp:TokenObjectParameter>
+                                                                            <rp:Parameter>TypeOfDimension</rp:Parameter>
+                                                                        </rp:TokenObjectParameter>
+                                                                        <q:TokenConstant val="BASIC_OR_TED" />
+                                                                    </q:TokenEqual>
+                                                                </rp:Filter>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+
+                                                        <!-- Rule D1: auxiliary/reference linear size characteristics -->
+                                                        <rp:Variable name="geom_auxiliary_linear_size_characteristics"
+                                                            kind="CHARACTERISTIC">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:VariableRef name="linear_size_characteristics" />
+                                                                </rp:Seed>
+                                                                <rp:Filter>
+                                                                    <q:TokenEqual>
+                                                                        <rp:TokenObjectParameter>
+                                                                            <rp:Parameter>TypeOfDimension</rp:Parameter>
+                                                                        </rp:TokenObjectParameter>
+                                                                        <q:TokenConstant val="REFERENCE_OR_AUXILIARY" />
+                                                                    </q:TokenEqual>
+                                                                </rp:Filter>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+
+                                                        <!-- Rule D1: zero-tolerance linear size characteristics -->
+                                                        <rp:Variable name="general_linear_size_characteristics"
+                                                            kind="CHARACTERISTIC">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:VariableRef name="linear_size_characteristics" />
+                                                                </rp:Seed>
+                                                                <rp:Filter>
+                                                                    <q:ArithmeticEqual>
+                                                                        <q:CharacteristicTolerance />
+                                                                        <q:ArithmeticConstant val="0" />
+                                                                    </q:ArithmeticEqual>
+                                                                </rp:Filter>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+
+                                                        <!-- Rule D1: ordinary linear size characteristics eligible for general size coverage -->
+                                                        <rp:Variable name="general_linear_size_eligible_characteristics"
+                                                            kind="CHARACTERISTIC">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:VariableRef name="general_linear_size_characteristics" />
+                                                                </rp:Seed>
+                                                                <rp:Filter>
+                                                                    <q:TokenEqual>
+                                                                        <rp:TokenObjectParameter>
+                                                                            <rp:Parameter>TypeOfDimension</rp:Parameter>
+                                                                        </rp:TokenObjectParameter>
+                                                                        <q:TokenConstant val="SET" />
+                                                                    </q:TokenEqual>
+                                                                </rp:Filter>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+
+                                                        <!-- Rule D1: current feature angular size characteristics -->
+                                                        <rp:Variable name="angular_size_characteristics"
+                                                            kind="CHARACTERISTIC">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:CurrentTarget />
+                                                                </rp:Seed>
+                                                                <rp:ExpandCharacteristicRelationships includeSelf="false" />
+                                                                <rp:Filter>
+                                                                    <q:CharacteristicIs val="ANGLE" />
+                                                                </rp:Filter>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+
+                                                        <!-- Rule D1: individually toleranced angular size characteristics -->
+                                                        <rp:Variable name="individually_toleranced_angular_size_characteristics"
+                                                            kind="CHARACTERISTIC">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:VariableRef name="angular_size_characteristics" />
+                                                                </rp:Seed>
+                                                                <rp:Filter>
+                                                                    <q:GreaterThan>
+                                                                        <q:CharacteristicTolerance />
+                                                                        <q:ArithmeticConstant val="0" />
+                                                                    </q:GreaterThan>
+                                                                </rp:Filter>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+
+                                                        <!-- Rule D1: individually toleranced ordinary angular size characteristics -->
+                                                        <rp:Variable name="individually_toleranced_angular_size_ordinary_characteristics"
+                                                            kind="CHARACTERISTIC">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:VariableRef name="individually_toleranced_angular_size_characteristics" />
+                                                                </rp:Seed>
+                                                                <rp:Filter>
+                                                                    <q:TokenEqual>
+                                                                        <rp:TokenObjectParameter>
+                                                                            <rp:Parameter>TypeOfDimension</rp:Parameter>
+                                                                        </rp:TokenObjectParameter>
+                                                                        <q:TokenConstant val="SET" />
+                                                                    </q:TokenEqual>
+                                                                </rp:Filter>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+
+                                                        <!-- Rule D1: zero-tolerance angular size characteristics -->
+                                                        <rp:Variable name="general_angular_size_characteristics"
+                                                            kind="CHARACTERISTIC">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:VariableRef name="angular_size_characteristics" />
+                                                                </rp:Seed>
+                                                                <rp:Filter>
+                                                                    <q:ArithmeticEqual>
+                                                                        <q:CharacteristicTolerance />
+                                                                        <q:ArithmeticConstant val="0" />
+                                                                    </q:ArithmeticEqual>
+                                                                </rp:Filter>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+
+                                                        <!-- Rule D1: ordinary angular size characteristics eligible for general size coverage -->
+                                                        <rp:Variable name="general_angular_size_eligible_characteristics"
+                                                            kind="CHARACTERISTIC">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:VariableRef name="general_angular_size_characteristics" />
+                                                                </rp:Seed>
+                                                                <rp:Filter>
+                                                                    <q:TokenEqual>
+                                                                        <rp:TokenObjectParameter>
+                                                                            <rp:Parameter>TypeOfDimension</rp:Parameter>
+                                                                        </rp:TokenObjectParameter>
+                                                                        <q:TokenConstant val="SET" />
+                                                                    </q:TokenEqual>
+                                                                </rp:Filter>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+
+                                                        <!-- Rule D3: datum / DRF relationships from the current feature -->
+                                                        <rp:Variable name="current_target_datums" kind="DATUM">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:CurrentTarget />
+                                                                </rp:Seed>
+                                                                <rp:ExpandDatumRelationships includeSelf="false" />
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+
+                                                        <rp:Variable name="current_target_drfs" kind="DRF">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:VariableRef name="current_target_datums" />
+                                                                </rp:Seed>
+                                                                <rp:ExpandDrfRelationships includeSelf="false" />
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+                                                    </rp:Variables>
+
+                                                    <rp:Conditional>
+                                                        <rp:If>
+                                                            <!-- Activation note must exist in one of the note repositories -->
+                                                            <q:Or n="3">
+                                                                <q:GreaterThan>
+                                                                    <rp:CollectionCount variableRef="iso22081_part_notes" />
+                                                                    <q:ArithmeticConstant val="0" />
+                                                                </q:GreaterThan>
+                                                                <q:GreaterThan>
+                                                                    <rp:CollectionCount variableRef="iso22081_notes" />
+                                                                    <q:ArithmeticConstant val="0" />
+                                                                </q:GreaterThan>
+                                                                <q:GreaterThan>
+                                                                    <rp:CollectionCount variableRef="iso22081_note_flags" />
+                                                                    <q:ArithmeticConstant val="0" />
+                                                                </q:GreaterThan>
+                                                            </q:Or>
+
+                                                            <rp:Then UUID="83ff38e0-09f5-4b43-8586-b30d4fb3f95f">
+                                                                <rp:Conditional>
+                                                                    <rp:Choose>
+                                                                        <!-- Missing geometrical default payload -->
+                                                                        <rp:When>
+                                                                            <q:And n="2">
+                                                                                <q:ArithmeticEqual>
+                                                                                    <rp:CollectionCount variableRef="iso22081_geom_defaults" />
+                                                                                    <q:ArithmeticConstant val="0" />
+                                                                                </q:ArithmeticEqual>
+                                                                                <q:ArithmeticEqual>
+                                                                                    <rp:ArithmeticObjectParameter>
+                                                                                        <rp:Parameter>@id</rp:Parameter>
+                                                                                    </rp:ArithmeticObjectParameter>
+                                                                                    <rp:ArithmeticObjectParameter>
+                                                                                        <rp:Parameter>@id</rp:Parameter>
+                                                                                        <rp:ObjectFromCollection variableRef="geom_all_features"
+                                                                                            selection="FIRST" />
+                                                                                    </rp:ArithmeticObjectParameter>
+                                                                                </q:ArithmeticEqual>
+                                                                            </q:And>
+
+                                                                            <rp:Then UUID="84ec4345-f538-497e-8aca-5641be262cfd">
+                                                                                <rp:InvokeAction>
+                                                                                    <rp:InvokeEmitMessage
+                                                                                        actionRef="emit_iso22081_general_geometrical_message">
+                                                                                        <rp:Message>ISO22081_GeneralGeometrical requires exactly one GEOMETRICAL default characteristic definition, but none were found.</rp:Message>
+                                                                                    </rp:InvokeEmitMessage>
+                                                                                </rp:InvokeAction>
+                                                                            </rp:Then>
+                                                                        </rp:When>
+
+                                                                        <!-- Ambiguous geometrical default payload -->
+                                                                        <rp:When>
+                                                                            <q:And n="2">
+                                                                                <q:GreaterThan>
+                                                                                    <rp:CollectionCount variableRef="iso22081_geom_defaults" />
+                                                                                    <q:ArithmeticConstant val="1" />
+                                                                                </q:GreaterThan>
+                                                                                <q:ArithmeticEqual>
+                                                                                    <rp:ArithmeticObjectParameter>
+                                                                                        <rp:Parameter>@id</rp:Parameter>
+                                                                                    </rp:ArithmeticObjectParameter>
+                                                                                    <rp:ArithmeticObjectParameter>
+                                                                                        <rp:Parameter>@id</rp:Parameter>
+                                                                                        <rp:ObjectFromCollection variableRef="geom_all_features"
+                                                                                            selection="FIRST" />
+                                                                                    </rp:ArithmeticObjectParameter>
+                                                                                </q:ArithmeticEqual>
+                                                                            </q:And>
+
+                                                                            <rp:Then UUID="e188ca47-0f90-485d-ad8f-bda55d50bd29">
+                                                                                <rp:InvokeAction>
+                                                                                    <rp:InvokeEmitMessage
+                                                                                        actionRef="emit_iso22081_general_geometrical_message">
+                                                                                        <rp:Message>ISO22081_GeneralGeometrical requires exactly one GEOMETRICAL default characteristic definition, but multiple were found.</rp:Message>
+                                                                                    </rp:InvokeEmitMessage>
+                                                                                </rp:InvokeAction>
+                                                                            </rp:Then>
+                                                                        </rp:When>
+
+                                                                        <!-- Valid fixed-default geometrical case -->
+                                                                        <rp:When>
+                                                                            <q:And n="4">
+                                                                                <q:ArithmeticEqual>
+                                                                                    <rp:CollectionCount variableRef="iso22081_geom_defaults" />
+                                                                                    <q:ArithmeticConstant val="1" />
+                                                                                </q:ArithmeticEqual>
+
+                                                                                <!-- Integral feature test -->
+                                                                                <q:Or n="18">
+                                                                                    <q:FeatureTypeIs val="CONE" />
+                                                                                    <q:FeatureTypeIs val="CONICALSEGMENT" />
+                                                                                    <q:FeatureTypeIs val="CYLINDER" />
+                                                                                    <q:FeatureTypeIs val="CYLINDRICALSEGMENT" />
+                                                                                    <q:FeatureTypeIs val="ELONGATEDCYLINDER" />
+                                                                                    <q:FeatureTypeIs val="EXTRUDEDCROSSSECTION" />
+                                                                                    <q:FeatureTypeIs val="OPPOSITEANGLEDPLANES" />
+                                                                                    <q:FeatureTypeIs val="OPPOSITEPARALLELPLANES" />
+                                                                                    <q:FeatureTypeIs val="OTHERSHAPE" />
+                                                                                    <q:FeatureTypeIs val="OTHERSURFACE" />
+                                                                                    <q:FeatureTypeIs val="PLANE" />
+                                                                                    <q:FeatureTypeIs val="POINTDEFINEDSURFACE" />
+                                                                                    <q:FeatureTypeIs val="SPHERE" />
+                                                                                    <q:FeatureTypeIs val="SPHERICALSEGMENT" />
+                                                                                    <q:FeatureTypeIs val="SURFACEOFREVOLUTION" />
+                                                                                    <q:FeatureTypeIs val="THREADED" />
+                                                                                    <q:FeatureTypeIs val="TOROIDALSEGMENT" />
+                                                                                    <q:FeatureTypeIs val="TORUS" />
+                                                                                </q:Or>
+
+                                                                                <!-- Rule D1: exclude features already covered by linear or angular size specification -->
+                                                                                <q:Not>
+                                                                                    <q:Or n="4">
+                                                                                        <q:GreaterThan>
+                                                                                            <rp:CollectionCount variableRef="individually_toleranced_linear_size_ordinary_characteristics" />
+                                                                                            <q:ArithmeticConstant val="0" />
+                                                                                        </q:GreaterThan>
+                                                                                        <q:GreaterThan>
+                                                                                            <rp:CollectionCount variableRef="individually_toleranced_angular_size_ordinary_characteristics" />
+                                                                                            <q:ArithmeticConstant val="0" />
+                                                                                        </q:GreaterThan>
+                                                                                        <q:And n="4">
+                                                                                            <q:ArithmeticEqual>
+                                                                                                <rp:CollectionCount variableRef="iso22081_linear_defaults" />
+                                                                                                <q:ArithmeticConstant val="1" />
+                                                                                            </q:ArithmeticEqual>
+                                                                                            <q:Or n="8">
+                                                                                                <q:FeatureTypeIs val="CIRCLE" />
+                                                                                                <q:FeatureTypeIs val="CYLINDER" />
+                                                                                                <q:FeatureTypeIs val="ELONGATEDCIRCLE" />
+                                                                                                <q:FeatureTypeIs val="ELONGATEDCYLINDER" />
+                                                                                                <q:FeatureTypeIs val="OPPOSITEPARALLELLINES" />
+                                                                                                <q:FeatureTypeIs val="OPPOSITEPARALLELPLANES" />
+                                                                                                <q:FeatureTypeIs val="SPHERE" />
+                                                                                                <q:FeatureTypeIs val="THREADED" />
+                                                                                            </q:Or>
+                                                                                            <q:ArithmeticEqual>
+                                                                                                <rp:CollectionCount variableRef="geom_ted_linear_size_characteristics" />
+                                                                                                <q:ArithmeticConstant val="0" />
+                                                                                            </q:ArithmeticEqual>
+                                                                                            <q:ArithmeticEqual>
+                                                                                                <rp:CollectionCount variableRef="geom_auxiliary_linear_size_characteristics" />
+                                                                                                <q:ArithmeticConstant val="0" />
+                                                                                            </q:ArithmeticEqual>
+                                                                                        </q:And>
+                                                                                        <q:And n="2">
+                                                                                            <q:GreaterThan>
+                                                                                                <rp:CollectionCount variableRef="general_angular_size_eligible_characteristics" />
+                                                                                                <q:ArithmeticConstant val="0" />
+                                                                                            </q:GreaterThan>
+                                                                                            <q:ArithmeticEqual>
+                                                                                                <rp:CollectionCount variableRef="iso22081_angular_defaults" />
+                                                                                                <q:ArithmeticConstant val="1" />
+                                                                                            </q:ArithmeticEqual>
+                                                                                        </q:And>
+                                                                                    </q:Or>
+                                                                                </q:Not>
+
+                                                                                <!-- Rule D2: exclude direct or derived individual geometrical specs -->
+                                                                                <q:ArithmeticEqual>
+                                                                                    <rp:CollectionCount variableRef="covered_geom_characteristics" />
+                                                                                    <q:ArithmeticConstant val="0" />
+                                                                                </q:ArithmeticEqual>
+                                                                            </q:And>
+
+                                                                            <rp:Then UUID="6dc5768e-b973-4308-8b93-79f76d6bb2aa">
+                                                                                <rp:Variables n="1">
+                                                                                    <!-- Rule D3: datum features used in the selected general datum system -->
+                                                                                    <rp:Variable name="matched_general_drf" kind="DRF">
+                                                                                        <rp:Collection>
+                                                                                            <rp:Seed>
+                                                                                                <rp:VariableRef name="current_target_drfs" />
+                                                                                            </rp:Seed>
+                                                                                            <rp:Filter>
+                                                                                                <q:ArithmeticEqual>
+                                                                                                    <rp:ArithmeticObjectParameter>
+                                                                                                        <rp:Parameter>@id</rp:Parameter>
+                                                                                                    </rp:ArithmeticObjectParameter>
+                                                                                                    <rp:ArithmeticObjectParameter>
+                                                                                                        <rp:Parameter>DatumReferenceFrameId</rp:Parameter>
+                                                                                                        <rp:ObjectFromCollection
+                                                                                                            variableRef="iso22081_geom_defaults"
+                                                                                                            selection="FIRST" />
+                                                                                                    </rp:ArithmeticObjectParameter>
+                                                                                                </q:ArithmeticEqual>
+                                                                                            </rp:Filter>
+                                                                                        </rp:Collection>
+                                                                                    </rp:Variable>
+                                                                                </rp:Variables>
+
+                                                                                <rp:Conditional>
+                                                                                    <rp:If>
+                                                                                        <q:ArithmeticEqual>
+                                                                                            <rp:CollectionCount variableRef="matched_general_drf" />
+                                                                                            <q:ArithmeticConstant val="0" />
+                                                                                        </q:ArithmeticEqual>
+
+                                                                                        <rp:Then UUID="cb2e4b78-5586-4724-b77c-e78c6db8f19e">
+                                                                                            <!-- Clause 5.3 / Rule D consequent: create the default geometrical characteristic -->
+                                                                                            <rp:InvokeAction>
+                                                                                                <rp:InvokeCreateCharacteristic
+                                                                                                    actionRef="create_iso22081_general_geometrical">
+                                                                                                    <rp:FeatureAssignments>current_feature</rp:FeatureAssignments>
+                                                                                                    <rp:CharacteristicSpecification>
+                                                                                                        <rp:CharacteristicDefinitionFromCollection
+                                                                                                            variableRef="iso22081_geom_defaults"
+                                                                                                            selection="FIRST" />
+                                                                                                    </rp:CharacteristicSpecification>
+                                                                                                </rp:InvokeCreateCharacteristic>
+                                                                                            </rp:InvokeAction>
+                                                                                        </rp:Then>
+                                                                                    </rp:If>
+                                                                                </rp:Conditional>
+                                                                            </rp:Then>
+                                                                        </rp:When>
+                                                                    </rp:Choose>
+                                                                </rp:Conditional>
+                                                            </rp:Then>
+                                                        </rp:If>
+                                                    </rp:Conditional>
+                                                </rp:RuleBlock>
+                                            </rp:Rule>
+                                        </rp:RuleExtension>
+                                    </q:UserDataXML>
+                                </q:AttributeUser>
+                            </q:Attributes>
+                        </q:ThenAttributes>
+                    </q:IfThenUserDefinedRule>
+
+                    <!--
+                      ISO 22081 general linear size specification rule.
+
+                      This rule applies a fixed default linear size
+                      characteristic definition to eligible features of linear
+                      size when:
+                      - the model is marked with the ISO 22081 note text,
+                      - exactly one linear default characteristic definition is
+                        discovered,
+                      - the feature is a linear feature of size,
+                      - the feature has no individually toleranced linear size,
+                      - the size indication is not TED/basic and not
+                        auxiliary/reference.
+
+                      First-pass payload behavior:
+                      - the created characteristic comes directly from the ISO
+                        22081 default characteristic definition,
+                      - the existing zero-tolerance size indication, if any,
+                        is left in place,
+                      - no TargetValue binding is required in this pass.
+                    -->
+                    <q:IfThenUserDefinedRule name="ISO22081_GeneralLinearSize">
+                        <q:UUID>
+                            <q:UUIDAssignment>c717afe3-2473-4342-91e2-0189225df66c</q:UUIDAssignment>
+                        </q:UUID>
+                        <q:ThenAttributes>
+                            <q:Attributes n="1">
+                                <q:AttributeUser name="RubypointRuleExtension"
+                                    nameUserAttribute="RuleExtension">
+                                    <q:UserDataXML>
+                                        <rp:RuleExtension
+                                            uuid="91d41bf2-ad03-4342-ab1a-e685b3cb0bb6"
+                                            specification="ISO 22081:2021"
+                                            clause="Rule H">
+                                            <rp:Rule>
+                                                <rp:Target>
+                                                    <rp:TargetEnum>FEATURE</rp:TargetEnum>
+                                                </rp:Target>
+
+                                                <rp:Actions>
+                                                    <rp:CreateCharacteristic
+                                                        id="create_iso22081_general_linear" />
+                                                    <rp:EmitMessage
+                                                        id="emit_iso22081_general_linear_message" />
+                                                </rp:Actions>
+
+                                                <rp:RuleBlock UUID="bfacbbd8-86d0-4c85-93d3-a3222f48a1cc">
+                                                    <rp:Variables n="10">
+                                                        <!-- Current feature as a singleton collection for reuse -->
+                                                        <rp:Variable name="linear_current_feature" kind="FEATURE">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:CurrentTarget />
+                                                                </rp:Seed>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+
+                                                        <!-- First feature in the document, used to emit one document-level message -->
+                                                        <rp:Variable name="linear_all_features" kind="FEATURE">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:All />
+                                                                </rp:Seed>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+
+                                                        <!-- ISO 22081 activation note discovery -->
+                                                        <rp:Variable name="linear_iso22081_part_notes" kind="PARTNOTE">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:All />
+                                                                </rp:Seed>
+                                                                <rp:Filter>
+                                                                    <rp:StringEqualsIgnoreCase>
+                                                                        <rp:StringObjectParameter>
+                                                                            <rp:Parameter>Text</rp:Parameter>
+                                                                        </rp:StringObjectParameter>
+                                                                        <rp:StringConstant val="General tolerances ISO 22081" />
+                                                                    </rp:StringEqualsIgnoreCase>
+                                                                </rp:Filter>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+
+                                                        <rp:Variable name="linear_iso22081_notes" kind="NOTE">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:All />
+                                                                </rp:Seed>
+                                                                <rp:Filter>
+                                                                    <rp:StringEqualsIgnoreCase>
+                                                                        <rp:StringObjectParameter>
+                                                                            <rp:Parameter>Text</rp:Parameter>
+                                                                        </rp:StringObjectParameter>
+                                                                        <rp:StringConstant val="General tolerances ISO 22081" />
+                                                                    </rp:StringEqualsIgnoreCase>
+                                                                </rp:Filter>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+
+                                                        <rp:Variable name="linear_iso22081_note_flags" kind="NOTEFLAG">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:All />
+                                                                </rp:Seed>
+                                                                <rp:Filter>
+                                                                    <rp:StringEqualsIgnoreCase>
+                                                                        <rp:StringObjectParameter>
+                                                                            <rp:Parameter>Text</rp:Parameter>
+                                                                        </rp:StringObjectParameter>
+                                                                        <rp:StringConstant val="General tolerances ISO 22081" />
+                                                                    </rp:StringEqualsIgnoreCase>
+                                                                </rp:Filter>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+
+                                                        <!-- ISO 22081 default linear characteristic discovery -->
+                                                        <rp:Variable name="linear_iso22081_characteristic_defaults"
+                                                            kind="DEFAULT_CHARACTERISTIC_DEFINITION">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:All />
+                                                                </rp:Seed>
+                                                                <rp:Filter>
+                                                                    <q:And n="2">
+                                                                        <rp:StringEqualsIgnoreCase>
+                                                                            <rp:StringObjectParameter>
+                                                                                <rp:Parameter>Attributes/rp:ISO22081Category</rp:Parameter>
+                                                                            </rp:StringObjectParameter>
+                                                                            <rp:StringConstant val="LINEAR" />
+                                                                        </rp:StringEqualsIgnoreCase>
+                                                                        <q:Or n="11">
+                                                                            <q:CharacteristicIs val="CURVELENGTH" />
+                                                                            <q:CharacteristicIs val="DEPTH" />
+                                                                            <q:CharacteristicIs val="DIAMETER" />
+                                                                            <q:CharacteristicIs val="HEIGHT" />
+                                                                            <q:CharacteristicIs val="LENGTH" />
+                                                                            <q:CharacteristicIs val="RADIUS" />
+                                                                            <q:CharacteristicIs val="SPHERICALDIAMTER" />
+                                                                            <q:CharacteristicIs val="SPHERICALRADIUS" />
+                                                                            <q:CharacteristicIs val="SQUARE" />
+                                                                            <q:CharacteristicIs val="THICKNESS" />
+                                                                            <q:CharacteristicIs val="WIDTH" />
+                                                                        </q:Or>
+                                                                    </q:And>
+                                                                </rp:Filter>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+
+                                                        <!-- Rule H1: current feature linear size characteristics -->
+                                                        <rp:Variable name="linear_size_characteristics_current_feature"
+                                                            kind="CHARACTERISTIC">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:CurrentTarget />
+                                                                </rp:Seed>
+                                                                <rp:ExpandCharacteristicRelationships includeSelf="false" />
+                                                                <rp:Filter>
+                                                                    <q:Or n="11">
+                                                                        <q:CharacteristicIs val="CURVELENGTH" />
+                                                                        <q:CharacteristicIs val="DEPTH" />
+                                                                        <q:CharacteristicIs val="DIAMETER" />
+                                                                        <q:CharacteristicIs val="HEIGHT" />
+                                                                        <q:CharacteristicIs val="LENGTH" />
+                                                                        <q:CharacteristicIs val="RADIUS" />
+                                                                        <q:CharacteristicIs val="SPHERICALDIAMTER" />
+                                                                        <q:CharacteristicIs val="SPHERICALRADIUS" />
+                                                                        <q:CharacteristicIs val="SQUARE" />
+                                                                        <q:CharacteristicIs val="THICKNESS" />
+                                                                        <q:CharacteristicIs val="WIDTH" />
+                                                                    </q:Or>
+                                                                </rp:Filter>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+
+                                                        <!-- Rule H1: individually toleranced linear size characteristics -->
+                                                        <rp:Variable name="linear_individually_toleranced_size_characteristics"
+                                                            kind="CHARACTERISTIC">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:VariableRef name="linear_size_characteristics_current_feature" />
+                                                                </rp:Seed>
+                                                                <rp:Filter>
+                                                                    <q:GreaterThan>
+                                                                        <q:CharacteristicTolerance />
+                                                                        <q:ArithmeticConstant val="0" />
+                                                                    </q:GreaterThan>
+                                                                </rp:Filter>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+
+                                                        <!-- Rule H1: TED/basic linear size characteristics -->
+                                                        <rp:Variable name="linear_ted_size_characteristics"
+                                                            kind="CHARACTERISTIC">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:VariableRef name="linear_size_characteristics_current_feature" />
+                                                                </rp:Seed>
+                                                                <rp:Filter>
+                                                                    <q:TokenEqual>
+                                                                        <rp:TokenObjectParameter>
+                                                                            <rp:Parameter>TypeOfDimension</rp:Parameter>
+                                                                        </rp:TokenObjectParameter>
+                                                                        <q:TokenConstant val="BASIC_OR_TED" />
+                                                                    </q:TokenEqual>
+                                                                </rp:Filter>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+
+                                                        <!-- Rule H1: auxiliary/reference linear size characteristics -->
+                                                        <rp:Variable name="linear_auxiliary_size_characteristics"
+                                                            kind="CHARACTERISTIC">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:VariableRef name="linear_size_characteristics_current_feature" />
+                                                                </rp:Seed>
+                                                                <rp:Filter>
+                                                                    <q:TokenEqual>
+                                                                        <rp:TokenObjectParameter>
+                                                                            <rp:Parameter>TypeOfDimension</rp:Parameter>
+                                                                        </rp:TokenObjectParameter>
+                                                                        <q:TokenConstant val="REFERENCE_OR_AUXILIARY" />
+                                                                    </q:TokenEqual>
+                                                                </rp:Filter>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+                                                    </rp:Variables>
+
+                                                    <rp:Conditional>
+                                                        <rp:If>
+                                                            <!-- Activation note must exist in one of the note repositories -->
+                                                            <q:Or n="3">
+                                                                <q:GreaterThan>
+                                                                    <rp:CollectionCount variableRef="linear_iso22081_part_notes" />
+                                                                    <q:ArithmeticConstant val="0" />
+                                                                </q:GreaterThan>
+                                                                <q:GreaterThan>
+                                                                    <rp:CollectionCount variableRef="linear_iso22081_notes" />
+                                                                    <q:ArithmeticConstant val="0" />
+                                                                </q:GreaterThan>
+                                                                <q:GreaterThan>
+                                                                    <rp:CollectionCount variableRef="linear_iso22081_note_flags" />
+                                                                    <q:ArithmeticConstant val="0" />
+                                                                </q:GreaterThan>
+                                                            </q:Or>
+
+                                                            <rp:Then UUID="81d1afcf-2dab-4f06-936e-44e76b4201d4">
+                                                                <rp:Conditional>
+                                                                    <rp:Choose>
+                                                                        <!-- Missing linear default characteristic definition -->
+                                                                        <rp:When>
+                                                                            <q:And n="2">
+                                                                                <q:ArithmeticEqual>
+                                                                                    <rp:CollectionCount variableRef="linear_iso22081_characteristic_defaults" />
+                                                                                    <q:ArithmeticConstant val="0" />
+                                                                                </q:ArithmeticEqual>
+                                                                                <q:ArithmeticEqual>
+                                                                                    <rp:ArithmeticObjectParameter>
+                                                                                        <rp:Parameter>@id</rp:Parameter>
+                                                                                    </rp:ArithmeticObjectParameter>
+                                                                                    <rp:ArithmeticObjectParameter>
+                                                                                        <rp:Parameter>@id</rp:Parameter>
+                                                                                        <rp:ObjectFromCollection variableRef="linear_all_features"
+                                                                                            selection="FIRST" />
+                                                                                    </rp:ArithmeticObjectParameter>
+                                                                                </q:ArithmeticEqual>
+                                                                            </q:And>
+
+                                                                            <rp:Then UUID="2e3e8e4b-1b0f-4d1b-8892-c0ec20b08e9b">
+                                                                                <rp:InvokeAction>
+                                                                                    <rp:InvokeEmitMessage
+                                                                                        actionRef="emit_iso22081_general_linear_message">
+                                                                                        <rp:Message>ISO22081_GeneralLinearSize requires exactly one LINEAR default characteristic definition, but none were found.</rp:Message>
+                                                                                    </rp:InvokeEmitMessage>
+                                                                                </rp:InvokeAction>
+                                                                            </rp:Then>
+                                                                        </rp:When>
+
+                                                                        <!-- Ambiguous linear default characteristic definition -->
+                                                                        <rp:When>
+                                                                            <q:And n="2">
+                                                                                <q:GreaterThan>
+                                                                                    <rp:CollectionCount variableRef="linear_iso22081_characteristic_defaults" />
+                                                                                    <q:ArithmeticConstant val="1" />
+                                                                                </q:GreaterThan>
+                                                                                <q:ArithmeticEqual>
+                                                                                    <rp:ArithmeticObjectParameter>
+                                                                                        <rp:Parameter>@id</rp:Parameter>
+                                                                                    </rp:ArithmeticObjectParameter>
+                                                                                    <rp:ArithmeticObjectParameter>
+                                                                                        <rp:Parameter>@id</rp:Parameter>
+                                                                                        <rp:ObjectFromCollection variableRef="linear_all_features"
+                                                                                            selection="FIRST" />
+                                                                                    </rp:ArithmeticObjectParameter>
+                                                                                </q:ArithmeticEqual>
+                                                                            </q:And>
+
+                                                                            <rp:Then UUID="7303f4d4-f79c-41b2-8b1e-0f04dbc27d4d">
+                                                                                <rp:InvokeAction>
+                                                                                    <rp:InvokeEmitMessage
+                                                                                        actionRef="emit_iso22081_general_linear_message">
+                                                                                        <rp:Message>ISO22081_GeneralLinearSize requires exactly one LINEAR default characteristic definition, but multiple were found.</rp:Message>
+                                                                                    </rp:InvokeEmitMessage>
+                                                                                </rp:InvokeAction>
+                                                                            </rp:Then>
+                                                                        </rp:When>
+
+                                                                        <!-- Valid fixed-default linear case -->
+                                                                        <rp:When>
+                                                                            <q:And n="5">
+                                                                                <q:ArithmeticEqual>
+                                                                                    <rp:CollectionCount variableRef="linear_iso22081_characteristic_defaults" />
+                                                                                    <q:ArithmeticConstant val="1" />
+                                                                                </q:ArithmeticEqual>
+                                                                                <q:Or n="8">
+                                                                                    <q:FeatureTypeIs val="CIRCLE" />
+                                                                                    <q:FeatureTypeIs val="CYLINDER" />
+                                                                                    <q:FeatureTypeIs val="ELONGATEDCIRCLE" />
+                                                                                    <q:FeatureTypeIs val="ELONGATEDCYLINDER" />
+                                                                                    <q:FeatureTypeIs val="OPPOSITEPARALLELLINES" />
+                                                                                    <q:FeatureTypeIs val="OPPOSITEPARALLELPLANES" />
+                                                                                    <q:FeatureTypeIs val="SPHERE" />
+                                                                                    <q:FeatureTypeIs val="THREADED" />
+                                                                                </q:Or>
+                                                                                <q:ArithmeticEqual>
+                                                                                    <rp:CollectionCount variableRef="linear_individually_toleranced_size_characteristics" />
+                                                                                    <q:ArithmeticConstant val="0" />
+                                                                                </q:ArithmeticEqual>
+                                                                                <q:ArithmeticEqual>
+                                                                                    <rp:CollectionCount variableRef="linear_ted_size_characteristics" />
+                                                                                    <q:ArithmeticConstant val="0" />
+                                                                                </q:ArithmeticEqual>
+                                                                                <q:ArithmeticEqual>
+                                                                                    <rp:CollectionCount variableRef="linear_auxiliary_size_characteristics" />
+                                                                                    <q:ArithmeticConstant val="0" />
+                                                                                </q:ArithmeticEqual>
+                                                                            </q:And>
+
+                                                                            <rp:Then UUID="c0cd68ef-9d99-4f83-a14b-05b0dddbf606">
+                                                                                <!-- Clause 6 / Rule H consequent: create the default linear size characteristic -->
+                                                                                <rp:InvokeAction>
+                                                                                    <rp:InvokeCreateCharacteristic
+                                                                                        actionRef="create_iso22081_general_linear">
+                                                                                        <rp:FeatureAssignments>linear_current_feature</rp:FeatureAssignments>
+                                                                                        <rp:CharacteristicSpecification>
+                                                                                            <rp:CharacteristicDefinitionFromCollection
+                                                                                                variableRef="linear_iso22081_characteristic_defaults"
+                                                                                                selection="FIRST" />
+                                                                                        </rp:CharacteristicSpecification>
+                                                                                    </rp:InvokeCreateCharacteristic>
+                                                                                </rp:InvokeAction>
+                                                                            </rp:Then>
+                                                                        </rp:When>
+                                                                    </rp:Choose>
+                                                                </rp:Conditional>
+                                                            </rp:Then>
+                                                        </rp:If>
+                                                    </rp:Conditional>
+                                                </rp:RuleBlock>
+                                            </rp:Rule>
+                                        </rp:RuleExtension>
+                                    </q:UserDataXML>
+                                </q:AttributeUser>
+                            </q:Attributes>
+                        </q:ThenAttributes>
+                    </q:IfThenUserDefinedRule>
+
+                    <!--
+                      ISO 22081 general angular size specification rule.
+
+                      This rule applies a fixed default angular size
+                      characteristic definition to eligible features of angular
+                      size when:
+                      - the model is marked with the ISO 22081 note text,
+                      - exactly one angular default characteristic definition is
+                        discovered,
+                      - the feature is an angular feature of size,
+                      - the feature has no individually toleranced angular size,
+                      - the size indication is not TED/basic and not
+                        auxiliary/reference.
+
+                      First-pass payload behavior:
+                      - the created characteristic comes directly from the ISO
+                        22081 default characteristic definition,
+                      - the existing zero-tolerance angular size indication, if
+                        any, is left in place,
+                      - no TargetValue binding is required in this pass.
+                    -->
+                    <q:IfThenUserDefinedRule name="ISO22081_GeneralAngularSize">
+                        <q:UUID>
+                            <q:UUIDAssignment>8f2d1da1-c989-4609-a3e3-b2ae0ec11fa0</q:UUIDAssignment>
+                        </q:UUID>
+                        <q:ThenAttributes>
+                            <q:Attributes n="1">
+                                <q:AttributeUser name="RubypointRuleExtension"
+                                    nameUserAttribute="RuleExtension">
+                                    <q:UserDataXML>
+                                        <rp:RuleExtension
+                                            uuid="dce5199d-5f7c-494f-9a56-3fca6026ec2b"
+                                            specification="ISO 22081:2021"
+                                            clause="Rule H">
+                                            <rp:Rule>
+                                                <rp:Target>
+                                                    <rp:TargetEnum>FEATURE</rp:TargetEnum>
+                                                </rp:Target>
+
+                                                <rp:Actions>
+                                                    <rp:CreateCharacteristic
+                                                        id="create_iso22081_general_angular" />
+                                                    <rp:EmitMessage
+                                                        id="emit_iso22081_general_angular_message" />
+                                                </rp:Actions>
+
+                                                <rp:RuleBlock UUID="3e5f1971-8a80-46a0-b7db-332b5590b0fc">
+                                                    <rp:Variables n="10">
+                                                        <!-- Current feature as a singleton collection for reuse -->
+                                                        <rp:Variable name="angular_current_feature" kind="FEATURE">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:CurrentTarget />
+                                                                </rp:Seed>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+
+                                                        <!-- First feature in the document, used to emit one document-level message -->
+                                                        <rp:Variable name="angular_all_features" kind="FEATURE">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:All />
+                                                                </rp:Seed>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+
+                                                        <!-- ISO 22081 activation note discovery -->
+                                                        <rp:Variable name="angular_iso22081_part_notes" kind="PARTNOTE">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:All />
+                                                                </rp:Seed>
+                                                                <rp:Filter>
+                                                                    <rp:StringEqualsIgnoreCase>
+                                                                        <rp:StringObjectParameter>
+                                                                            <rp:Parameter>Text</rp:Parameter>
+                                                                        </rp:StringObjectParameter>
+                                                                        <rp:StringConstant val="General tolerances ISO 22081" />
+                                                                    </rp:StringEqualsIgnoreCase>
+                                                                </rp:Filter>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+
+                                                        <rp:Variable name="angular_iso22081_notes" kind="NOTE">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:All />
+                                                                </rp:Seed>
+                                                                <rp:Filter>
+                                                                    <rp:StringEqualsIgnoreCase>
+                                                                        <rp:StringObjectParameter>
+                                                                            <rp:Parameter>Text</rp:Parameter>
+                                                                        </rp:StringObjectParameter>
+                                                                        <rp:StringConstant val="General tolerances ISO 22081" />
+                                                                    </rp:StringEqualsIgnoreCase>
+                                                                </rp:Filter>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+
+                                                        <rp:Variable name="angular_iso22081_note_flags" kind="NOTEFLAG">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:All />
+                                                                </rp:Seed>
+                                                                <rp:Filter>
+                                                                    <rp:StringEqualsIgnoreCase>
+                                                                        <rp:StringObjectParameter>
+                                                                            <rp:Parameter>Text</rp:Parameter>
+                                                                        </rp:StringObjectParameter>
+                                                                        <rp:StringConstant val="General tolerances ISO 22081" />
+                                                                    </rp:StringEqualsIgnoreCase>
+                                                                </rp:Filter>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+
+                                                        <!-- ISO 22081 default angular characteristic discovery -->
+                                                        <rp:Variable name="angular_iso22081_characteristic_defaults"
+                                                            kind="DEFAULT_CHARACTERISTIC_DEFINITION">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:All />
+                                                                </rp:Seed>
+                                                                <rp:Filter>
+                                                                    <q:And n="2">
+                                                                        <rp:StringEqualsIgnoreCase>
+                                                                            <rp:StringObjectParameter>
+                                                                                <rp:Parameter>Attributes/rp:ISO22081Category</rp:Parameter>
+                                                                            </rp:StringObjectParameter>
+                                                                            <rp:StringConstant val="ANGULAR" />
+                                                                        </rp:StringEqualsIgnoreCase>
+                                                                        <q:CharacteristicIs val="ANGLE" />
+                                                                    </q:And>
+                                                                </rp:Filter>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+
+                                                        <!-- Rule H1: current feature angular size characteristics -->
+                                                        <rp:Variable name="angular_size_characteristics_current_feature"
+                                                            kind="CHARACTERISTIC">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:CurrentTarget />
+                                                                </rp:Seed>
+                                                                <rp:ExpandCharacteristicRelationships includeSelf="false" />
+                                                                <rp:Filter>
+                                                                    <q:CharacteristicIs val="ANGLE" />
+                                                                </rp:Filter>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+
+                                                        <!-- Rule H1: individually toleranced angular size characteristics -->
+                                                        <rp:Variable name="angular_individually_toleranced_size_characteristics"
+                                                            kind="CHARACTERISTIC">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:VariableRef name="angular_size_characteristics_current_feature" />
+                                                                </rp:Seed>
+                                                                <rp:Filter>
+                                                                    <q:GreaterThan>
+                                                                        <q:CharacteristicTolerance />
+                                                                        <q:ArithmeticConstant val="0" />
+                                                                    </q:GreaterThan>
+                                                                </rp:Filter>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+
+                                                        <!-- Rule H1: TED/basic angular size characteristics -->
+                                                        <rp:Variable name="angular_ted_size_characteristics"
+                                                            kind="CHARACTERISTIC">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:VariableRef name="angular_size_characteristics_current_feature" />
+                                                                </rp:Seed>
+                                                                <rp:Filter>
+                                                                    <q:TokenEqual>
+                                                                        <rp:TokenObjectParameter>
+                                                                            <rp:Parameter>TypeOfDimension</rp:Parameter>
+                                                                        </rp:TokenObjectParameter>
+                                                                        <q:TokenConstant val="BASIC_OR_TED" />
+                                                                    </q:TokenEqual>
+                                                                </rp:Filter>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+
+                                                        <!-- Rule H1: auxiliary/reference angular size characteristics -->
+                                                        <rp:Variable name="angular_auxiliary_size_characteristics"
+                                                            kind="CHARACTERISTIC">
+                                                            <rp:Collection>
+                                                                <rp:Seed>
+                                                                    <rp:VariableRef name="angular_size_characteristics_current_feature" />
+                                                                </rp:Seed>
+                                                                <rp:Filter>
+                                                                    <q:TokenEqual>
+                                                                        <rp:TokenObjectParameter>
+                                                                            <rp:Parameter>TypeOfDimension</rp:Parameter>
+                                                                        </rp:TokenObjectParameter>
+                                                                        <q:TokenConstant val="REFERENCE_OR_AUXILIARY" />
+                                                                    </q:TokenEqual>
+                                                                </rp:Filter>
+                                                            </rp:Collection>
+                                                        </rp:Variable>
+                                                    </rp:Variables>
+
+                                                    <rp:Conditional>
+                                                        <rp:If>
+                                                            <!-- Activation note must exist in one of the note repositories -->
+                                                            <q:Or n="3">
+                                                                <q:GreaterThan>
+                                                                    <rp:CollectionCount variableRef="angular_iso22081_part_notes" />
+                                                                    <q:ArithmeticConstant val="0" />
+                                                                </q:GreaterThan>
+                                                                <q:GreaterThan>
+                                                                    <rp:CollectionCount variableRef="angular_iso22081_notes" />
+                                                                    <q:ArithmeticConstant val="0" />
+                                                                </q:GreaterThan>
+                                                                <q:GreaterThan>
+                                                                    <rp:CollectionCount variableRef="angular_iso22081_note_flags" />
+                                                                    <q:ArithmeticConstant val="0" />
+                                                                </q:GreaterThan>
+                                                            </q:Or>
+
+                                                            <rp:Then UUID="4d5e8352-0f28-4a2b-8581-7bf248f62d3a">
+                                                                <rp:Conditional>
+                                                                    <rp:Choose>
+                                                                        <!-- Missing angular default characteristic definition -->
+                                                                        <rp:When>
+                                                                            <q:And n="2">
+                                                                                <q:ArithmeticEqual>
+                                                                                    <rp:CollectionCount variableRef="angular_iso22081_characteristic_defaults" />
+                                                                                    <q:ArithmeticConstant val="0" />
+                                                                                </q:ArithmeticEqual>
+                                                                                <q:ArithmeticEqual>
+                                                                                    <rp:ArithmeticObjectParameter>
+                                                                                        <rp:Parameter>@id</rp:Parameter>
+                                                                                    </rp:ArithmeticObjectParameter>
+                                                                                    <rp:ArithmeticObjectParameter>
+                                                                                        <rp:Parameter>@id</rp:Parameter>
+                                                                                        <rp:ObjectFromCollection variableRef="angular_all_features"
+                                                                                            selection="FIRST" />
+                                                                                    </rp:ArithmeticObjectParameter>
+                                                                                </q:ArithmeticEqual>
+                                                                            </q:And>
+
+                                                                            <rp:Then UUID="74a73e55-9d17-4eb7-ab7a-7f0c8423f564">
+                                                                                <rp:InvokeAction>
+                                                                                    <rp:InvokeEmitMessage
+                                                                                        actionRef="emit_iso22081_general_angular_message">
+                                                                                        <rp:Message>ISO22081_GeneralAngularSize requires exactly one ANGULAR default characteristic definition, but none were found.</rp:Message>
+                                                                                    </rp:InvokeEmitMessage>
+                                                                                </rp:InvokeAction>
+                                                                            </rp:Then>
+                                                                        </rp:When>
+
+                                                                        <!-- Ambiguous angular default characteristic definition -->
+                                                                        <rp:When>
+                                                                            <q:And n="2">
+                                                                                <q:GreaterThan>
+                                                                                    <rp:CollectionCount variableRef="angular_iso22081_characteristic_defaults" />
+                                                                                    <q:ArithmeticConstant val="1" />
+                                                                                </q:GreaterThan>
+                                                                                <q:ArithmeticEqual>
+                                                                                    <rp:ArithmeticObjectParameter>
+                                                                                        <rp:Parameter>@id</rp:Parameter>
+                                                                                    </rp:ArithmeticObjectParameter>
+                                                                                    <rp:ArithmeticObjectParameter>
+                                                                                        <rp:Parameter>@id</rp:Parameter>
+                                                                                        <rp:ObjectFromCollection variableRef="angular_all_features"
+                                                                                            selection="FIRST" />
+                                                                                    </rp:ArithmeticObjectParameter>
+                                                                                </q:ArithmeticEqual>
+                                                                            </q:And>
+
+                                                                            <rp:Then UUID="dcf636db-ad11-4003-83c4-52c24365e831">
+                                                                                <rp:InvokeAction>
+                                                                                    <rp:InvokeEmitMessage
+                                                                                        actionRef="emit_iso22081_general_angular_message">
+                                                                                        <rp:Message>ISO22081_GeneralAngularSize requires exactly one ANGULAR default characteristic definition, but multiple were found.</rp:Message>
+                                                                                    </rp:InvokeEmitMessage>
+                                                                                </rp:InvokeAction>
+                                                                            </rp:Then>
+                                                                        </rp:When>
+
+                                                                        <!-- Valid fixed-default angular case -->
+                                                                        <rp:When>
+                                                                            <q:And n="5">
+                                                                                <q:ArithmeticEqual>
+                                                                                    <rp:CollectionCount variableRef="angular_iso22081_characteristic_defaults" />
+                                                                                    <q:ArithmeticConstant val="1" />
+                                                                                </q:ArithmeticEqual>
+                                                                                <q:Or n="2">
+                                                                                    <q:FeatureTypeIs val="OPPOSITEANGLEDLINES" />
+                                                                                    <q:FeatureTypeIs val="OPPOSITEANGLEDPLANES" />
+                                                                                </q:Or>
+                                                                                <q:ArithmeticEqual>
+                                                                                    <rp:CollectionCount variableRef="angular_individually_toleranced_size_characteristics" />
+                                                                                    <q:ArithmeticConstant val="0" />
+                                                                                </q:ArithmeticEqual>
+                                                                                <q:ArithmeticEqual>
+                                                                                    <rp:CollectionCount variableRef="angular_ted_size_characteristics" />
+                                                                                    <q:ArithmeticConstant val="0" />
+                                                                                </q:ArithmeticEqual>
+                                                                                <q:ArithmeticEqual>
+                                                                                    <rp:CollectionCount variableRef="angular_auxiliary_size_characteristics" />
+                                                                                    <q:ArithmeticConstant val="0" />
+                                                                                </q:ArithmeticEqual>
+                                                                            </q:And>
+
+                                                                            <rp:Then UUID="90bf3863-13c3-46c1-a2b1-fda12fe3c3f3">
+                                                                                <!-- Clause 6 / Rule H consequent: create the default angular size characteristic -->
+                                                                                <rp:InvokeAction>
+                                                                                    <rp:InvokeCreateCharacteristic
+                                                                                        actionRef="create_iso22081_general_angular">
+                                                                                        <rp:FeatureAssignments>angular_current_feature</rp:FeatureAssignments>
+                                                                                        <rp:CharacteristicSpecification>
+                                                                                            <rp:CharacteristicDefinitionFromCollection
+                                                                                                variableRef="angular_iso22081_characteristic_defaults"
+                                                                                                selection="FIRST" />
+                                                                                        </rp:CharacteristicSpecification>
+                                                                                    </rp:InvokeCreateCharacteristic>
+                                                                                </rp:InvokeAction>
+                                                                            </rp:Then>
+                                                                        </rp:When>
+                                                                    </rp:Choose>
+                                                                </rp:Conditional>
+                                                            </rp:Then>
+                                                        </rp:If>
+                                                    </rp:Conditional>
+                                                </rp:RuleBlock>
+                                            </rp:Rule>
+                                        </rp:RuleExtension>
+                                    </q:UserDataXML>
+                                </q:AttributeUser>
+                            </q:Attributes>
+                        </q:ThenAttributes>
+                    </q:IfThenUserDefinedRule>
+                </q:IfThenElseUserDefinedRules>
+            </q:UserDefinedRules>
+        </q:Rules>
+    </q:RulesSet>
+</q:QIFDocument>
